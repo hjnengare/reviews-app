@@ -103,7 +103,7 @@ See more
 alt = Facial cleanser
 
 aria-label = 20% off
--20%
+-20% off
 
 aria-label = add to cart
 <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
@@ -194,7 +194,7 @@ Special Offer
 
 aria-label = 20% off
 
--20%
+-20% off
 
 Mountain Pine Bath Oil
 

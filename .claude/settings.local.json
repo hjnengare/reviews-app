@@ -1,7 +1,18 @@
 {
   "permissions": {
     "allow": [
-      "Bash(start index.html)"
+      "Bash(start index.html)",
+      "Read(/C:\\Users\\HilarioNengare\\Projects\\reviews-app/**)",
+      "Read(/C:\\Users\\HilarioNengare\\Projects\\reviews-app/**)",
+      "Read(/C:\\Users\\HilarioNengare\\Projects\\reviews-app/**)",
+      "Read(/C:\\Users\\HilarioNengare\\Projects\\reviews-app/**)",
+      "Read(/C:\\Users\\HilarioNengare\\Projects\\reviews-app/**)",
+      "Read(/C:\\Users\\HilarioNengare\\Projects\\reviews-app/**)",
+      "Read(/C:\\Users\\HilarioNengare\\Projects\\reviews-app/**)",
+      "Read(/C:\\Users\\HilarioNengare\\Projects\\reviews-app/**)",
+      "Read(/C:\\Users\\HilarioNengare\\Projects\\reviews-app/**)",
+      "Read(/C:\\Users\\HilarioNengare\\Projects\\reviews-app/**)",
+      "Read(/C:\\Users\\HilarioNengare\\Projects\\reviews-app/**)"
     ],
     "deny": [],
     "ask": []

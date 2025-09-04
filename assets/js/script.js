@@ -217,76 +217,143 @@ if (heroSlides.length > 0) {
 
 
 /**
- * header sticky & back top btn active
+ * optimized scroll handler with throttling and performance improvements
  */
 
 const header = document.querySelector("[data-header]");
 const backTopBtn = document.querySelector("[data-back-top-btn]");
 const alert = document.querySelector(".alert");
 const categoryNav = document.querySelector(".category-nav");
-
-const headerActive = function () {
-  if (window.scrollY > 150) {
-    header.classList.add("active");
-    backTopBtn.classList.add("active");
-    
-    // Hide alert smoothly and make category nav stick to top
-    if (alert) {
-      alert.classList.add("hidden");
-    }
-    if (categoryNav) {
-      categoryNav.classList.add("scrolled");
-    }
-  } else {
-    header.classList.remove("active");
-    backTopBtn.classList.remove("active");
-    
-    // Show alert and position category nav below header
-    if (alert) {
-      alert.classList.remove("hidden");
-    }
-    if (categoryNav) {
-      categoryNav.classList.remove("scrolled");
-    }
-  }
-}
-
-addEventOnElem(window, "scroll", headerActive);
-
-
-let lastScrolledPos = 0;
-
-const headerSticky = function () {
-  if (lastScrolledPos >= window.scrollY) {
-    header.classList.remove("header-hide");
-  } else {
-    header.classList.add("header-hide");
-  }
-
-  lastScrolledPos = window.scrollY;
-}
-
-addEventOnElem(window, "scroll", headerSticky);
-
-
-
-/**
- * scroll reveal effect
- */
-
 const sections = document.querySelectorAll("[data-section]");
 
-const scrollReveal = function () {
-  for (let i = 0; i < sections.length; i++) {
-    if (sections[i].getBoundingClientRect().top < window.innerHeight / 2) {
-      sections[i].classList.add("active");
+// Performance optimization: cache viewport height
+let viewportHeight = window.innerHeight;
+let lastScrolledPos = 0;
+let scrollThreshold = 150;
+let ticking = false;
+
+// Throttled scroll function using requestAnimationFrame
+const throttledScroll = function() {
+  if (!ticking) {
+    requestAnimationFrame(handleScroll);
+    ticking = true;
+  }
+};
+
+const handleScroll = function() {
+  const currentScroll = window.scrollY;
+  const scrollDirection = currentScroll > lastScrolledPos ? 'down' : 'up';
+  
+  // Header active state with improved performance
+  if (currentScroll > scrollThreshold) {
+    if (!header.classList.contains("active")) {
+      header.classList.add("active");
+      backTopBtn.classList.add("active");
+      
+      if (alert && !alert.classList.contains("hidden")) {
+        alert.classList.add("hidden");
+      }
+      if (categoryNav && !categoryNav.classList.contains("scrolled")) {
+        categoryNav.classList.add("scrolled");
+      }
+    }
+  } else {
+    if (header.classList.contains("active")) {
+      header.classList.remove("active");
+      backTopBtn.classList.remove("active");
+      
+      if (alert && alert.classList.contains("hidden")) {
+        alert.classList.remove("hidden");
+      }
+      if (categoryNav && categoryNav.classList.contains("scrolled")) {
+        categoryNav.classList.remove("scrolled");
+      }
     }
   }
+  
+  // Header hide/show based on scroll direction with hysteresis
+  const scrollDelta = Math.abs(currentScroll - lastScrolledPos);
+  if (scrollDelta > 10) { // Minimum scroll distance to trigger
+    if (scrollDirection === 'down' && currentScroll > scrollThreshold) {
+      if (!header.classList.contains("header-hide")) {
+        header.classList.add("header-hide");
+      }
+    } else if (scrollDirection === 'up') {
+      if (header.classList.contains("header-hide")) {
+        header.classList.remove("header-hide");
+      }
+    }
+  }
+  
+  // Optimized scroll reveal with intersection observer fallback
+  const revealThreshold = viewportHeight * 0.75;
+  sections.forEach(section => {
+    if (!section.classList.contains("active")) {
+      const rect = section.getBoundingClientRect();
+      if (rect.top < revealThreshold && rect.bottom > 0) {
+        section.classList.add("active");
+      }
+    }
+  });
+  
+  lastScrolledPos = currentScroll;
+  ticking = false;
+};
+
+// Use Intersection Observer for better performance where supported
+const createIntersectionObserver = function() {
+  if ('IntersectionObserver' in window) {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -10% 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.classList.contains('active')) {
+          entry.target.classList.add('active');
+          // Unobserve after activation for better performance
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    
+    sections.forEach(section => {
+      if (!section.classList.contains('active')) {
+        observer.observe(section);
+      }
+    });
+    
+    return true;
+  }
+  return false;
+};
+
+// Initialize scroll handling
+const initializeScrollHandling = function() {
+  // Initial scroll reveal check
+  handleScroll();
+  
+  // Try to use Intersection Observer, fallback to scroll listener
+  if (!createIntersectionObserver()) {
+    addEventOnElem(window, "scroll", throttledScroll);
+  } else {
+    // Still need scroll listener for header behavior
+    addEventOnElem(window, "scroll", throttledScroll);
+  }
+  
+  // Update viewport height on resize
+  window.addEventListener('resize', () => {
+    viewportHeight = window.innerHeight;
+  }, { passive: true });
+};
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeScrollHandling);
+} else {
+  initializeScrollHandling();
 }
-
-scrollReveal();
-
-addEventOnElem(window, "scroll", scrollReveal);
 
 
 
@@ -316,6 +383,8 @@ const updateActiveCategory = function(newActiveItem) {
 };
 
 const scrollToCenter = function(element) {
+  if (!categoryScrollWrapper || !element) return;
+  
   const container = categoryScrollWrapper;
   const elementRect = element.getBoundingClientRect();
   const containerRect = container.getBoundingClientRect();
@@ -324,10 +393,35 @@ const scrollToCenter = function(element) {
   const containerCenter = containerRect.left + containerRect.width / 2;
   const scrollOffset = elementCenter - containerCenter;
   
-  container.scrollBy({
-    left: scrollOffset,
-    behavior: 'smooth'
-  });
+  // Use requestAnimationFrame for smoother scrolling
+  const startTime = performance.now();
+  const startScrollLeft = container.scrollLeft;
+  const targetScrollLeft = startScrollLeft + scrollOffset;
+  const duration = 300;
+  
+  const animateScroll = function(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    
+    // Easing function for smooth animation
+    const easeOutCubic = 1 - Math.pow(1 - progress, 3);
+    
+    container.scrollLeft = startScrollLeft + (scrollOffset * easeOutCubic);
+    
+    if (progress < 1) {
+      requestAnimationFrame(animateScroll);
+    }
+  };
+  
+  // Fallback to native smooth scrolling for better browser support
+  if ('scrollBehavior' in document.documentElement.style) {
+    container.scrollBy({
+      left: scrollOffset,
+      behavior: 'smooth'
+    });
+  } else {
+    requestAnimationFrame(animateScroll);
+  }
 };
 
 // Add click handlers to category items
