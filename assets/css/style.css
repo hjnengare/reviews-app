@@ -370,10 +370,11 @@ body {
 
 .header {
   position: relative;
-  padding-block-end: 100px;
+  padding-block-end: 80px;
   background: linear-gradient(135deg, 
     hsl(210, 20%, 98%) 0%, 
     hsl(220, 15%, 95%) 100%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .alert {
@@ -980,7 +981,7 @@ body {
   #COLLECTION
 \*-----------------------------------*/
 
-.collection { padding-block-start: 0; }
+.collection { padding-block: 80px 100px; }
 
 .collection-list {
   display: grid;
@@ -1675,8 +1676,7 @@ body {
   .navbar { display: none; }
 
   .header {
-    padding-block-end: 120px;
-    margin-block-end: 10px;
+    padding-block-end: 0px;
   }
 
   .header-top {
@@ -1780,7 +1780,6 @@ body {
 
   .header .filter-btn:hover {
     color: var(--premium-text);
-    background: rgba(255, 255, 255, 0.8);
     transform: translateY(-50%);
   }
 
@@ -2146,6 +2145,128 @@ body {
   .category-item.active::after {
     width: calc(100% - 32px);
   }
+}
+
+/* Business Review Card Styles */
+.business-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-block-end: 12px;
+  padding-inline: 4px;
+}
+
+.business-header h3 {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0;
+  flex: 1;
+}
+
+.verification-badge {
+  font-size: 18px;
+  color: #1DA1F2;
+  flex-shrink: 0;
+  margin-block-start: -2px;
+}
+
+.total-rating {
+  font-size: var(--fs-6);
+  font-weight: var(--fw-700);
+  color: var(--black);
+  background: var(--cultured-1);
+  padding: 6px 10px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.card-category {
+  font-size: var(--fs-9);
+  color: var(--spanish-gray);
+  margin-block: 0 16px;
+  font-weight: var(--fw-500);
+  padding-inline: 4px;
+}
+
+.card-rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-block-end: 16px;
+  padding-inline: 4px;
+}
+
+.rating-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.rating-text {
+  font-size: var(--fs-9);
+  color: var(--spanish-gray);
+  font-weight: var(--fw-500);
+  margin: 0;
+}
+
+.percentile-metrics {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-block: 16px;
+  padding: 12px 8px;
+  background: var(--cultured-1);
+  border-radius: 8px;
+}
+
+.metric-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  justify-content: center;
+}
+
+.metric-item ion-icon {
+  font-size: 18px;
+  color: var(--spanish-gray);
+  flex-shrink: 0;
+}
+
+.metric-value {
+  font-size: var(--fs-8);
+  font-weight: var(--fw-600);
+  color: var(--black);
+  line-height: 1;
+}
+
+.business-hours {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-block-start: 16px;
+  padding: 8px 12px;
+  background: var(--cultured-1);
+  border-radius: 6px;
+  opacity: 0.7;
+}
+
+.business-hours ion-icon {
+  font-size: 16px;
+  color: var(--spanish-gray);
+  flex-shrink: 0;
+}
+
+.hours-text {
+  font-size: var(--fs-9);
+  color: var(--spanish-gray);
+  font-weight: var(--fw-500);
+  margin: 0;
 }
 
 /* Large screens */

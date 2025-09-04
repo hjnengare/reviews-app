@@ -97,7 +97,7 @@ Discover Now
 
 Our Bestsellers
 
-Shop All Products
+See more
 <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
 
 alt = Facial cleanser
@@ -147,7 +147,7 @@ Coffee Bean Caffeine Eye Cream
 
 Under $25
 
-Shop All Products
+See more
 <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
 
 
