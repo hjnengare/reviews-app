@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account - Reviews App</title>
+  <link rel="stylesheet" href="assets/css/create-account.css">
+</head>
+<body>
+  <!-- Main signup container -->
+  <main class="signup">
+    
+    <!-- Header with back navigation -->
+    <header class="signup__header">
+      <a href="onboarding.html" class="signup__back">← Back to Onboarding</a>
+      <h1 class="signup__title">Create your account</h1>
+    </header>
+
+    <!-- Registration form -->
+    <form class="signup__form" novalidate>
+      
+      <!-- Username field -->
+      <div class="field">
+        <label for="username">Username</label>
+        <input 
+          id="username" 
+          type="text" 
+          autocomplete="username" 
+          inputmode="text" 
+          required
+          aria-describedby="username-hint">
+        <div class="field__hint" id="username-hint" aria-live="polite"></div>
+      </div>
+
+      <!-- Email field -->
+      <div class="field">
+        <label for="email">Email</label>
+        <input 
+          id="email" 
+          type="email" 
+          autocomplete="email" 
+          required
+          aria-describedby="email-hint">
+        <div class="field__hint" id="email-hint" aria-live="polite"></div>
+      </div>
+
+      <!-- Password field with visibility toggle -->
+      <div class="field field--password">
+        <label for="password">Password</label>
+        <div class="field__input-wrapper">
+          <input 
+            id="password" 
+            type="password" 
+            autocomplete="new-password" 
+            required 
+            minlength="8"
+            aria-describedby="password-hint">
+          <button 
+            type="button" 
+            class="field__toggle"
+            aria-pressed="false"
+            aria-label="Show password">
+            <!-- Eye icon SVG -->
+            <svg class="field__toggle-icon field__toggle-icon--show" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+            <!-- Eye-off icon SVG -->
+            <svg class="field__toggle-icon field__toggle-icon--hide" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+              <line x1="1" y1="1" x2="23" y2="23"/>
+            </svg>
+          </button>
+        </div>
+        <div class="field__hint" id="password-hint" aria-live="polite"></div>
+      </div>
+
+      <!-- Social authentication buttons -->
+      <div class="signup__social-group">
+        <button type="button" class="signup__social signup__social--google">
+          <!-- Google logo SVG -->
+          <svg class="signup__social-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+          Continue with Google
+        </button>
+
+        <button type="button" class="signup__social signup__social--apple">
+          <!-- Apple logo SVG -->
+          <svg class="signup__social-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+          </svg>
+          Continue with Apple
+        </button>
+      </div>
+
+    </form>
+
+    <!-- Bottom actions -->
+    <footer class="signup__actions">
+      <div class="signup__alt">
+        Already have an account? <a href="login.html">Log in</a>
+      </div>
+      <button type="submit" form="signup__form" class="signup__next">
+        Next
+      </button>
+    </footer>
+
+  </main>
+
+  <!-- JavaScript for form functionality -->
+  <script>
+    // Password visibility toggle functionality
+    function initPasswordToggle() {
+      const toggleBtn = document.querySelector('.field__toggle');
+      const passwordInput = document.getElementById('password');
+      const showIcon = document.querySelector('.field__toggle-icon--show');
+      const hideIcon = document.querySelector('.field__toggle-icon--hide');
+
+      if (!toggleBtn || !passwordInput) return;
+
+      toggleBtn.addEventListener('click', () => {
+        const isPressed = toggleBtn.getAttribute('aria-pressed') === 'true';
+        
+        // Toggle password visibility
+        passwordInput.type = isPressed ? 'password' : 'text';
+        
+        // Update button state
+        toggleBtn.setAttribute('aria-pressed', !isPressed);
+        toggleBtn.setAttribute('aria-label', isPressed ? 'Show password' : 'Hide password');
+        
+        // Toggle icon visibility
+        showIcon.style.display = isPressed ? 'block' : 'none';
+        hideIcon.style.display = isPressed ? 'none' : 'block';
+      });
+    }
+
+    // Form validation and submission
+    function initFormHandling() {
+      const form = document.querySelector('.signup__form');
+      const inputs = form.querySelectorAll('input[required]');
+
+      // Basic validation function
+      function validateField(input) {
+        const hint = document.getElementById(input.getAttribute('aria-describedby'));
+        let isValid = true;
+        let message = '';
+
+        if (!input.value.trim()) {
+          isValid = false;
+          message = 'This field is required';
+        } else if (input.type === 'email' && !input.value.includes('@')) {
+          isValid = false;
+          message = 'Please enter a valid email address';
+        } else if (input.type === 'password' && input.value.length < 8) {
+          isValid = false;
+          message = 'Password must be at least 8 characters';
+        }
+
+        // Update field state
+        input.classList.toggle('field__input--invalid', !isValid);
+        if (hint) {
+          hint.textContent = message;
+          hint.classList.toggle('field__hint--error', !isValid);
+        }
+
+        return isValid;
+      }
+
+      // Add validation on input blur
+      inputs.forEach(input => {
+        input.addEventListener('blur', () => validateField(input));
+        input.addEventListener('input', () => {
+          // Clear validation on input
+          if (input.classList.contains('field__input--invalid')) {
+            validateField(input);
+          }
+        });
+      });
+
+      // Handle form submission
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Validate all fields
+        let isFormValid = true;
+        inputs.forEach(input => {
+          if (!validateField(input)) {
+            isFormValid = false;
+          }
+        });
+
+        if (isFormValid) {
+          // Collect form data
+          const formData = {
+            username: document.getElementById('username').value,
+            email: document.getElementById('email').value,
+            password: document.getElementById('password').value
+          };
+          
+          console.log('Form submitted:', formData);
+          // Here you would normally send the data to your backend
+        }
+      });
+    }
+
+    // Initialize everything when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      initPasswordToggle();
+      initFormHandling();
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,415 @@
+/*-----------------------------------*\
+  #CREATE-ACCOUNT.CSS
+\*-----------------------------------*/
+
+/* Import shared design system */
+@import url('./root.css');
+@import url('./reset.css');
+
+/* Premium body styling matching website */
+body {
+  background: linear-gradient(135deg, 
+    rgba(248, 250, 252, 1) 0%, 
+    rgba(255, 255, 255, 1) 30%,
+    rgba(248, 250, 252, 1) 70%,
+    rgba(241, 245, 249, 1) 100%);
+  font-family: var(--ff-urbanist);
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--premium-text);
+  line-height: 1.6;
+}
+
+/* Premium signup layout with enhanced styling */
+.signup {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: var(--space-6) var(--space-4);
+  max-width: min(560px, 92vw);
+  margin: 0 auto;
+  gap: var(--space-8);
+  position: relative;
+}
+
+.signup::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, 
+    rgba(255, 255, 255, 0.02) 0%, 
+    transparent 50%, 
+    rgba(0, 0, 0, 0.01) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Premium header with enhanced styling */
+.signup__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  position: relative;
+  z-index: 1;
+}
+
+.signup__back {
+  font-size: var(--fs-8);
+  text-decoration: none;
+  color: var(--premium-text-light);
+  font-family: var(--ff-urbanist);
+  font-weight: var(--fw-500);
+  opacity: 0.7;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.signup__back:hover {
+  opacity: 1;
+  color: var(--hoockers-green);
+  transform: translateX(-2px);
+}
+
+.signup__title {
+  font-size: clamp(var(--fs-2), 4vw, var(--fs-1));
+  font-weight: var(--fw-700);
+  margin: 0;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--premium-text);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  font-family: var(--ff-urbanist);
+}
+
+/* Premium form container */
+.signup__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Premium field wrapper */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.field label {
+  font-size: var(--fs-8);
+  font-weight: var(--fw-600);
+  color: var(--premium-text);
+  font-family: var(--ff-urbanist);
+  letter-spacing: 0.025em;
+}
+
+/* Premium input styling with enhanced visuals */
+.field input {
+  min-height: 48px;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  font-size: var(--fs-7);
+  font-family: var(--ff-urbanist);
+  background: var(--white);
+  color: var(--premium-text);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-xs);
+}
+
+.field input:focus {
+  outline: none;
+  border-color: var(--hoockers-green);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+.field input::placeholder {
+  color: var(--premium-text-light);
+  opacity: 0.6;
+}
+
+/* Premium password field with toggle button */
+.field--password .field__input-wrapper {
+  position: relative;
+}
+
+.field--password input {
+  padding-right: 48px;
+}
+
+.field__toggle {
+  position: absolute;
+  top: 50%;
+  right: var(--space-3);
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-1);
+  border-radius: var(--radius-sm);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--premium-text-light);
+  opacity: 0.6;
+}
+
+.field__toggle:hover {
+  opacity: 1;
+  color: var(--hoockers-green);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.field__toggle:focus {
+  outline: none;
+  color: var(--hoockers-green);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: var(--shadow-xs);
+}
+
+/* Toggle icon states */
+.field__toggle-icon--hide {
+  display: none;
+}
+
+.field__toggle[aria-pressed="true"] .field__toggle-icon--show {
+  display: none;
+}
+
+.field__toggle[aria-pressed="true"] .field__toggle-icon--hide {
+  display: block;
+}
+
+/* Premium validation states */
+.field__input--invalid {
+  border-color: var(--danger-color, #ef4444) !important;
+  border-style: dashed !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.field__hint {
+  font-size: var(--fs-9);
+  min-height: 1rem;
+  color: var(--premium-text-light);
+  font-family: var(--ff-urbanist);
+  margin: 0;
+}
+
+.field__hint--error {
+  color: var(--danger-color, #ef4444);
+  font-weight: var(--fw-500);
+}
+
+/* Premium social authentication group */
+.signup__social-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+/* Premium social authentication buttons */
+.signup__social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  width: 100%;
+  min-height: 48px;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  font-size: var(--fs-7);
+  font-weight: var(--fw-500);
+  font-family: var(--ff-urbanist);
+  color: var(--premium-text);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-xs);
+}
+
+.signup__social:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.signup__social:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-xs);
+}
+
+/* Google-specific styling */
+.signup__social--google:hover {
+  border-color: #4285F4;
+  background: rgba(66, 133, 244, 0.02);
+}
+
+.signup__social--google .signup__social-icon {
+  flex-shrink: 0;
+}
+
+/* Apple-specific styling */
+.signup__social--apple:hover {
+  border-color: #000;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.signup__social--apple .signup__social-icon {
+  flex-shrink: 0;
+  color: #000;
+}
+
+/* Responsive social buttons */
+@media (min-width: 576px) {
+  .signup__social-group {
+    flex-direction: row;
+    gap: var(--space-3);
+  }
+}
+
+/* Premium bottom actions row */
+.signup__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-subtle);
+  position: relative;
+  z-index: 1;
+}
+
+.signup__alt {
+  font-size: var(--fs-8);
+  color: var(--premium-text-light);
+  font-family: var(--ff-urbanist);
+}
+
+.signup__alt a {
+  color: var(--premium-text);
+  text-decoration: none;
+  font-weight: var(--fw-500);
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.signup__alt a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.signup__alt a:hover {
+  color: var(--hoockers-green);
+  transform: translateX(2px);
+}
+
+.signup__alt a:hover::after {
+  width: 100%;
+}
+
+/* Premium primary next button */
+.signup__next {
+  background-color: var(--premium-text);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--fs-8);
+  font-weight: var(--fw-600);
+  font-family: var(--ff-urbanist);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 100px;
+  box-shadow: var(--shadow-sm);
+  letter-spacing: 0.02em;
+}
+
+.signup__next:hover {
+  background-color: var(--hoockers-green);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.signup__next:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+.signup__next:focus {
+  outline: none;
+  box-shadow: var(--shadow-md), 0 0 0 3px rgba(0, 184, 148, 0.2);
+}
+
+/* Premium responsive adjustments */
+@media (min-width: 768px) {
+  .signup {
+    padding: var(--space-8) var(--space-6);
+    gap: var(--space-10);
+  }
+  
+  .signup__form {
+    gap: var(--space-8);
+  }
+  
+  .field {
+    gap: var(--space-3);
+  }
+  
+  .signup__next {
+    padding: var(--space-4) var(--space-8);
+    font-size: var(--fs-7);
+    min-width: 120px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .signup {
+    max-width: min(600px, 92vw);
+  }
+}
+
+/* Compact layout for shorter screens */
+@media (max-height: 700px) {
+  .signup {
+    gap: 1rem;
+  }
+  
+  .signup__form {
+    gap: 1rem;
+    justify-content: flex-start;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .signup__social:hover,
+  .signup__next:hover,
+  .signup__next:active {
+    transform: none;
+  }
+}

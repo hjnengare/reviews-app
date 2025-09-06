@@ -1,0 +1,380 @@
+/*-----------------------------------*\
+  #INTERESTS.CSS
+\*-----------------------------------*/
+
+/* Import shared design system */
+@import url('./root.css');
+@import url('./reset.css');
+
+/* Premium body styling */
+body {
+  background: linear-gradient(135deg, 
+    rgba(248, 250, 252, 1) 0%, 
+    rgba(255, 255, 255, 1) 30%,
+    rgba(248, 250, 252, 1) 70%,
+    rgba(241, 245, 249, 1) 100%);
+  font-family: var(--ff-urbanist);
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--premium-text);
+  line-height: 1.6;
+}
+
+/* Main interests layout - 3-row grid */
+.interests {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: clamp(16px, 4vw, 32px);
+  max-width: 960px;
+  margin: 0 auto;
+  gap: var(--space-8);
+  position: relative;
+}
+
+.interests::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, 
+    rgba(255, 255, 255, 0.02) 0%, 
+    transparent 50%, 
+    rgba(0, 0, 0, 0.01) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Header section */
+.interests__header {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.interests__back {
+  font-size: var(--fs-8);
+  text-decoration: none;
+  color: var(--premium-text-light);
+  font-family: var(--ff-urbanist);
+  font-weight: var(--fw-500);
+  opacity: 0.7;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-bottom: var(--space-6);
+}
+
+.interests__back:hover {
+  opacity: 1;
+  color: var(--hoockers-green);
+  transform: translateX(-2px);
+}
+
+.interests__title {
+  font-size: clamp(var(--fs-2), 5vw, var(--fs-1));
+  font-weight: var(--fw-700);
+  color: var(--premium-text);
+  margin: 0 0 var(--space-3) 0;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  font-family: var(--ff-urbanist);
+}
+
+.interests__subtitle {
+  font-size: clamp(var(--fs-6), 3vw, var(--fs-5));
+  font-weight: var(--fw-400);
+  color: var(--premium-text-light);
+  margin: 0 0 var(--space-4) 0;
+  opacity: 0.8;
+  font-family: var(--ff-urbanist);
+}
+
+/* Screen reader only live region */
+.interests__live {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Content section */
+.interests__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-block: var(--space-4);
+}
+
+/* Responsive interests grid */
+.interests__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: clamp(12px, 2vw, 20px);
+  align-content: start;
+  justify-content: center;
+  width: 100%;
+  max-width: 800px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.interests__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Bubble styling with premium enhancements */
+.bubble {
+  --size: clamp(120px, 22vw, 170px);
+  width: var(--size);
+  height: var(--size);
+  border: 1px solid var(--border-subtle);
+  border-radius: 9999px;
+  background: var(--white);
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  text-align: center;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: var(--ff-urbanist);
+  font-size: var(--fs-8);
+  font-weight: var(--fw-500);
+  color: var(--premium-text);
+  box-shadow: var(--shadow-xs);
+  
+  /* Gentle floating animation */
+  animation: bob 6s ease-in-out infinite;
+  animation-delay: calc(var(--delay, 0) * 0.5s);
+}
+
+.bubble:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--hoockers-green);
+}
+
+.bubble:focus-visible {
+  outline: 2px solid var(--hoockers-green);
+  outline-offset: 3px;
+}
+
+.bubble:active {
+  transform: translateY(-1px);
+}
+
+/* Selected state styling */
+.bubble.is-selected {
+  border-color: var(--hoockers-green);
+  box-shadow: 0 0 0 2px var(--hoockers-green) inset, 
+              var(--shadow-md);
+  background: rgba(0, 184, 148, 0.05);
+  animation: none;
+  transform: translateY(-2px);
+}
+
+.bubble.is-selected:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 0 2px var(--hoockers-green) inset, 
+              var(--shadow-lg);
+}
+
+/* Bubble label styling */
+.bubble__label {
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Gentle floating animation */
+@keyframes bob {
+  0%, 100% { 
+    transform: translateY(0); 
+  }
+  50% { 
+    transform: translateY(-6px); 
+  }
+}
+
+/* Shake animation for max selection feedback */
+@keyframes shake {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(0);
+  }
+  10% {
+    transform: translateX(-4px);
+  }
+  30% {
+    transform: translateX(4px);
+  }
+  40% {
+    transform: translateX(-2px);
+  }
+  60% {
+    transform: translateX(2px);
+  }
+}
+
+.bubble.shake {
+  animation: shake 0.6s ease-in-out;
+}
+
+/* Actions footer */
+.interests__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-subtle);
+  position: relative;
+  z-index: 1;
+}
+
+.interests__alt {
+  font-size: var(--fs-8);
+  color: var(--premium-text-light);
+  font-family: var(--ff-urbanist);
+}
+
+.interests__alt a {
+  color: var(--premium-text);
+  text-decoration: none;
+  font-weight: var(--fw-500);
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.interests__alt a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.interests__alt a:hover {
+  color: var(--hoockers-green);
+  transform: translateX(2px);
+}
+
+.interests__alt a:hover::after {
+  width: 100%;
+}
+
+/* Next button styling */
+.interests__next {
+  background-color: var(--premium-text);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--fs-8);
+  font-weight: var(--fw-600);
+  font-family: var(--ff-urbanist);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 100px;
+  box-shadow: var(--shadow-sm);
+  letter-spacing: 0.02em;
+}
+
+.interests__next:enabled:hover {
+  background-color: var(--hoockers-green);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.interests__next:enabled:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+.interests__next:disabled {
+  background-color: var(--border-subtle);
+  color: var(--premium-text-light);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.interests__next:focus {
+  outline: none;
+  box-shadow: var(--shadow-md), 0 0 0 3px rgba(0, 184, 148, 0.2);
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .interests__header {
+    text-align: left;
+  }
+  
+  .interests__title {
+    font-size: clamp(var(--fs-1), 6vw, 3.5rem);
+  }
+  
+  .interests__grid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: clamp(16px, 3vw, 24px);
+  }
+  
+  .bubble {
+    --size: clamp(140px, 18vw, 180px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .interests {
+    padding: clamp(24px, 6vw, 48px);
+  }
+  
+  .interests__grid {
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    max-width: 900px;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .bubble {
+    animation: none !important;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+  }
+  
+  .bubble:hover {
+    transform: none;
+  }
+  
+  .bubble.is-selected {
+    transform: none;
+  }
+  
+  .bubble.is-selected:hover {
+    transform: none;
+  }
+  
+  .bubble.shake {
+    animation: none;
+  }
+  
+  .interests__next:enabled:hover {
+    transform: none;
+  }
+}

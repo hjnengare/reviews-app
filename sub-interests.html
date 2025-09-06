@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tell us more - Sub Interests</title>
+  <link rel="stylesheet" href="assets/css/sub-interests.css">
+</head>
+<body>
+  <!-- Main container -->
+  <main class="sub-interests">
+    
+    <!-- Header section -->
+    <header class="sub-interests__header">
+      <h1 class="sub-interests__title">Tell us more</h1>
+      <p class="sub-interests__subtitle">Pick a few in each area</p>
+      
+      <!-- Accessibility announcement region -->
+      <div class="sub-interests__live" aria-live="polite" aria-atomic="true"></div>
+    </header>
+
+    <!-- Content section with categories -->
+    <section class="sub-interests__content">
+      
+      <!-- Food & Drink category -->
+      <div class="category" data-category="food-drink">
+        <h2 class="category__title">Food & Drink</h2>
+        <div class="category__chips" role="group" aria-labelledby="food-drink-title">
+          <button class="chip" type="button" data-chip="casual-eats" aria-pressed="false">
+            <span class="chip__label">Casual Eats</span>
+          </button>
+          <button class="chip" type="button" data-chip="sushi" aria-pressed="false">
+            <span class="chip__label">Sushi</span>
+          </button>
+          <button class="chip" type="button" data-chip="cafes" aria-pressed="false">
+            <span class="chip__label">Cafes</span>
+          </button>
+          <button class="chip" type="button" data-chip="fine-dining" aria-pressed="false">
+            <span class="chip__label">Fine Dining</span>
+          </button>
+          <button class="chip" type="button" data-chip="street-food" aria-pressed="false">
+            <span class="chip__label">Street Food</span>
+          </button>
+          <button class="chip" type="button" data-chip="vegan" aria-pressed="false">
+            <span class="chip__label">Vegan</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Arts & Culture category -->
+      <div class="category" data-category="arts-culture">
+        <h2 class="category__title">Arts & Culture</h2>
+        <div class="category__chips" role="group" aria-labelledby="arts-culture-title">
+          <button class="chip" type="button" data-chip="galleries" aria-pressed="false">
+            <span class="chip__label">Galleries</span>
+          </button>
+          <button class="chip" type="button" data-chip="theatre" aria-pressed="false">
+            <span class="chip__label">Theatre</span>
+          </button>
+          <button class="chip" type="button" data-chip="live-music" aria-pressed="false">
+            <span class="chip__label">Live Music</span>
+          </button>
+          <button class="chip" type="button" data-chip="book-fairs" aria-pressed="false">
+            <span class="chip__label">Book Fairs</span>
+          </button>
+          <button class="chip" type="button" data-chip="film-nights" aria-pressed="false">
+            <span class="chip__label">Film Nights</span>
+          </button>
+          <button class="chip" type="button" data-chip="festivals" aria-pressed="false">
+            <span class="chip__label">Festivals</span>
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Bottom actions -->
+    <footer class="sub-interests__actions">
+      <a href="interests.html" class="sub-interests__back">← Back</a>
+      <button class="sub-interests__continue" type="button" id="continue-btn" disabled>
+        Continue
+      </button>
+    </footer>
+
+  </main>
+
+  <!-- JavaScript for sub-interests functionality -->
+  <script src="assets/js/sub-interests.js"></script>
+</body>
+</html>

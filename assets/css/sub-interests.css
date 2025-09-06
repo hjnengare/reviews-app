@@ -1,0 +1,355 @@
+/*-----------------------------------*\
+  #SUB-INTERESTS.CSS
+\*-----------------------------------*/
+
+/* Import shared design system */
+@import url('./root.css');
+@import url('./reset.css');
+
+/* Premium body styling matching website */
+body {
+  background: linear-gradient(135deg, 
+    rgba(248, 250, 252, 1) 0%, 
+    rgba(255, 255, 255, 1) 30%,
+    rgba(248, 250, 252, 1) 70%,
+    rgba(241, 245, 249, 1) 100%);
+  font-family: var(--ff-urbanist);
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--premium-text);
+  line-height: 1.6;
+}
+
+/* Main layout - full height with flex */
+.sub-interests {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: var(--space-4);
+  gap: var(--space-8);
+  position: relative;
+}
+
+.sub-interests::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, 
+    rgba(255, 255, 255, 0.02) 0%, 
+    transparent 50%, 
+    rgba(0, 0, 0, 0.01) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Header section */
+.sub-interests__header {
+  text-align: center;
+  padding-top: var(--space-4);
+  position: relative;
+  z-index: 1;
+}
+
+.sub-interests__title {
+  font-size: clamp(var(--fs-2), 4vw, var(--fs-1));
+  font-weight: var(--fw-700);
+  margin: 0 0 var(--space-3) 0;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--premium-text);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  font-family: var(--ff-urbanist);
+}
+
+.sub-interests__subtitle {
+  font-size: clamp(var(--fs-6), 2.5vw, var(--fs-5));
+  font-weight: var(--fw-400);
+  color: var(--premium-text-light);
+  margin: 0 0 var(--space-4) 0;
+  opacity: 0.8;
+  font-family: var(--ff-urbanist);
+}
+
+/* Screen reader only live region */
+.sub-interests__live {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Content section - flexible grow */
+.sub-interests__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  position: relative;
+  z-index: 1;
+}
+
+/* Category section */
+.category {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.category__title {
+  font-size: clamp(var(--fs-5), 2.5vw, var(--fs-4));
+  font-weight: var(--fw-600);
+  margin: 0;
+  color: var(--premium-text);
+  letter-spacing: -0.015em;
+  font-family: var(--ff-urbanist);
+}
+
+/* Chip container - flexible wrap */
+.category__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+/* Individual chip styling */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.5rem 1rem;
+  border: 2px solid #e5e5e5;
+  border-radius: 1.375rem;
+  background-color: #ffffff;
+  font-family: inherit;
+  font-size: clamp(0.875rem, 2vw, 0.9375rem);
+  font-weight: 500;
+  color: #555555;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  outline: none;
+}
+
+/* Chip hover state */
+.chip:hover {
+  border-color: #cccccc;
+  background-color: #fafafa;
+  transform: translateY(-1px);
+}
+
+/* Chip focus state for accessibility */
+.chip:focus-visible {
+  border-color: #007acc;
+  box-shadow: 0 0 0 3px rgba(0, 122, 204, 0.2);
+}
+
+/* Chip active/pressed state */
+.chip:active {
+  transform: translateY(0);
+}
+
+/* Selected chip state - stronger outline, not color change */
+.chip[aria-pressed="true"] {
+  border-color: #333333;
+  border-width: 3px;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.chip[aria-pressed="true"]:hover {
+  border-color: #1a1a1a;
+  background-color: #fafafa;
+}
+
+/* Chip label */
+.chip__label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Actions footer */
+.sub-interests__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e5e5;
+  margin-top: auto;
+}
+
+/* Back link */
+.sub-interests__back {
+  color: #666666;
+  text-decoration: none;
+  font-size: clamp(0.875rem, 2vw, 0.9375rem);
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.sub-interests__back:hover {
+  color: #333333;
+  transform: translateX(-2px);
+}
+
+.sub-interests__back:focus-visible {
+  outline: 2px solid #007acc;
+  outline-offset: 2px;
+  border-radius: 0.25rem;
+}
+
+/* Continue button */
+.sub-interests__continue {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: clamp(0.875rem, 2vw, 0.9375rem);
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 6rem;
+  letter-spacing: 0.015em;
+}
+
+.sub-interests__continue:enabled:hover {
+  background-color: #333333;
+  transform: translateY(-1px);
+}
+
+.sub-interests__continue:enabled:active {
+  transform: translateY(0);
+}
+
+.sub-interests__continue:disabled {
+  background-color: #cccccc;
+  color: #888888;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.sub-interests__continue:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.3);
+}
+
+/* Tablet adjustments */
+@media (min-width: 768px) {
+  .sub-interests {
+    padding: 2rem;
+    gap: 2.5rem;
+  }
+  
+  .sub-interests__header {
+    padding-top: 1.5rem;
+  }
+  
+  .sub-interests__content {
+    gap: 2.5rem;
+  }
+  
+  .category {
+    gap: 1.25rem;
+  }
+  
+  .category__chips {
+    gap: 1rem;
+  }
+  
+  .chip {
+    min-height: 3rem;
+    padding: 0.625rem 1.25rem;
+  }
+  
+  .sub-interests__actions {
+    padding-top: 1.5rem;
+    gap: 1.5rem;
+  }
+  
+  .sub-interests__continue {
+    padding: 1rem 2rem;
+    min-width: 7rem;
+  }
+}
+
+/* Desktop adjustments */
+@media (min-width: 1024px) {
+  .sub-interests {
+    max-width: 48rem;
+    gap: 3rem;
+  }
+  
+  .sub-interests__content {
+    gap: 3rem;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .chip:hover,
+  .sub-interests__continue:enabled:hover,
+  .sub-interests__back:hover {
+    transform: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .chip {
+    border-width: 2px;
+  }
+  
+  .chip[aria-pressed="true"] {
+    border-width: 4px;
+  }
+  
+  .sub-interests__actions {
+    border-top-width: 2px;
+  }
+}
+
+/* Focus improvements for keyboard users */
+@media (prefers-reduced-motion: no-preference) {
+  .chip:focus-visible {
+    animation: focus-pulse 2s ease-in-out infinite;
+  }
+}
+
+@keyframes focus-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 3px rgba(0, 122, 204, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 0 3px rgba(0, 122, 204, 0.4);
+  }
+}

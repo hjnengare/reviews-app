@@ -1,0 +1,248 @@
+/*-----------------------------------*\
+  #ONBOARDING.CSS
+\*-----------------------------------*/
+
+/* Import shared design system */
+@import url('./root.css');
+@import url('./reset.css');
+
+/* Premium body styling matching home page */
+body {
+  background: linear-gradient(135deg, 
+    rgba(248, 250, 252, 1) 0%, 
+    rgba(255, 255, 255, 1) 30%,
+    rgba(248, 250, 252, 1) 70%,
+    rgba(241, 245, 249, 1) 100%);
+  font-family: var(--ff-urbanist);
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--premium-text);
+  line-height: 1.6;
+}
+
+/* Main onboarding layout with premium styling */
+.onboarding {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-8) var(--space-4);
+  position: relative;
+}
+
+.onboarding::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, 
+    rgba(255, 255, 255, 0.02) 0%, 
+    transparent 50%, 
+    rgba(0, 0, 0, 0.01) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Central content wrapper */
+.onboarding__wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-8);
+  text-align: center;
+  flex: 1;
+  justify-content: center;
+  max-width: 28rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Premium app name badge */
+.onboarding__appname {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: var(--radius-full);
+  padding: var(--space-2) var(--space-5);
+  font-size: var(--fs-8);
+  font-weight: var(--fw-600);
+  letter-spacing: 0.025em;
+  color: var(--premium-text);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Premium headline with design system typography */
+.onboarding__headline {
+  font-size: clamp(var(--fs-2), 5vw, var(--fs-1));
+  font-weight: var(--fw-700);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  max-width: 20ch;
+  color: var(--premium-text);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  font-family: var(--ff-urbanist);
+}
+
+/* Premium actions container */
+.onboarding__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  width: 100%;
+}
+
+/* Premium primary CTA button */
+.onboarding__cta {
+  background-color: var(--premium-text);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-8);
+  font-size: var(--fs-7);
+  font-weight: var(--fw-600);
+  font-family: var(--ff-urbanist);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 14rem;
+  box-shadow: var(--shadow-md);
+  letter-spacing: 0.02em;
+}
+
+.onboarding__cta:hover {
+  background-color: var(--hoockers-green);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.onboarding__cta:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-md);
+}
+
+/* Premium secondary text link */
+.onboarding__link {
+  color: var(--premium-text);
+  text-decoration: none;
+  font-size: var(--fs-8);
+  font-weight: var(--fw-500);
+  font-family: var(--ff-urbanist);
+  opacity: 0.7;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.onboarding__link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.onboarding__link:hover {
+  opacity: 1;
+  color: var(--hoockers-green);
+  transform: translateX(2px);
+}
+
+.onboarding__link:hover::after {
+  width: 100%;
+}
+
+/* Premium footer tagline */
+.onboarding__footnote {
+  font-size: var(--fs-9);
+  color: var(--premium-text-light);
+  text-align: center;
+  font-style: italic;
+  font-family: var(--ff-urbanist);
+  font-weight: var(--fw-400);
+  margin-top: auto;
+  opacity: 0.6;
+  position: relative;
+  z-index: 1;
+}
+
+/* Premium back link */
+.back-link {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  color: var(--premium-text-light);
+  text-decoration: none;
+  font-size: var(--fs-8);
+  font-family: var(--ff-urbanist);
+  font-weight: var(--fw-500);
+  opacity: 0.7;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.back-link:hover {
+  opacity: 1;
+  color: var(--hoockers-green);
+  transform: translateX(-2px);
+}
+
+/* Premium responsive adjustments */
+@media (min-width: 768px) {
+  .onboarding {
+    padding: var(--space-12) var(--space-8);
+  }
+  
+  .onboarding__wrap {
+    gap: var(--space-10);
+    max-width: 32rem;
+  }
+  
+  .onboarding__actions {
+    gap: var(--space-5);
+  }
+  
+  .onboarding__cta {
+    padding: var(--space-5) var(--space-10);
+    font-size: var(--fs-6);
+    min-width: 16rem;
+  }
+  
+  .back-link {
+    top: var(--space-6);
+    left: var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .onboarding__wrap {
+    max-width: 36rem;
+  }
+}
+
+/* Premium reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .onboarding__cta:hover,
+  .onboarding__cta:active,
+  .onboarding__link:hover,
+  .back-link:hover {
+    transform: none;
+  }
+}

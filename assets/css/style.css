@@ -26,11 +26,43 @@
   margin-inline: auto;
 }
 
+/* Optimized page-wide enhancements */
+body {
+  background: linear-gradient(135deg, 
+    rgba(248, 250, 252, 1) 0%, 
+    rgba(255, 255, 255, 1) 30%,
+    rgba(248, 250, 252, 1) 70%,
+    rgba(241, 245, 249, 1) 100%);
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 
 .section {
-
   padding-block: var(--section-padding);
+  position: relative;
+}
 
+/* Premium section enhancements */
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, 
+    rgba(255, 255, 255, 0.02) 0%, 
+    transparent 50%, 
+    rgba(0, 0, 0, 0.01) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.section > * {
+  position: relative;
+  z-index: 1;
 }
 
 
@@ -49,6 +81,7 @@
   font-weight: var(--fw-700);
   line-height: 1.25;
   letter-spacing: -0.02em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
 }
 
 .h1 {
@@ -307,8 +340,18 @@
 }
 
 .shop-card:hover .img-cover {
-  transform: scale(1.08) rotate(0.5deg);
-  filter: brightness(1.05) saturate(1.1);
+  transform: scale(1.05);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Optimized card hover */
+.shop-card {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.shop-card:hover {
+  transform: translateY(-4px);
 }
 
 .badge {
@@ -346,23 +389,21 @@
   width: 100%;
 }
 
-/* Enhanced scroll animations */
+/* Optimized scroll animations - performance focused */
 [data-section]>* {
-  transform: translate3d(0, 40px, 0) scale(0.95);
+  transform: translate3d(0, 30px, 0);
   opacity: 0;
-  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    filter 0.4s ease;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform, opacity;
-  filter: blur(1px);
 }
 
 [data-section].active>* {
-  transform: translate3d(0, 0, 0) scale(1);
+  transform: translate3d(0, 0, 0);
   opacity: 1;
-  filter: blur(0px);
 }
 
+/* Simplified staggered delays */
 [data-section].active>*:nth-child(1) {
   transition-delay: 0.05s;
 }
@@ -490,12 +531,14 @@
   left: 0;
   width: 100%;
   background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: var(--premium-backdrop);
-  -webkit-backdrop-filter: var(--premium-backdrop);
-  border-bottom: 1px solid var(--border-subtle);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
   padding-block: 20px;
   z-index: 4;
   will-change: transform;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8), 
+              0 1px 3px rgba(0, 0, 0, 0.02);
 }
 
 .header-top.active {
@@ -737,7 +780,11 @@
   transform: translateX(-100%);
   visibility: hidden;
   transition: 0.25s var(--cubic-in);
-  box-shadow: var(--shadow-1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12),
+              0 2px 8px rgba(0, 0, 0, 0.08),
+              0 0 0 1px rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
 }
 
 .mobile-navbar.active {
@@ -1036,10 +1083,60 @@
 
 .shop-card {
   background-color: var(--white);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   overflow: hidden;
-
+  border-radius: var(--radius-lg);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08), 
+              0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.8);
 }
+
+.shop-card:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 
+              0 2px 8px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 1);
+}
+
+/* Restore card styling for For You and Trending Now with maintained dimensions */
+.section.shop:not(.events-specials) .shop-card {
+  background-color: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08), 
+              0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  /* Fix card height consistency */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.section.shop:not(.events-specials) .shop-card:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 
+              0 2px 8px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 1);
+}
+
+/* Ensure card content fills and aligns properly */
+.section.shop:not(.events-specials) .shop-card .card-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+  padding: var(--space-5);
+}
+
+/* Push business hours to the bottom */
+.section.shop:not(.events-specials) .shop-card .business-hours {
+  margin-top: auto;
+}
+
 
 .shop .title-wrapper {
   display: flex;
@@ -1413,7 +1510,7 @@
 .contributor-name,
 .business-name {
   font-family: var(--ff-urbanist);
-  font-size: var(--fs-7);
+  font-size: var(--fs-8);
   font-weight: var(--fw-600);
   color: var(--premium-text);
   margin: 0 0 var(--space-1) 0;
@@ -1423,7 +1520,7 @@
 .contributor-handle,
 .business-handle {
   font-family: var(--ff-urbanist);
-  font-size: var(--fs-8);
+  font-size: var(--fs-9);
   font-weight: var(--fw-400);
   color: var(--premium-text-light);
   margin: 0;
@@ -1706,19 +1803,18 @@
   margin: 0;
   line-height: 1.2;
   
-  /* Glassy pill with consistent dimensions */
+  /* Glassy full-width container covering the entire image width */
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-md);
   padding: var(--space-2) var(--space-4);
-  display: inline-block;
+  display: block;
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   
-  /* Consistent dimensions */
-  min-width: 200px;
-  max-width: 250px;
+  /* Full image cover width */
+  width: 100%;
   height: 32px;
   display: flex;
   align-items: center;
@@ -2188,8 +2284,27 @@
 }
 
 .footer {
-  background-color: var(--cultured-1);
+  background: linear-gradient(135deg, 
+    rgba(248, 250, 252, 0.98) 0%, 
+    rgba(241, 245, 249, 0.95) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.8);
   padding-block: 70px;
+  position: relative;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(0, 0, 0, 0.03), 
+    transparent);
 }
 
 .footer-top {
@@ -2361,16 +2476,17 @@
 \*-----------------------------------*/
 
 .category-nav {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: var(--premium-backdrop);
-  -webkit-backdrop-filter: var(--premium-backdrop);
-  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
   position: sticky;
   top: 80px;
   z-index: 50;
   padding-block: var(--space-4);
-  box-shadow: var(--shadow-xs);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04), 
+              0 1px 0 rgba(255, 255, 255, 0.8);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: top;
 }
 
@@ -2717,21 +2833,42 @@
   box-shadow: none !important;
 }
 
-/* Large Screen Card Wrapping for For You, Trending Now, Events sections */
-@media (min-width: 1200px) {
-  .has-scrollbar {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: var(--space-6);
-    overflow-x: visible;
-    padding-bottom: 0;
-    margin-bottom: 0;
-  }
-  
-  .scrollbar-item {
-    min-width: unset;
-    max-width: unset;
-    flex: unset;
-  }
+/* Single row grid layout - no wrap for For You and Trending Now */
+.section.shop:not(.events-specials) .has-scrollbar {
+  display: grid !important;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 1fr;
+  gap: var(--space-6);
+  overflow-x: auto;
+  padding-bottom: var(--space-6);
+  margin-bottom: var(--space-6);
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(280px, 1fr);
 }
+
+.section.shop:not(.events-specials) .scrollbar-item {
+  min-width: 280px;
+  max-width: none;
+  flex: unset;
+}
+
+/* Single row grid layout - no wrap for Events and Specials */
+.section.events-specials .has-scrollbar {
+  display: grid !important;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 1fr;
+  gap: var(--space-6);
+  overflow-x: auto;
+  padding-bottom: var(--space-6);
+  margin-bottom: var(--space-6);
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(280px, 1fr);
+}
+
+.section.events-specials .scrollbar-item {
+  min-width: 280px;
+  max-width: none;
+  flex: unset;
+}
+
 
