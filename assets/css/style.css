@@ -28,7 +28,9 @@
 
 
 .section {
+
   padding-block: var(--section-padding);
+
 }
 
 
@@ -592,7 +594,6 @@
 
 .header-action-btn:is(:hover, :focus) {
   background-color: var(--white);
-  border-color: var(--black_15);
   color: var(--black);
   transform: translateY(-1px);
 }
@@ -1046,7 +1047,9 @@
   justify-content: space-between;
   align-items: center;
   gap: var(--space-5);
-  margin-block-end: var(--space-12);
+  margin-block: var(--space-12);
+  padding-block-end: var(--space-4);
+ 
 }
 
 
@@ -1194,6 +1197,7 @@
     transparent 70%, 
     rgba(255, 255, 255, 0.05) 100%);
   pointer-events: none;
+  z-index: 1;
 }
 
 /* Hide business hours in Events and Specials section */
@@ -1305,6 +1309,7 @@
   pointer-events: none;
   transition: transform .6s cubic-bezier(.25, .46, .45, .94), opacity .6s cubic-bezier(.25, .46, .45, .94);
   opacity: .8;
+  z-index: 5;
 }
 
 .shop-card:hover .card-banner.icon-banner::after {
@@ -1321,6 +1326,513 @@
 
 .events-specials .shop-card:hover .event-icon {
   transform: translateY(-3px) scale(1.05);
+}
+
+/* Reverted to single row - removed all 2-row grid layouts */
+
+/* Events and Specials overlay content styling - now handled by global overlay styles above */
+
+/* Professional Contributors Panel */
+.community-highlights {
+  background: var(--white);
+  position: relative;
+}
+
+.panels-wrapper {
+  display: flex;
+  gap: var(--space-6);
+  flex-direction: column;
+  align-items: center;
+}
+
+.contributors-panel,
+.businesses-panel {
+  background: var(--white);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-8);
+  max-width: 360px;
+  width: 100%;
+  flex: 1;
+}
+
+.contributors-title,
+.businesses-title {
+  font-family: var(--ff-urbanist);
+  font-size: var(--fs-5);
+  font-weight: var(--fw-700);
+  color: var(--premium-text);
+  margin: 0 0 var(--space-6) 0;
+  text-align: left;
+}
+
+.contributors-list,
+.businesses-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.contributor-item,
+.business-item {
+  display: flex;
+  align-items: center;
+  padding: var(--space-4) 0;
+  border-radius: var(--radius-md);
+  transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  margin: 0 calc(-1 * var(--space-4));
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+.contributor-item:hover,
+.business-item:hover {
+  background-color: var(--cultured-1);
+}
+
+.contributor-avatar,
+.business-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: var(--space-4);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-xs);
+  flex-shrink: 0;
+}
+
+.contributor-info,
+.business-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.contributor-name,
+.business-name {
+  font-family: var(--ff-urbanist);
+  font-size: var(--fs-7);
+  font-weight: var(--fw-600);
+  color: var(--premium-text);
+  margin: 0 0 var(--space-1) 0;
+  line-height: 1.3;
+}
+
+.contributor-handle,
+.business-handle {
+  font-family: var(--ff-urbanist);
+  font-size: var(--fs-8);
+  font-weight: var(--fw-400);
+  color: var(--premium-text-light);
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* Panel Call-to-Action Links */
+.panel-cta {
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.panel-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  margin: 0 calc(-1 * var(--space-4));
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: var(--premium-text-light);
+  font-family: var(--ff-urbanist);
+  font-size: var(--fs-8);
+  font-weight: var(--fw-500);
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.panel-link:hover {
+  background-color: var(--cultured-1);
+  color: var(--premium-text);
+  transform: translateX(2px);
+}
+
+.panel-link ion-icon {
+  font-size: 16px;
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.panel-link:hover ion-icon {
+  transform: translateX(4px);
+}
+
+/* Professional Panels - Responsive Design */
+@media (min-width: 576px) {
+  .contributors-panel,
+  .businesses-panel {
+    max-width: 380px;
+    padding: var(--space-10);
+  }
+  
+  .contributor-name,
+  .business-name {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 768px) {
+  .panels-wrapper {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .contributors-panel,
+  .businesses-panel {
+    max-width: 380px;
+  }
+}
+
+/* Premium Businesses of the Month - Mobile First */
+.businesses-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+  margin-block: var(--space-6);
+  justify-items: center;
+  max-width: 320px;
+  margin-inline: auto;
+}
+
+.premium-business-card {
+  background: var(--white);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-xs);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+  max-width: 300px;
+}
+
+.premium-business-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--border-emphasis);
+}
+
+.business-image-container {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.business-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.premium-business-card:hover .business-image {
+  transform: scale(1.02);
+}
+
+.business-badge-overlay {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+}
+
+.badge-title {
+  font-size: var(--fs-9);
+  font-weight: var(--fw-600);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-full);
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: var(--shadow-sm);
+}
+
+.badge-title.gold {
+  background: linear-gradient(135deg, #111827 0%, #374151 100%);
+}
+
+.badge-title.trending {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+}
+
+.badge-title.favorite {
+  background: linear-gradient(135deg, #DC2626 0%, #B91C1C 100%);
+}
+
+.badge-title.seafood {
+  background: linear-gradient(135deg, #0891B2 0%, #0E7490 100%);
+}
+
+.badge-title.beauty {
+  background: linear-gradient(135deg, #C026D3 0%, #A21CAF 100%);
+}
+
+.badge-title.coffee {
+  background: linear-gradient(135deg, #A16207 0%, #92400E 100%);
+}
+
+.business-content {
+  padding: var(--space-4);
+}
+
+.business-name {
+  color: var(--premium-text);
+  font-size: var(--fs-7);
+  font-weight: var(--fw-600);
+  margin-bottom: var(--space-2);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.business-rating {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  color: var(--premium-text-muted);
+  font-size: var(--fs-8);
+}
+
+.rating-score {
+  font-weight: var(--fw-600);
+  color: var(--premium-text);
+}
+
+/* Responsive Reviewer and Business Cards */
+@media (min-width: 576px) {
+  .reviewers-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+    max-width: 640px;
+  }
+  
+  .businesses-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .reviewers-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+    max-width: 780px;
+  }
+  
+  .businesses-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+    max-width: 680px;
+  }
+}
+
+@media (min-width: 992px) {
+  .reviewers-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+    max-width: 960px;
+  }
+  
+  .businesses-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .reviewers-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+    max-width: 1000px;
+  }
+  
+  .businesses-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+    max-width: 1000px;
+  }
+}
+
+/* Masonry layout removed - reverted to original horizontal scroll */
+
+/* Business header within full-width overlay */
+.card-content.overlay .business-header {
+  margin-bottom: var(--space-2);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.card-content.overlay .business-header h3 {
+  margin: 0;
+  flex: 1;
+}
+
+.card-content.overlay .card-title {
+  color: var(--white);
+  font-size: var(--fs-6);
+  font-weight: var(--fw-700);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6), 0 1px 2px rgba(0, 0, 0, 0.8);
+  line-height: 1.25;
+  text-decoration: none;
+  display: block;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card-content.overlay .card-title:hover {
+  color: var(--pale-spring-bud);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 1px 2px rgba(0, 0, 0, 1);
+}
+
+.card-content.overlay .card-category {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: var(--fs-9);
+  font-weight: var(--fw-600);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  margin: 0;
+  line-height: 1.2;
+  
+  /* Glassy pill with consistent dimensions */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-full);
+  padding: var(--space-2) var(--space-4);
+  display: inline-block;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  /* Consistent dimensions */
+  min-width: 200px;
+  max-width: 250px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-shadow: var(--shadow-sm);
+}
+
+.card-content.overlay .card-category:hover {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Old view button styles - now handled above in perfect positioning section */
+
+/* Old badge styles - now handled above in perfect positioning section */
+
+/* Z-Index Fix - Isolation Stacking Context for Badges */
+/* 1) Make the banner its own stacking context */
+.shop-card .card-banner {
+  position: relative;
+  isolation: isolate;        /* <-- key fix */
+}
+
+/* 2) Keep any masks/dimmers below content */
+.shop-card .card-banner::before,
+.shop-card .card-banner::after,
+.img-holder::before,
+.img-holder::after {
+  z-index: 0 !important;
+}
+
+/* 3) Base layers */
+.shop-card .card-banner .img-cover { 
+  position: relative; 
+  z-index: 1; 
+}
+
+/* 4) Full-width overlay stretching across bottom */
+.card-content.overlay {
+  position: absolute; 
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: var(--space-5) var(--space-4) var(--space-4);
+  color: var(--white);
+  z-index: 2; /* below badges/buttons, above masks */
+  background: none;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 120px; /* Consistent height across all cards */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+/* 5) Make links inside the overlay clickable again */
+.card-content.overlay a { 
+  pointer-events: auto; 
+}
+
+/* 6) Badge positioning for full-width overlay */
+.event-date-badge {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--white);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-9);
+  font-weight: var(--fw-600);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-sm);
+}
+
+.total-rating {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  z-index: 3;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--premium-text);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-9);
+  font-weight: var(--fw-700);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.total-rating::before {
+  content: "★";
+  color: #fbbf24;
+  font-size: var(--fs-8);
+}
+
+/* 7) If hover styles add transforms that create new contexts, neutralize them for content */
+.shop-card:hover .card-content { 
+  transform: none !important; 
 }
 
 /* General event icon fallback */
@@ -1363,141 +1875,7 @@
 }
 
 
-/*-----------------------------------*\
-  #COMMUNITY HIGHLIGHTS
-\*-----------------------------------*/
-
-.community-highlights {
-  background-color: var(--bg-secondary);
-}
-
-.community-content {
-  margin-block-start: 40px;
-}
-
-.community-subtitle {
-  color: var(--text-primary);
-  font-family: var(--ff-urbanist);
-  font-size: var(--fs-4);
-  font-weight: var(--fw-600);
-  text-align: left;
-  margin-block-end: 40px;
-  letter-spacing: -0.5px;
-}
-
-/* Reviewers Grid */
-.reviewers-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 24px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.reviewer-item {
-  display: flex;
-  justify-content: center;
-}
-
-/* Reviewer Cards */
-.reviewer-card {
-  background: var(--bg-primary);
-  border-radius: var(--radius-lg);
-  padding: 24px;
-  border: 1px solid var(--border-light);
-  box-shadow: var(--shadow-sm);
-  position: relative;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  width: 100%;
-  max-width: 320px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.reviewer-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-strong);
-  border-color: var(--text-secondary);
-}
-
-
-/* Avatar */
-.reviewer-avatar {
-  margin-block-end: 16px;
-}
-
-/* Medal Icons */
-.medal-icon {
-  font-size: 96px;
-  color: var(--hoockers-green);
-  transition: all 0.3s ease;
-}
-
-.medal-icon.gold {
-  color: #fbbf24;
-}
-
-.medal-icon.silver {
-  color: #9ca3af;
-}
-
-.medal-icon.bronze {
-  color: #d97706;
-}
-
-.reviewer-card:hover .medal-icon {
-  transform: scale(1.1) rotate(5deg);
-  filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.2));
-}
-
-.reviewer-card:hover .medal-icon.gold {
-  color: #f59e0b;
-}
-
-.reviewer-card:hover .medal-icon.silver {
-  color: #6b7280;
-}
-
-.reviewer-card:hover .medal-icon.bronze {
-  color: #c2410c;
-}
-
-/* Reviewer Info */
-.reviewer-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
-.reviewer-name {
-  font-family: var(--ff-urbanist);
-  font-size: var(--fs-6);
-  font-weight: var(--fw-600);
-  color: var(--text-primary);
-  margin: 0;
-  letter-spacing: -0.3px;
-}
-
-.reviewer-stats {
-  font-family: var(--ff-urbanist);
-  font-size: var(--fs-8);
-  font-weight: var(--fw-400);
-  color: var(--text-secondary);
-  margin: 0;
-}
-
-/* Badges */
-.reviewer-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
-  margin-block-start: 12px;
-}
+/* Legacy section removed - replaced with Professional Contributors Panel above */
 
 .badge-item {
   background: var(--bg-secondary);
@@ -1667,6 +2045,8 @@
 .community-cta {
   padding-block: 60px;
 }
+
+
 
 /*-----------------------------------*\
   #FEATURE
@@ -2078,6 +2458,7 @@
   justify-content: space-between;
   margin-block-end: 12px;
   padding-inline: 4px;
+  position: relative;
 }
 
 .business-header h3 {
@@ -2462,5 +2843,39 @@
   font-weight: var(--fw-500);
   margin: 0;
   font-style: italic;
+}
+
+/* Navigation Button Focus Styles */
+.nav-open-btn,
+.nav-close-btn,
+.header-action-btn {
+  outline: none !important;
+  border: none !important;
+}
+
+.nav-open-btn:focus,
+.nav-close-btn:focus,
+.header-action-btn:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Large Screen Card Wrapping for For You, Trending Now, Events sections */
+@media (min-width: 1200px) {
+  .has-scrollbar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-6);
+    overflow-x: visible;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  
+  .scrollbar-item {
+    min-width: unset;
+    max-width: unset;
+    flex: unset;
+  }
 }
 

@@ -534,7 +534,8 @@
 
   .header-action-btn:focus {
     outline: none;
-    border: 1px solid transparent;
+    box-shadow: 0 0 0 3px var(--hoockers-green_20);
+    
   }
 
   .category-nav {
