@@ -16,6 +16,7 @@
     - custom css link
   -->
   <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/mediaqueries.css">
 
   <!-- 
     - google font link
@@ -1229,201 +1230,290 @@
         </div>
       </section>
 
-      <section class="section shop events-specials" id="shop" aria-label="shop" data-section>
+      
+      <section class="section shop events-specials id="shop" aria-label="shop" data-section>
         <div class="container">
 
           <div class="title-wrapper">
             <h2 class="h2 section-title">Events And Specials</h2>
-            <!-- EVENTS_SECTION_MARKER -->
+
             <a href="#" class="btn-link">
               <span class="span">See more</span>
+
               <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
             </a>
           </div>
 
           <ul class="has-scrollbar">
 
-            <!-- Ocean Basket — Spring Menu -->
             <li class="scrollbar-item">
               <div class="shop-card">
-                <div class="card-banner img-holder icon-banner" style="--width: 540; --height: 720;">
-                  <ion-icon class="event-icon" name="fish-outline" aria-hidden="true"></ion-icon>
-                  <span class="seasonal-badge">Spring Menu</span>
-                  <span class="total-rating">4.3</span>
-                  <div class="card-actions">
-                    <button class="action-btn" aria-label="add to favorites"><ion-icon name="heart-outline"
-                        aria-hidden="true"></ion-icon></button>
-                    <button class="action-btn" aria-label="bookmark"><ion-icon name="bookmark-outline"
-                        aria-hidden="true"></ion-icon></button>
-                    <button class="action-btn" aria-label="share"><ion-icon name="share-outline"
-                        aria-hidden="true"></ion-icon></button>
-                  </div>
-                </div>
 
-                <div class="card-content">
-                  <div class="business-header">
-                    <h3><a href="#" class="card-title">Ocean Basket</a></h3>
-                  </div>
-                  <p class="card-category">Spring Seafood Fest — 2-for-1 sushi & grill • Waterfront</p>
-                  <div class="business-hours">
-                    <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
-                    <span class="hours-text">Open until 10 PM</span>
-                  </div>
-                </div>
-              </div>
-            </li>
+                <div class="card-banner img-holder" style="--width: 540; --height: 720;">
+                  <img src="./assets/images/product-01.jpg" width="540" height="720" loading="lazy"
+                    alt="Mama's Kitchen restaurant" class="img-cover">
 
-            <!-- Planet Bar — Valentine’s Duo -->
-            <li class="scrollbar-item">
-              <div class="shop-card">
-                <div class="card-banner img-holder icon-banner" style="--width: 540; --height: 720;">
-                  <ion-icon class="event-icon" name="wine-outline" aria-hidden="true"></ion-icon>
-                  <span class="seasonal-badge">Feb 13-14</span>
+                  <span class="event-date-badge">Dec 15-31</span>
                   <span class="total-rating">4.7</span>
+
                   <div class="card-actions">
-                    <button class="action-btn" aria-label="add to favorites"><ion-icon name="heart-outline"
-                        aria-hidden="true"></ion-icon></button>
-                    <button class="action-btn" aria-label="bookmark"><ion-icon name="bookmark-outline"
-                        aria-hidden="true"></ion-icon></button>
-                    <button class="action-btn" aria-label="share"><ion-icon name="share-outline"
-                        aria-hidden="true"></ion-icon></button>
+
+                    <button class="action-btn" aria-label="add to favorites">
+                      <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
+                    </button>
+
+                    <button class="action-btn" aria-label="bookmark">
+                      <ion-icon name="bookmark-outline" aria-hidden="true"></ion-icon>
+                    </button>
+
+                    <button class="action-btn" aria-label="share">
+                      <ion-icon name="share-outline" aria-hidden="true"></ion-icon>
+                    </button>
+
                   </div>
                 </div>
 
                 <div class="card-content">
+
                   <div class="business-header">
-                    <h3><a href="#" class="card-title">Planet Bar</a></h3>
+                    <h3>
+                      <a href="#" class="card-title">The Sizzling Spoon</a>
+                    </h3>
                   </div>
-                  <p class="card-category">Valentine’s Duo — 2 cocktails + canapés • Long Street</p>
-                  <div class="business-hours">
-                    <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
-                    <span class="hours-text">Open 24 hours</span>
-                  </div>
+
+                  <p class="card-category">Contemporary Cuisine • Central District</p>
+
                 </div>
+
               </div>
             </li>
 
-            <!-- The Test Kitchen — One-Night Tasting -->
             <li class="scrollbar-item">
               <div class="shop-card">
-                <div class="card-banner img-holder icon-banner" style="--width: 540; --height: 720;">
-                  <ion-icon class="event-icon" name="restaurant-outline" aria-hidden="true"></ion-icon>
-                  <span class="seasonal-badge">Sep 10th</span>
-                  <span class="total-rating">4.9</span>
-                  <div class="card-actions">
-                    <button class="action-btn" aria-label="add to favorites"><ion-icon name="heart-outline"
-                        aria-hidden="true"></ion-icon></button>
-                    <button class="action-btn" aria-label="bookmark"><ion-icon name="bookmark-outline"
-                        aria-hidden="true"></ion-icon></button>
-                    <button class="action-btn" aria-label="share"><ion-icon name="share-outline"
-                        aria-hidden="true"></ion-icon></button>
-                  </div>
-                </div>
 
-                <div class="card-content">
-                  <div class="business-header">
-                    <h3><a href="#" class="card-title">The Test Kitchen</a></h3>
-                  </div>
-                  <p class="card-category">One-Night Tasting — 7 courses, wine-paired • Woodstock</p>
-                  <div class="business-hours">
-                    <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
-                    <span class="hours-text">Closes at 6 PM</span>
-                  </div>
-                </div>
-              </div>
-            </li>
+                <div class="card-banner img-holder" style="--width: 540; --height: 720;">
+                  <img src="./assets/images/product-02.jpg" width="540" height="720" loading="lazy"
+                    alt="Jarryds restaurant" class="img-cover">
 
-            <!-- Ocean Basket — Family Feast Weekend -->
-            <li class="scrollbar-item">
-              <div class="shop-card">
-                <div class="card-banner img-holder icon-banner" style="--width: 540; --height: 720;">
-                  <ion-icon class="event-icon" name="people-outline" aria-hidden="true"></ion-icon>
-                  <span class="seasonal-badge">Sep 08-09</span>
+                  <span class="event-date-badge">Jan 5-20</span>
+
                   <span class="total-rating">4.3</span>
+
                   <div class="card-actions">
-                    <button class="action-btn" aria-label="add to favorites"><ion-icon name="heart-outline"
-                        aria-hidden="true"></ion-icon></button>
-                    <button class="action-btn" aria-label="bookmark"><ion-icon name="bookmark-outline"
-                        aria-hidden="true"></ion-icon></button>
-                    <button class="action-btn" aria-label="share"><ion-icon name="share-outline"
-                        aria-hidden="true"></ion-icon></button>
+
+                    <button class="action-btn" aria-label="add to favorites">
+                      <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
+                    </button>
+
+                    <button class="action-btn" aria-label="bookmark">
+                      <ion-icon name="bookmark-outline" aria-hidden="true"></ion-icon>
+                    </button>
+
+                    <button class="action-btn" aria-label="share">
+                      <ion-icon name="share-outline" aria-hidden="true"></ion-icon>
+                    </button>
+
                   </div>
                 </div>
 
                 <div class="card-content">
+
                   <div class="business-header">
-                    <h3><a href="#" class="card-title">Ocean Basket</a></h3>
+                    <h3>
+                      <a href="#" class="card-title">Flavor Junction</a>
+                    </h3>
                   </div>
-                  <p class="card-category">Family Feast Weekend — Kids eat free (T&Cs) • Waterfront</p>
-                  <div class="business-hours">
-                    <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
-                    <span class="hours-text">Open until 10 PM</span>
-                  </div>
+
+                  <p class="card-category">Artisanal Dining • Atlantic Seaboard</p>
+
+
                 </div>
+
               </div>
             </li>
 
-            <!-- The Test Kitchen — Spring Chef’s Table -->
             <li class="scrollbar-item">
               <div class="shop-card">
-                <div class="card-banner img-holder icon-banner" style="--width: 540; --height: 720;">
-                  <ion-icon class="event-icon" name="restaurant-outline" aria-hidden="true"></ion-icon>
-                  <span class="seasonal-badge">Sep 24-27</span>
+
+                <div class="card-banner img-holder" style="--width: 540; --height: 720;">
+                  <img src="./assets/images/product-03.jpg" width="540" height="720" loading="lazy"
+                    alt="Bella's Hair salon" class="img-cover">
+
+                  <span class="event-date-badge">Feb 1-14</span>
+
                   <span class="total-rating">4.9</span>
+
                   <div class="card-actions">
-                    <button class="action-btn" aria-label="add to favorites"><ion-icon name="heart-outline"
-                        aria-hidden="true"></ion-icon></button>
-                    <button class="action-btn" aria-label="bookmark"><ion-icon name="bookmark-outline"
-                        aria-hidden="true"></ion-icon></button>
-                    <button class="action-btn" aria-label="share"><ion-icon name="share-outline"
-                        aria-hidden="true"></ion-icon></button>
+
+                    <button class="action-btn" aria-label="add to favorites">
+                      <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
+                    </button>
+
+                    <button class="action-btn" aria-label="bookmark">
+                      <ion-icon name="bookmark-outline" aria-hidden="true"></ion-icon>
+                    </button>
+
+                    <button class="action-btn" aria-label="share">
+                      <ion-icon name="share-outline" aria-hidden="true"></ion-icon>
+                    </button>
+
                   </div>
                 </div>
 
                 <div class="card-content">
+
                   <div class="business-header">
-                    <h3><a href="#" class="card-title">The Test Kitchen</a></h3>
+                    <h3>
+                      <a href="#" class="card-title">Locks & Legends</a>
+                    </h3>
                   </div>
-                  <p class="card-category">Spring Chef’s Table — limited seats • Woodstock</p>
+
+                  <p class="card-category">Premium Hair Studio • City Bowl</p>
+
                   <div class="business-hours">
                     <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
-                    <span class="hours-text">Closes at 6 PM</span>
+                    <span class="hours-text">Open until 8 PM</span>
                   </div>
+
                 </div>
+
               </div>
             </li>
 
-            <!-- Ocean Basket — Prawn Night -->
             <li class="scrollbar-item">
               <div class="shop-card">
-                <div class="card-banner img-holder icon-banner" style="--width: 540; --height: 720;">
-                  <ion-icon class="event-icon" name="fish-outline" aria-hidden="true"></ion-icon>
-                  <span class="seasonal-badge">Sep 10</span>
-                  <span class="total-rating">4.3</span>
+
+                <div class="card-banner img-holder" style="--width: 540; --height: 720;">
+                  <img src="./assets/images/product-04.jpg" width="540" height="720" loading="lazy"
+                    alt="4 on Kloof nightclub" class="img-cover">
+
+                  <span class="event-date-badge">Mar 15-31</span>
+
+                  <span class="total-rating">4.7</span>
+
                   <div class="card-actions">
-                    <button class="action-btn" aria-label="add to favorites"><ion-icon name="heart-outline"
-                        aria-hidden="true"></ion-icon></button>
-                    <button class="action-btn" aria-label="bookmark"><ion-icon name="bookmark-outline"
-                        aria-hidden="true"></ion-icon></button>
-                    <button class="action-btn" aria-label="share"><ion-icon name="share-outline"
-                        aria-hidden="true"></ion-icon></button>
+
+                    <button class="action-btn" aria-label="add to favorites">
+                      <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
+                    </button>
+
+                    <button class="action-btn" aria-label="bookmark">
+                      <ion-icon name="bookmark-outline" aria-hidden="true"></ion-icon>
+                    </button>
+
+                    <button class="action-btn" aria-label="share">
+                      <ion-icon name="share-outline" aria-hidden="true"></ion-icon>
+                    </button>
+
                   </div>
                 </div>
 
                 <div class="card-content">
+
                   <div class="business-header">
-                    <h3><a href="#" class="card-title">Ocean Basket</a></h3>
+                    <h3>
+                      <a href="#" class="card-title">4 on Kloof</a>
+                    </h3>
                   </div>
-                  <p class="card-category">Prawn Night — grill combos & sides • Waterfront</p>
-                  <div class="business-hours">
-                    <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
-                    <span class="hours-text">Open until 10 PM</span>
+
+                  <p class="card-category">Exclusive Lounge • Kloof Street</p>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li class="scrollbar-item">
+              <div class="shop-card">
+
+                <div class="card-banner img-holder" style="--width: 540; --height: 720;">
+                  <img src="./assets/images/product-05.jpg" width="540" height="720" loading="lazy"
+                    alt="The Test Kitchen" class="img-cover">
+
+                  <span class="event-date-badge">Apr 10-25</span>
+
+                  <span class="total-rating">4.9</span>
+
+                  <div class="card-actions">
+
+                    <button class="action-btn" aria-label="add to favorites">
+                      <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
+                    </button>
+
+                    <button class="action-btn" aria-label="bookmark">
+                      <ion-icon name="bookmark-outline" aria-hidden="true"></ion-icon>
+                    </button>
+
+                    <button class="action-btn" aria-label="share">
+                      <ion-icon name="share-outline" aria-hidden="true"></ion-icon>
+                    </button>
+
                   </div>
                 </div>
+
+                <div class="card-content">
+
+                  <div class="business-header">
+                    <h3>
+                      <a href="#" class="card-title">The Test Kitchen</a>
+                    </h3>
+                  </div>
+
+                  <p class="card-category">Fine Dining • Woodstock</p>
+
+                 
+                </div>
+
+              </div>
+            </li>
+
+            <li class="scrollbar-item">
+              <div class="shop-card">
+
+                <div class="card-banner img-holder" style="--width: 540; --height: 720;">
+                  <img src="./assets/images/product-06.jpg" width="540" height="720" loading="lazy" alt="Ocean Basket"
+                    class="img-cover">
+
+                  <span class="event-date-badge">May 1-30</span>
+
+                  <span class="total-rating">4.3</span>
+
+                  <div class="card-actions">
+
+                    <button class="action-btn" aria-label="add to favorites">
+                      <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
+                    </button>
+
+                    <button class="action-btn" aria-label="bookmark">
+                      <ion-icon name="bookmark-outline" aria-hidden="true"></ion-icon>
+                    </button>
+
+                    <button class="action-btn" aria-label="share">
+                      <ion-icon name="share-outline" aria-hidden="true"></ion-icon>
+                    </button>
+
+                  </div>
+                </div>
+
+                <div class="card-content">
+
+                  <div class="business-header">
+                    <h3>
+                      <a href="#" class="card-title">Ocean Basket</a>
+                    </h3>
+                  </div>
+
+                  <p class="card-category">Coastal Cuisine • V&A Waterfront</p>
+
+             
+          
+                </div>
+
               </div>
             </li>
 
           </ul>
+
         </div>
       </section>
 
