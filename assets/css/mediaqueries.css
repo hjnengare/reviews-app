@@ -330,8 +330,20 @@
     margin-block-end: calc(var(--space-6) * -1);
   }
 
+  .review-card {
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 12px;
+  }
 
+  .review-card__content {
+    padding: 16px;
+  }
 
+  .review-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    border-color: rgba(0, 0, 0, 0.1);
+  }
 
   .flex-list {
     gap: var(--space-10);
@@ -800,7 +812,6 @@
     top: auto;
     bottom: 0;
     padding-block: var(--space-3);
-    box-shadow: var(--shadow-sm);
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: bottom;
   }
