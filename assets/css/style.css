@@ -2924,56 +2924,6 @@ body {
   transform: scale(1.1);
 }
 
-/* Events and Specials overlay styling */
-.review-card.events-special .review-card__content.overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 20px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 70%, transparent 100%);
-  color: var(--white);
-  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-}
-
-.review-card.events-special .review-card__title {
-  color: var(--white);
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-  margin-bottom: var(--space-1);
-}
-
-.review-card.events-special .review-card__location {
-  color: rgba(255, 255, 255, 0.9);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-}
-
-.review-card.events-special .event-date-badge {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  background: rgba(212, 116, 105, 0.95);
-  color: var(--white);
-  padding: 4px 12px;
-  border-radius: var(--radius-md);
-  font-size: var(--fs-9);
-  font-weight: var(--fw-600);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-.review-card.events-special .total-rating {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: rgba(33, 30, 29, 0.9);
-  color: var(--white);
-  padding: 4px 8px;
-  border-radius: var(--radius-md);
-  font-size: var(--fs-9);
-  font-weight: var(--fw-600);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
 
 /* Rating badge styling to match profile */
 .review-card .total-rating {

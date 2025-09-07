@@ -2,7 +2,20 @@
   #ROOT CSS VARIABLES
 \*-----------------------------------*/
 
+* {
+  scroll-behavior: smooth;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Account for fixed headers */
+}
+
 :root {
+
+  /**
+   * Smooth scrolling enabled globally
+   */
 
   /**
    * New color palette
