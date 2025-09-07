@@ -190,8 +190,8 @@
 
   /* Make review card image taller on mobile for premium feel */
   .review-card__image {
-    height: 280px !important; /* Increased from default for premium mobile feel */
-    min-height: 280px !important;
+    height: 450px !important; /* Increased from default for premium mobile feel */
+    min-height: 380px !important;
   }
 }
 
