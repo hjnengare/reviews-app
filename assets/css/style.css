@@ -622,7 +622,6 @@ body {
   font-size: 20px;
   padding: 12px;
   border-radius: 12px;
-  background-color: var(--off-white);
   border: 1px solid transparent;
   color: var(--charcoal);
   transition: all var(--transition-1);
@@ -2924,6 +2923,72 @@ body {
   transform: scale(1.1);
 }
 
+
+/* Loading indicator styles */
+.loading-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, 
+    rgba(248, 250, 252, 0.95) 0%, 
+    rgba(255, 255, 255, 0.95) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  backdrop-filter: blur(8px);
+  transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+
+.loading-indicator.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--sage-20);
+  border-top: 3px solid var(--coral);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: var(--space-4);
+}
+
+.loading-text {
+  color: var(--charcoal);
+  font-size: var(--fs-6);
+  font-weight: var(--fw-500);
+  font-family: var(--ff-urbanist);
+  opacity: 0.8;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Disabled link styles */
+.btn-link.disabled,
+.footer-link.disabled,
+.social-link.disabled,
+.panel-link.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  color: var(--charcoal-50);
+  pointer-events: none;
+}
+
+.btn-link.disabled:hover,
+.footer-link.disabled:hover,
+.social-link.disabled:hover,
+.panel-link.disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
 
 /* Rating badge styling to match profile */
 .review-card .total-rating {
