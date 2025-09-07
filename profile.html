@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - Reviews App</title>
+  <link rel="stylesheet" href="assets/css/profile.css">
+</head>
+<body>
+  <!-- Main container -->
+  <main class="profile">
+    
+    <!-- Hero section with large avatar -->
+    <section class="profile__hero">
+      <div class="profile__hero-bg"></div>
+      <div class="profile__hero-content">
+        <div class="profile__avatar-large" id="user-avatar">
+          <img src="assets/images/profile-1.jpg" 
+               alt="Profile photo" class="profile__avatar-img" />
+        </div>
+        <div class="profile__hero-info">
+          <h1 class="profile__name" id="user-name">Jessica Leigh</h1>
+          <p class="profile__username" id="username">@JessCLeigh</p>
+          <p class="profile__bio" id="user-bio">Food enthusiast sharing authentic reviews from Cape Town's vibrant culinary scene. Always hunting for the perfect meal.</p>
+          <div class="profile__location">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            Cape Town, South Africa
+          </div>
+          <div class="profile__actions">
+            <button class="btn btn--primary" id="edit-profile">
+              Edit Profile
+            </button>
+            <button class="btn btn--secondary" id="share-profile">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                <polyline points="16,6 12,2 8,6"/>
+                <line x1="12" y1="2" x2="12" y2="15"/>
+              </svg>
+              Share
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Accessibility announcement region -->
+      <div class="profile__live" aria-live="polite" aria-atomic="true"></div>
+    </section>
+
+    <!-- Stats bar -->
+    <section class="profile__stats" aria-labelledby="stats-heading">
+      <h2 class="visually-hidden" id="stats-heading">Your Statistics</h2>
+      <div class="stats-bar">
+        <button class="stat-item" id="reviews-stat">
+          <span class="stat-item__value">124</span>
+          <span class="stat-item__label">Reviews</span>
+        </button>
+        <button class="stat-item" id="followers-stat">
+          <span class="stat-item__value">2.1k</span>
+          <span class="stat-item__label">Followers</span>
+        </button>
+        <button class="stat-item" id="following-stat">
+          <span class="stat-item__value">89</span>
+          <span class="stat-item__label">Following</span>
+        </button>
+        <button class="stat-item" id="badges-stat">
+          <span class="stat-item__value">3</span>
+          <span class="stat-item__label">Badges</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Navigation tabs -->
+    <nav class="profile__nav" role="tablist">
+      <button class="nav-tab nav-tab--active" role="tab" aria-selected="true" id="reviews-tab" data-tab="reviews">
+        Reviews
+      </button>
+      <button class="nav-tab" role="tab" aria-selected="false" id="collections-tab" data-tab="collections">
+        Collections
+      </button>
+      <button class="nav-tab" role="tab" aria-selected="false" id="liked-tab" data-tab="liked">
+        Liked
+      </button>
+    </nav>
+    
+    <!-- Content panels -->
+    <section class="profile__content">
+      
+      <!-- Reviews panel -->
+      <div class="content-panel content-panel--active" role="tabpanel" id="reviews-panel">
+        
+        <!-- Reviews grid -->
+        <div class="reviews-grid" id="reviews-grid">
+          <!-- Loading state -->
+          <div class="reviews-loading" id="reviews-loading">
+            <div class="review-skeleton"></div>
+            <div class="review-skeleton"></div>
+            <div class="review-skeleton"></div>
+            <div class="review-skeleton"></div>
+            <div class="review-skeleton"></div>
+            <div class="review-skeleton"></div>
+          </div>
+          
+          <!-- Reviews content -->
+          <div class="reviews-content" id="reviews-content" style="display: none;">
+            <!-- Dynamically populated -->
+          </div>
+          
+          <!-- Empty state -->
+          <div class="reviews-empty" id="reviews-empty" style="display: none;">
+            <div class="empty-state">
+              <svg class="empty-state__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 9V5a3 3 0 0 0-6 0v4"/>
+                <rect x="2" y="9" width="20" height="11" rx="2" ry="2"/>
+              </svg>
+              <h3 class="empty-state__title">No reviews yet</h3>
+              <p class="empty-state__text">Start sharing your experiences with the community</p>
+              <a href="write-review.html" class="btn btn--primary">Write your first review</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Collections panel -->
+      <div class="content-panel" role="tabpanel" id="collections-panel" style="display: none;">
+        <div class="collections-grid" id="collections-grid">
+          <div class="empty-state">
+            <svg class="empty-state__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22,4 12,14.01 9,11.01"/>
+            </svg>
+            <h3 class="empty-state__title">No collections yet</h3>
+            <p class="empty-state__text">Create collections to organize your favorite places</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Liked panel -->
+      <div class="content-panel" role="tabpanel" id="liked-panel" style="display: none;">
+        <div class="liked-grid" id="liked-grid">
+          <div class="empty-state">
+            <svg class="empty-state__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+            <h3 class="empty-state__title">No liked reviews yet</h3>
+            <p class="empty-state__text">Reviews you like will appear here</p>
+          </div>
+        </div>
+      </div>
+      
+    </section>
+
+    <!-- Settings menu (floating) -->
+    <div class="settings-menu" id="settings-menu">
+      <button class="settings-toggle" id="settings-toggle" aria-label="Open settings menu">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="1"/>
+          <circle cx="12" cy="5" r="1"/>
+          <circle cx="12" cy="19" r="1"/>
+        </svg>
+      </button>
+      
+      <div class="settings-dropdown" id="settings-dropdown">
+        <button class="setting-item" id="account-settings">
+          <svg class="setting-item__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M12 1v6m0 6v6"/>
+            <path d="M1 12h6m6 0h6"/>
+          </svg>
+          <span class="setting-item__text">Settings</span>
+        </button>
+        
+        <button class="setting-item" id="notifications-settings">
+          <svg class="setting-item__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
+          <span class="setting-item__text">Notifications</span>
+        </button>
+        
+        <button class="setting-item" id="privacy-settings">
+          <svg class="setting-item__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+          </svg>
+          <span class="setting-item__text">Privacy</span>
+        </button>
+        
+        <hr class="setting-divider">
+        
+        <button class="setting-item setting-item--danger" id="logout-setting">
+          <svg class="setting-item__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16,17 21,12 16,7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+          <span class="setting-item__text">Log Out</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Back navigation -->
+    <nav class="profile__back-nav">
+      <button class="back-btn" id="back-button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15,18 9,12 15,6"/>
+        </svg>
+      </button>
+    </nav>
+
+  </main>
+
+  <!-- Logout confirmation dialog -->
+  <div class="logout-dialog" id="logout-dialog" role="dialog" aria-labelledby="logout-title" aria-hidden="true">
+    <div class="logout-dialog__overlay"></div>
+    <div class="logout-dialog__content">
+      <h3 class="logout-dialog__title" id="logout-title">Confirm Logout</h3>
+      <p class="logout-dialog__message">Are you sure you want to log out of your account?</p>
+      <div class="logout-dialog__actions">
+        <button class="logout-dialog__cancel" id="logout-cancel">Cancel</button>
+        <button class="logout-dialog__confirm" id="logout-confirm">Log Out</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript for profile functionality -->
+  <script src="assets/js/profile.js"></script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Write a Review - Reviews App</title>
+  <link rel="stylesheet" href="assets/css/write-review.css">
+</head>
+<body>
+  <!-- Main container -->
+  <main class="write-review">
+    
+    <!-- Header section -->
+    <header class="write-review__header">
+      <a href="index.html" class="write-review__back">← Back</a>
+      <h1 class="write-review__title">Write a Review for <span id="place-name">Mama's Kitchen</span></h1>
+      
+      <!-- Accessibility announcement region -->
+      <div class="write-review__live" aria-live="polite" aria-atomic="true"></div>
+    </header>
+
+    <!-- Review form -->
+    <form class="write-review__form" id="review-form" novalidate>
+      
+      <!-- Rating section -->
+      <fieldset class="rating-section">
+        <legend class="rating-section__legend">Overall rating</legend>
+        <div class="rating-section__stars" role="group" aria-labelledby="rating-legend">
+          <button type="button" class="star" data-rating="1" aria-label="1 star">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+            </svg>
+          </button>
+          <button type="button" class="star" data-rating="2" aria-label="2 stars">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+            </svg>
+          </button>
+          <button type="button" class="star" data-rating="3" aria-label="3 stars">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+            </svg>
+          </button>
+          <button type="button" class="star" data-rating="4" aria-label="4 stars">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+            </svg>
+          </button>
+          <button type="button" class="star" data-rating="5" aria-label="5 stars">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+            </svg>
+          </button>
+        </div>
+        <input type="hidden" id="rating-value" name="rating" value="0">
+        <div class="rating-section__error" id="rating-error" aria-live="polite"></div>
+      </fieldset>
+
+      <!-- Quick tags section -->
+      <fieldset class="tags-section">
+        <legend class="tags-section__legend">Choose up to 4 quick tags</legend>
+        <div class="tags-section__chips" role="group" aria-labelledby="tags-legend">
+          <button type="button" class="tag-chip" data-tag="trustworthy" aria-pressed="false">
+            <span class="tag-chip__label">Trustworthy</span>
+          </button>
+          <button type="button" class="tag-chip" data-tag="on-time" aria-pressed="false">
+            <span class="tag-chip__label">On Time</span>
+          </button>
+          <button type="button" class="tag-chip" data-tag="friendly" aria-pressed="false">
+            <span class="tag-chip__label">Friendly</span>
+          </button>
+          <button type="button" class="tag-chip" data-tag="good-value" aria-pressed="false">
+            <span class="tag-chip__label">Good Value</span>
+          </button>
+          <button type="button" class="tag-chip" data-tag="clean" aria-pressed="false">
+            <span class="tag-chip__label">Clean</span>
+          </button>
+          <button type="button" class="tag-chip" data-tag="fast-service" aria-pressed="false">
+            <span class="tag-chip__label">Fast Service</span>
+          </button>
+          <button type="button" class="tag-chip" data-tag="authentic" aria-pressed="false">
+            <span class="tag-chip__label">Authentic</span>
+          </button>
+          <button type="button" class="tag-chip" data-tag="convenient" aria-pressed="false">
+            <span class="tag-chip__label">Convenient</span>
+          </button>
+        </div>
+        <div class="tags-section__hint" id="tags-hint" aria-live="polite"></div>
+      </fieldset>
+
+      <!-- Experience text area -->
+      <div class="experience-section">
+        <label for="experience-text" class="experience-section__label">Tell us about your experience…</label>
+        <textarea 
+          id="experience-text" 
+          name="experience" 
+          class="experience-section__textarea"
+          placeholder="Share details about your visit..."
+          maxlength="1000"
+          rows="4"
+          aria-describedby="experience-counter experience-error"></textarea>
+        <div class="experience-section__footer">
+          <div class="experience-section__counter" id="experience-counter" aria-live="polite">0 / 1000</div>
+          <div class="experience-section__error" id="experience-error" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <!-- Voice note section -->
+      <div class="voice-section">
+        <button type="button" class="voice-section__button" id="voice-button">
+          <svg class="voice-section__icon voice-section__icon--mic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 1a4 4 0 0 0-4 4v7a4 4 0 0 0 8 0V5a4 4 0 0 0-4-4z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+            <line x1="12" y1="19" x2="12" y2="23"/>
+            <line x1="8" y1="23" x2="16" y2="23"/>
+          </svg>
+          <svg class="voice-section__icon voice-section__icon--stop" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="6" y="6" width="12" height="12"/>
+          </svg>
+          <span class="voice-section__text">Add Voice Note</span>
+        </button>
+        <div class="voice-section__status" id="voice-status" aria-live="polite"></div>
+        <p class="voice-section__help">Voice note is transcribed; the audio isn't shared</p>
+        <div class="voice-section__transcription" id="voice-transcription"></div>
+      </div>
+
+      <!-- Photo upload section -->
+      <div class="photo-section">
+        <button type="button" class="photo-section__button" id="photo-button">
+          <svg class="photo-section__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21,15 16,10 5,21"/>
+          </svg>
+          <span class="photo-section__text">Add Photo</span>
+        </button>
+        <input type="file" id="photo-input" name="photos" accept="image/*" multiple style="display: none;">
+        <div class="photo-section__previews" id="photo-previews"></div>
+        <div class="photo-section__error" id="photo-error" aria-live="polite"></div>
+      </div>
+
+    </form>
+
+    <!-- Submit section -->
+    <footer class="write-review__footer">
+      <button type="submit" form="review-form" class="write-review__submit" id="submit-button" disabled>
+        <span class="write-review__submit-text">Submit Review</span>
+        <span class="write-review__submit-loading" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12a9 9 0 11-6.219-8.56"/>
+          </svg>
+        </span>
+      </button>
+    </footer>
+
+  </main>
+
+  <!-- JavaScript for write review functionality -->
+  <script src="assets/js/write-review.js"></script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Deal-breakers - Reviews App</title>
+  <link rel="stylesheet" href="assets/css/dealbreakers.css">
+</head>
+<body>
+  <!-- Main container -->
+  <main class="dealbreakers">
+    
+    <!-- Header section -->
+    <header class="dealbreakers__header">
+      <h1 class="dealbreakers__title">Your deal-breakers</h1>
+      <p class="dealbreakers__subtitle">Pick 2–3 that matter most to you</p>
+      
+      <!-- Accessibility announcement region -->
+      <div class="dealbreakers__live" aria-live="polite" aria-atomic="true"></div>
+    </header>
+
+    <!-- Content section with cards -->
+    <section class="dealbreakers__content">
+      <div class="dealbreakers__grid" role="group" aria-labelledby="dealbreakers-title">
+        
+        <!-- Trust card -->
+        <button class="dealbreaker-card" type="button" data-dealbreaker="trust" aria-pressed="false">
+          <div class="dealbreaker-card__inner">
+            <div class="dealbreaker-card__front">
+              <div class="dealbreaker-card__content">
+                <h2 class="dealbreaker-card__title">Trust</h2>
+                <p class="dealbreaker-card__description">Honest reviews and transparent business practices</p>
+              </div>
+            </div>
+            <div class="dealbreaker-card__back">
+              <div class="dealbreaker-card__content">
+                <div class="dealbreaker-card__icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+                    <path d="m9 12 2 2 4-4"/>
+                  </svg>
+                </div>
+                <span class="dealbreaker-card__label">Trust</span>
+              </div>
+            </div>
+          </div>
+        </button>
+
+        <!-- Punctuality card -->
+        <button class="dealbreaker-card" type="button" data-dealbreaker="punctuality" aria-pressed="false">
+          <div class="dealbreaker-card__inner">
+            <div class="dealbreaker-card__front">
+              <div class="dealbreaker-card__content">
+                <h2 class="dealbreaker-card__title">Punctuality</h2>
+                <p class="dealbreaker-card__description">Timely service and respect for schedules</p>
+              </div>
+            </div>
+            <div class="dealbreaker-card__back">
+              <div class="dealbreaker-card__content">
+                <div class="dealbreaker-card__icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12,6 12,12 16,14"/>
+                  </svg>
+                </div>
+                <span class="dealbreaker-card__label">Punctuality</span>
+              </div>
+            </div>
+          </div>
+        </button>
+
+        <!-- Friendliness card -->
+        <button class="dealbreaker-card" type="button" data-dealbreaker="friendliness" aria-pressed="false">
+          <div class="dealbreaker-card__inner">
+            <div class="dealbreaker-card__front">
+              <div class="dealbreaker-card__content">
+                <h2 class="dealbreaker-card__title">Friendliness</h2>
+                <p class="dealbreaker-card__description">Welcoming staff and positive interactions</p>
+              </div>
+            </div>
+            <div class="dealbreaker-card__back">
+              <div class="dealbreaker-card__content">
+                <div class="dealbreaker-card__icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="m9 9 1.5 1.5L12 9"/>
+                    <path d="m15 9-1.5 1.5L12 9"/>
+                    <path d="m9 16s1-1 3-1 3 1 3 1"/>
+                  </svg>
+                </div>
+                <span class="dealbreaker-card__label">Friendliness</span>
+              </div>
+            </div>
+          </div>
+        </button>
+
+        <!-- Pricing card -->
+        <button class="dealbreaker-card" type="button" data-dealbreaker="pricing" aria-pressed="false">
+          <div class="dealbreaker-card__inner">
+            <div class="dealbreaker-card__front">
+              <div class="dealbreaker-card__content">
+                <h2 class="dealbreaker-card__title">Pricing</h2>
+                <p class="dealbreaker-card__description">Fair value and transparent pricing</p>
+              </div>
+            </div>
+            <div class="dealbreaker-card__back">
+              <div class="dealbreaker-card__content">
+                <div class="dealbreaker-card__icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <text x="12" y="17" text-anchor="middle" font-size="12" font-weight="bold" fill="currentColor" stroke="none">R</text>
+                  </svg>
+                </div>
+                <span class="dealbreaker-card__label">Pricing</span>
+              </div>
+            </div>
+          </div>
+        </button>
+
+      </div>
+
+      <!-- Hint message for selection limits -->
+      <div class="dealbreakers__hint" id="selection-hint" aria-live="polite"></div>
+    </section>
+
+    <!-- Bottom actions -->
+    <footer class="dealbreakers__actions">
+      <a href="sub-interests.html" class="dealbreakers__back">← Back</a>
+      <button class="dealbreakers__continue" type="button" id="continue-btn" disabled>
+        Continue
+      </button>
+    </footer>
+
+  </main>
+
+  <!-- JavaScript for dealbreakers functionality -->
+  <script src="assets/js/dealbreakers.js"></script>
+</body>
+</html>

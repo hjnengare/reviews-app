@@ -2,6 +2,43 @@
   #MEDIA QUERIES
 \*-----------------------------------*/
 
+/* MOBILE FIRST: Single card layout for phones */
+@media (max-width: 574px) {
+  /* Step 1-4: Mobile single card with clean snapping */
+  .section.shop:not(.events-specials) .has-scrollbar,
+  .section.events-specials .has-scrollbar {
+    display: grid !important;
+    grid-template-columns: none !important;
+    grid-auto-flow: column !important;
+    grid-auto-columns: 100% !important;
+    gap: 0 !important;
+    padding-inline: 0 !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    /* Remove scrollbar hack on mobile */
+    margin-block-end: 0 !important;
+    padding-block-end: 0 !important;
+  }
+
+  .section.shop:not(.events-specials) .has-scrollbar .scrollbar-item,
+  .section.events-specials .has-scrollbar .scrollbar-item {
+    min-width: 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    scroll-snap-align: start !important;
+    flex-shrink: 0 !important;
+  }
+  
+  /* Remove box shadows on mobile shop cards */
+  .scrollbar-item,
+  .scrollbar-item .card,
+  .scrollbar-item .collection-card,
+  .scrollbar-item .product-card,
+  .scrollbar-item .shop-card {
+    box-shadow: none !important;
+  }
+}
+
 /* Accessibility - Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -122,6 +159,9 @@
     padding-block-end: var(--space-6);
     margin-block-end: calc(var(--space-6) * -1);
   }
+
+
+
 
   .flex-list {
     gap: var(--space-10);
@@ -277,6 +317,52 @@
  */
 
 @media (min-width: 1200px) {
+
+  /* Left align everything in FOR YOU and TRENDING NOW cards on large screens */
+  .section.shop:not(.events-specials) .shop-card .card-content {
+    text-align: left !important;
+    align-items: flex-start !important;
+  }
+
+  /* Fix flex items to align left */
+  .section.shop:not(.events-specials) .shop-card .rating-wrapper,
+  .section.shop:not(.events-specials) .shop-card .card-rating {
+    justify-content: flex-start !important;
+  }
+
+  .section.shop:not(.events-specials) .shop-card .business-hours,
+  .section.shop:not(.events-specials) .shop-card .metric-item {
+    justify-content: flex-start !important;
+  }
+
+  /* Remove centering margins on text elements */
+  .section.shop:not(.events-specials) .shop-card .card-title,
+  .section.shop:not(.events-specials) .shop-card .card-subtitle {
+    margin-inline: 0 !important;
+  }
+
+  /* Remove box shadows for flat card design on large screens */
+  .section.shop:not(.events-specials) .shop-card,
+  .section.shop:not(.events-specials) .shop-card .card-banner {
+    box-shadow: none !important;
+  }
+
+  /* Preserve hover effects and card-actions functionality on large screens */
+  .section.shop:not(.events-specials) .shop-card:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: none !important; /* Keep flat design but allow transform */
+  }
+
+  .section.shop:not(.events-specials) .shop-card:hover .card-banner {
+    transform: translateY(-2px) !important;
+    box-shadow: none !important; /* Keep flat design but allow transform */
+  }
+
+  /* Ensure card-actions still work on large screens */
+  .section.shop:not(.events-specials) .shop-card:is(:hover, :focus-within) .card-actions {
+    opacity: 1 !important;
+    transform: translate(-20px, -50%) !important;
+  }
 
   /**
    * REUSED STYLE

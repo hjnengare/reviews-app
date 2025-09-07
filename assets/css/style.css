@@ -1173,38 +1173,70 @@ body {
   left: 20px;
 }
 
-.shop-card .card-actions {
+/* Card Actions Overlay - Mobile First Approach */
+/* Only applied to "For You" and "Trending Now" sections, not Events & Specials */
+.section.shop:not(.events-specials) .shop-card .card-banner {
+  position: relative;
+  overflow: hidden;
+}
+
+.section.shop:not(.events-specials) .shop-card .card-actions {
   position: absolute;
   top: 50%;
   right: 0;
   transform: translate(0, -50%);
   display: grid;
-  gap: 10px;
+  gap: var(--space-2);
   opacity: 0;
-  transition: var(--transition-2);
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 10;
 }
 
-.shop-card .action-btn {
+.section.shop:not(.events-specials) .shop-card .action-btn {
   background-color: var(--white);
-  font-size: 20px;
+  color: var(--premium-text);
+  font-size: 18px;
   padding: var(--space-3);
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-subtle);
-  box-shadow: var(--shadow-sm);
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
-.shop-card .action-btn:is(:hover, :focus) {
+.section.shop:not(.events-specials) .shop-card .action-btn:is(:hover, :focus) {
   background-color: var(--premium-text);
   color: var(--white);
   border-color: var(--premium-text);
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  transform: translateY(-2px) scale(1.05);
 }
 
-.shop-card:is(:hover, :focus-within) .card-actions {
+/* Reveal actions on hover/focus - Mobile First */
+.section.shop:not(.events-specials) .shop-card:is(:hover, :focus-within) .card-actions {
   opacity: 1;
-  transform: translate(-20px, -50%);
+  pointer-events: auto;
+  transform: translate(-16px, -50%);
+}
+
+/* Enhanced visibility on larger screens */
+@media (min-width: 768px) {
+  .section.shop:not(.events-specials) .shop-card .action-btn {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+  
+  .section.shop:not(.events-specials) .shop-card:is(:hover, :focus-within) .card-actions {
+    transform: translate(-20px, -50%);
+  }
 }
 
 .shop-card .card-content {
