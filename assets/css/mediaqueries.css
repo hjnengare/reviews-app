@@ -151,6 +151,48 @@
   .scrollbar-item { 
     min-width: calc(50% - 15px); 
   }
+
+  /* Make icons match header action colors on mobile, except rating stars */
+  .shop-card .action-btn {
+    background: rgba(255, 255, 255, 0.4) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    color: var(--premium-text-light) !important;
+  }
+
+  .shop-card .action-btn:is(:hover, :focus) {
+    background: rgba(255, 255, 255, 0.8) !important;
+    color: var(--premium-text) !important;
+    border-color: rgba(255, 255, 255, 0.6) !important;
+  }
+
+  /* Keep rating stars with their original green color */
+  .shop-card .rating-wrapper {
+    gap: 2px;
+    color: var(--hoockers-green) !important;
+    font-size: 15px;
+  }
+
+  /* Style metric items and location text to match header actions */
+  .shop-card .metric-item,
+  .shop-card .location {
+    color: var(--premium-text-light) !important;
+  }
+
+  /* Make percentile metrics and ion icons metadata gray */
+  .shop-card .percentile-metrics,
+  .shop-card .percentile-metrics ion-icon,
+  .shop-card .business-hours ion-icon,
+  .shop-card .business-hours {
+    color: #6b7280 !important; /* Gray color */
+  }
+
+  /* Make review card image taller on mobile for premium feel */
+  .review-card__image {
+    height: 280px !important; /* Increased from default for premium mobile feel */
+    min-height: 280px !important;
+  }
 }
 
 /* Accessibility - Reduced Motion */

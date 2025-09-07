@@ -3147,7 +3147,7 @@ body {
 
 .review-card .metric-item ion-icon {
   font-size: 14px;
-  color: var(--sage);
+  color: rgba(88, 84, 84, 0.9);
 }
 
 .review-card .metric-value {
@@ -3166,8 +3166,9 @@ body {
 }
 
 .review-card .business-hours ion-icon {
+  
   font-size: 14px;
-  color: var(--sage);
+  color: rgba(88, 84, 84, 0.9);
 }
 
 .review-card .hours-text {
