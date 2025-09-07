@@ -17,7 +17,7 @@ body {
   font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: var(--premium-text);
+  color: var(--charcoal);
   line-height: 1.6;
 }
 
@@ -63,7 +63,7 @@ body {
   margin: 0 0 var(--space-3) 0;
   line-height: 1.25;
   letter-spacing: -0.02em;
-  color: var(--premium-text);
+  color: var(--charcoal);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
   font-family: var(--ff-urbanist);
 }
@@ -175,7 +175,7 @@ body {
 /* Hover effects */
 .dealbreaker-card:hover .dealbreaker-card__front,
 .dealbreaker-card:hover .dealbreaker-card__back {
-  border-color: var(--hoockers-green);
+  border-color: var(--sage);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
@@ -186,7 +186,7 @@ body {
 
 /* Focus styling */
 .dealbreaker-card:focus-visible {
-  outline: 2px solid var(--hoockers-green);
+  outline: 2px solid var(--coral);
   outline-offset: 3px;
   border-radius: var(--radius-xl);
 }
@@ -194,16 +194,16 @@ body {
 /* Selected state styling */
 .dealbreaker-card[aria-pressed="true"] .dealbreaker-card__front,
 .dealbreaker-card[aria-pressed="true"] .dealbreaker-card__back {
-  border-color: var(--hoockers-green);
+  border-color: var(--sage);
   background: rgba(0, 184, 148, 0.05);
-  box-shadow: 0 0 0 2px var(--hoockers-green) inset, var(--shadow-md);
+  box-shadow: 0 0 0 2px var(--coral) inset, var(--shadow-md);
 }
 
 .dealbreaker-card[aria-pressed="true"]:hover .dealbreaker-card__front,
 .dealbreaker-card[aria-pressed="true"]:hover .dealbreaker-card__back {
   background: rgba(0, 184, 148, 0.05);
   transform: translateY(-4px);
-  box-shadow: 0 0 0 2px var(--hoockers-green) inset, var(--shadow-lg);
+  box-shadow: 0 0 0 2px var(--coral) inset, var(--shadow-lg);
 }
 
 .dealbreaker-card[aria-pressed="true"]:hover .dealbreaker-card__back {
@@ -239,7 +239,7 @@ body {
   font-size: var(--fs-8);
   font-weight: var(--fw-500);
   margin: 0;
-  color: var(--premium-text);
+  color: var(--charcoal);
   line-height: 1.2;
   font-family: var(--ff-urbanist);
 }
@@ -259,7 +259,7 @@ body {
 .dealbreaker-card__icon {
   width: 48px;
   height: 48px;
-  color: var(--premium-text);
+  color: var(--charcoal);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -274,7 +274,7 @@ body {
 .dealbreaker-card__label {
   font-size: var(--fs-8);
   font-weight: var(--fw-600);
-  color: var(--premium-text);
+  color: var(--charcoal);
   font-family: var(--ff-urbanist);
   margin: 0;
 }
@@ -324,19 +324,19 @@ body {
 
 .dealbreakers__back:hover {
   opacity: 1;
-  color: var(--hoockers-green);
+  color: var(--coral);
   transform: translateX(-2px);
 }
 
 .dealbreakers__back:focus-visible {
-  outline: 2px solid var(--hoockers-green);
+  outline: 2px solid var(--coral);
   outline-offset: 2px;
   border-radius: var(--radius-sm);
 }
 
 /* Continue button */
 .dealbreakers__continue {
-  background-color: var(--premium-text);
+  background-color: var(--charcoal);
   color: var(--white);
   border: none;
   border-radius: var(--radius-lg);
@@ -352,7 +352,7 @@ body {
 }
 
 .dealbreakers__continue:enabled:hover {
-  background-color: var(--hoockers-green);
+  background-color: var(--coral);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }

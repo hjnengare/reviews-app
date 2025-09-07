@@ -17,7 +17,7 @@ body {
   font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: var(--premium-text);
+  color: var(--charcoal);
   line-height: 1.6;
   overflow-x: hidden;
 }
@@ -88,7 +88,7 @@ body {
   margin: 0;
   line-height: 1.25;
   letter-spacing: -0.02em;
-  color: var(--premium-text);
+  color: var(--charcoal);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
   font-family: var(--ff-urbanist);
 }
@@ -132,7 +132,7 @@ body {
   position: absolute;
   width: 32px;
   height: 32px;
-  color: var(--hoockers-green);
+  color: var(--coral);
   opacity: 0;
   animation: floatIn 0.6s ease-out forwards;
 }
@@ -172,7 +172,7 @@ body {
   position: absolute;
   width: 4px;
   height: 4px;
-  background: var(--hoockers-green);
+  background: var(--coral);
   border-radius: 50%;
   opacity: 0;
   animation: sparkle 1.2s ease-out infinite;
@@ -281,19 +281,19 @@ body {
 
 .complete__back:hover {
   opacity: 1;
-  color: var(--hoockers-green);
+  color: var(--coral);
   transform: translateX(-2px);
 }
 
 .complete__back:focus-visible {
-  outline: 2px solid var(--hoockers-green);
+  outline: 2px solid var(--coral);
   outline-offset: 2px;
   border-radius: var(--radius-sm);
 }
 
 /* Home button - prominent styling */
 .complete__home {
-  background-color: var(--hoockers-green);
+  background-color: var(--coral);
   color: var(--white);
   border: none;
   border-radius: var(--radius-lg);
@@ -309,7 +309,7 @@ body {
 }
 
 .complete__home:hover {
-  background-color: var(--premium-text);
+  background-color: var(--charcoal);
   transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
 }

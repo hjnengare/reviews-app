@@ -17,7 +17,7 @@ body {
   font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: var(--premium-text);
+  color: var(--charcoal);
   line-height: 1.6;
 }
 
@@ -62,7 +62,7 @@ body {
   margin: 0 0 var(--space-3) 0;
   line-height: 1.25;
   letter-spacing: -0.02em;
-  color: var(--premium-text);
+  color: var(--charcoal);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
   font-family: var(--ff-urbanist);
 }
@@ -112,7 +112,7 @@ body {
   font-size: clamp(var(--fs-5), 2.5vw, var(--fs-4));
   font-weight: var(--fw-600);
   margin: 0;
-  color: var(--premium-text);
+  color: var(--charcoal);
   letter-spacing: -0.015em;
   font-family: var(--ff-urbanist);
 }
@@ -139,7 +139,7 @@ body {
   font-family: var(--ff-urbanist);
   font-size: var(--fs-8);
   font-weight: var(--fw-500);
-  color: var(--premium-text);
+  color: var(--charcoal);
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -153,12 +153,12 @@ body {
 .chip:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-md);
-  border-color: var(--hoockers-green);
+  border-color: var(--sage);
 }
 
 /* Chip focus state for accessibility */
 .chip:focus-visible {
-  outline: 2px solid var(--hoockers-green);
+  outline: 2px solid var(--coral);
   outline-offset: 3px;
 }
 
@@ -169,15 +169,15 @@ body {
 
 /* Selected chip state - matching interests bubble styling */
 .chip[aria-pressed="true"] {
-  border-color: var(--hoockers-green);
-  box-shadow: 0 0 0 2px var(--hoockers-green) inset, var(--shadow-md);
+  border-color: var(--sage);
+  box-shadow: 0 0 0 2px var(--coral) inset, var(--shadow-md);
   background: rgba(0, 184, 148, 0.05);
   transform: translateY(-2px);
 }
 
 .chip[aria-pressed="true"]:hover {
   transform: translateY(-6px);
-  box-shadow: 0 0 0 2px var(--hoockers-green) inset, var(--shadow-lg);
+  box-shadow: 0 0 0 2px var(--coral) inset, var(--shadow-lg);
 }
 
 /* Chip label */
@@ -216,19 +216,19 @@ body {
 
 .sub-interests__back:hover {
   opacity: 1;
-  color: var(--hoockers-green);
+  color: var(--coral);
   transform: translateX(-2px);
 }
 
 .sub-interests__back:focus-visible {
-  outline: 2px solid var(--hoockers-green);
+  outline: 2px solid var(--coral);
   outline-offset: 2px;
   border-radius: var(--radius-sm);
 }
 
 /* Continue button */
 .sub-interests__continue {
-  background-color: var(--premium-text);
+  background-color: var(--charcoal);
   color: var(--white);
   border: none;
   border-radius: var(--radius-lg);
@@ -244,7 +244,7 @@ body {
 }
 
 .sub-interests__continue:enabled:hover {
-  background-color: var(--hoockers-green);
+  background-color: var(--coral);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }

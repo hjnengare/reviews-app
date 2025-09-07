@@ -17,7 +17,7 @@ body {
   font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: var(--premium-text);
+  color: var(--charcoal);
   line-height: 1.6;
 }
 
@@ -73,7 +73,7 @@ body {
 
 .signup__back:hover {
   opacity: 1;
-  color: var(--hoockers-green);
+  color: var(--coral);
   transform: translateX(-2px);
 }
 
@@ -83,7 +83,7 @@ body {
   margin: 0;
   line-height: 1.25;
   letter-spacing: -0.02em;
-  color: var(--premium-text);
+  color: var(--charcoal);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
   font-family: var(--ff-urbanist);
 }
@@ -108,7 +108,7 @@ body {
 .field label {
   font-size: var(--fs-8);
   font-weight: var(--fw-600);
-  color: var(--premium-text);
+  color: var(--charcoal);
   font-family: var(--ff-urbanist);
   letter-spacing: 0.025em;
 }
@@ -121,15 +121,15 @@ body {
   border-radius: var(--radius-lg);
   font-size: var(--fs-7);
   font-family: var(--ff-urbanist);
-  background: var(--white);
-  color: var(--premium-text);
+  background: var(--off-white);
+  color: var(--charcoal);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: var(--shadow-xs);
 }
 
 .field input:focus {
   outline: none;
-  border-color: var(--hoockers-green);
+  border-color: var(--sage);
   box-shadow: var(--shadow-sm);
   transform: translateY(-1px);
 }
@@ -165,13 +165,13 @@ body {
 
 .field__toggle:hover {
   opacity: 1;
-  color: var(--hoockers-green);
+  color: var(--coral);
   background: rgba(255, 255, 255, 0.5);
 }
 
 .field__toggle:focus {
   outline: none;
-  color: var(--hoockers-green);
+  color: var(--coral);
   background: rgba(255, 255, 255, 0.8);
   box-shadow: var(--shadow-xs);
 }
@@ -228,11 +228,11 @@ body {
   padding: var(--space-3) var(--space-4);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  background: var(--white);
+  background: var(--off-white);
   font-size: var(--fs-7);
   font-weight: var(--fw-500);
   font-family: var(--ff-urbanist);
-  color: var(--premium-text);
+  color: var(--charcoal);
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: var(--shadow-xs);
@@ -296,7 +296,7 @@ body {
 }
 
 .signup__alt a {
-  color: var(--premium-text);
+  color: var(--charcoal);
   text-decoration: none;
   font-weight: var(--fw-500);
   position: relative;
@@ -315,7 +315,7 @@ body {
 }
 
 .signup__alt a:hover {
-  color: var(--hoockers-green);
+  color: var(--coral);
   transform: translateX(2px);
 }
 
@@ -325,7 +325,7 @@ body {
 
 /* Premium primary next button */
 .signup__next {
-  background-color: var(--premium-text);
+  background-color: var(--charcoal);
   color: var(--white);
   border: none;
   border-radius: var(--radius-lg);
@@ -341,7 +341,7 @@ body {
 }
 
 .signup__next:hover {
-  background-color: var(--hoockers-green);
+  background-color: var(--coral);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }

@@ -17,7 +17,7 @@ body {
   font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: var(--premium-text);
+  color: var(--charcoal);
   line-height: 1.6;
 }
 
@@ -71,14 +71,14 @@ body {
 
 .interests__back:hover {
   opacity: 1;
-  color: var(--hoockers-green);
+  color: var(--coral);
   transform: translateX(-2px);
 }
 
 .interests__title {
   font-size: clamp(var(--fs-2), 5vw, var(--fs-1));
   font-weight: var(--fw-700);
-  color: var(--premium-text);
+  color: var(--charcoal);
   margin: 0 0 var(--space-3) 0;
   line-height: 1.25;
   letter-spacing: -0.02em;
@@ -156,7 +156,7 @@ body {
   font-family: var(--ff-urbanist);
   font-size: var(--fs-8);
   font-weight: var(--fw-500);
-  color: var(--premium-text);
+  color: var(--charcoal);
   box-shadow: var(--shadow-xs);
   
   /* Gentle floating animation */
@@ -167,11 +167,11 @@ body {
 .bubble:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-md);
-  border-color: var(--hoockers-green);
+  border-color: var(--sage);
 }
 
 .bubble:focus-visible {
-  outline: 2px solid var(--hoockers-green);
+  outline: 2px solid var(--sage);
   outline-offset: 3px;
 }
 
@@ -181,8 +181,8 @@ body {
 
 /* Selected state styling */
 .bubble.is-selected {
-  border-color: var(--hoockers-green);
-  box-shadow: 0 0 0 2px var(--hoockers-green) inset, 
+  border-color: var(--sage);
+  box-shadow: 0 0 0 2px var(--coral) inset, 
               var(--shadow-md);
   background: rgba(0, 184, 148, 0.05);
   animation: none;
@@ -191,7 +191,7 @@ body {
 
 .bubble.is-selected:hover {
   transform: translateY(-6px);
-  box-shadow: 0 0 0 2px var(--hoockers-green) inset, 
+  box-shadow: 0 0 0 2px var(--coral) inset, 
               var(--shadow-lg);
 }
 
@@ -253,7 +253,7 @@ body {
 }
 
 .interests__alt a {
-  color: var(--premium-text);
+  color: var(--charcoal);
   text-decoration: none;
   font-weight: var(--fw-500);
   position: relative;
@@ -272,7 +272,7 @@ body {
 }
 
 .interests__alt a:hover {
-  color: var(--hoockers-green);
+  color: var(--coral);
   transform: translateX(2px);
 }
 
@@ -282,7 +282,7 @@ body {
 
 /* Next button styling */
 .interests__next {
-  background-color: var(--premium-text);
+  background-color: var(--sage);
   color: var(--white);
   border: none;
   border-radius: var(--radius-lg);
@@ -298,7 +298,7 @@ body {
 }
 
 .interests__next:enabled:hover {
-  background-color: var(--hoockers-green);
+  background-color: var(--coral);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
