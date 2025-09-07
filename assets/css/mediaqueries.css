@@ -4,6 +4,7 @@
 
 /* MOBILE FIRST: Single card layout for phones */
 @media (max-width: 574px) {
+
   /* Step 1-4: Mobile single card with clean snapping */
   .section.shop:not(.events-specials) .has-scrollbar,
   .section.events-specials .has-scrollbar {
@@ -28,7 +29,7 @@
     scroll-snap-align: start !important;
     flex-shrink: 0 !important;
   }
-  
+
   /* Remove box shadows on mobile shop cards */
   .scrollbar-item,
   .scrollbar-item .card,
@@ -48,13 +49,20 @@
     margin-block-end: 50px;
   }
 
-  .shop .btn-link:is(:hover, :focus) { 
-    color: var(--hoockers-green); 
+  .shop .btn-link:is(:hover, :focus) {
+    color: var(--hoockers-green);
   }
 
   .shop-card .card-banner {
     position: relative;
     overflow: hidden;
+    width: 400px;
+    height: 400px;
+    max-width: 100%;
+    margin-inline: auto;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-2);
+
   }
 
   .shop-card .badge {
@@ -140,16 +148,16 @@
   }
 
   /* COLLECTION */
-  .collection-card { 
-    min-height: 450px; 
-  }  
-
-  .has-scrollbar { 
-    gap: 30px; 
+  .collection-card {
+    min-height: 450px;
   }
 
-  .scrollbar-item { 
-    min-width: calc(50% - 15px); 
+  .has-scrollbar {
+    gap: 30px;
+  }
+
+  .scrollbar-item {
+    min-width: calc(50% - 15px);
   }
 
   /* Make icons match header action colors on mobile, except rating stars */
@@ -185,13 +193,19 @@
   .shop-card .percentile-metrics ion-icon,
   .shop-card .business-hours ion-icon,
   .shop-card .business-hours {
-    color: #6b7280 !important; /* Gray color */
+    color: #6b7280 !important;
+    /* Gray color */
   }
 
   /* Make review card image taller on mobile for premium feel */
   .review-card__image {
-    height: 450px !important; /* Increased from default for premium mobile feel */
+    height: 450px !important;
     min-height: 380px !important;
+    max-height: 500px !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    box-shadow: var(--shadow-md) !important;
+
   }
 }
 
@@ -506,12 +520,14 @@
   /* Preserve hover effects and card-actions functionality on large screens */
   .section.shop:not(.events-specials) .shop-card:hover {
     transform: translateY(-4px) !important;
-    box-shadow: none !important; /* Keep flat design but allow transform */
+    box-shadow: none !important;
+    /* Keep flat design but allow transform */
   }
 
   .section.shop:not(.events-specials) .shop-card:hover .card-banner {
     transform: translateY(-2px) !important;
-    box-shadow: none !important; /* Keep flat design but allow transform */
+    box-shadow: none !important;
+    /* Keep flat design but allow transform */
   }
 
   /* Ensure card-actions still work on large screens */
@@ -777,7 +793,7 @@
   .header-action-btn:focus {
     outline: none;
     box-shadow: 0 0 0 3px var(--hoockers-green_20);
-    
+
   }
 
   .category-nav {
