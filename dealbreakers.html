@@ -4,30 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Your Deal-breakers - Reviews App</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="assets/css/root.css">
   <link rel="stylesheet" href="assets/css/dealbreakers.css">
 </head>
 <body>
-  <!-- Hero masonry background -->
-  <div class="masonry-background">
-    <div class="masonry-grid">
-      <div class="masonry-item" style="background-image: url('assets/images/hero-banner-1.jpg');"></div>
-      <div class="masonry-item" style="background-image: url('assets/images/hero-banner-2.jpg');"></div>
-      <div class="masonry-item" style="background-image: url('assets/images/hero-banner-3.jpg');"></div>
-      <div class="masonry-item" style="background-image: url('assets/images/hero-banner-4.jpg');"></div>
-      <div class="masonry-item" style="background-image: url('assets/images/hero-banner-5.jpg');"></div>
-      <div class="masonry-item" style="background-image: url('assets/images/blog-1.jpg');"></div>
-      <div class="masonry-item" style="background-image: url('assets/images/blog-2.jpg');"></div>
-      <div class="masonry-item" style="background-image: url('assets/images/blog-3.jpg');"></div>
-    </div>
-  </div>
 
-  <!-- Main container -->
+  <!-- Main dealbreakers container -->
   <main class="dealbreakers">
     
+    <!-- Navigation -->
+    <nav class="dealbreakers__nav">
+      <a href="sub-interests.html" class="nav-back" aria-label="Go back">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15,18 9,12 15,6"/>
+        </svg>
+      </a>
+    </nav>
+
     <!-- Header section -->
     <header class="dealbreakers__header">
       <h1 class="dealbreakers__title">Your deal-breakers</h1>
       <p class="dealbreakers__subtitle">Pick 2–3 that matter most to you</p>
+      
+      <!-- Progress indicator -->
+      <div class="progress-indicator">
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 100%"></div>
+        </div>
+        <p class="progress-text">Step 4 of 4</p>
+      </div>
       
       <!-- Accessibility announcement region -->
       <div class="dealbreakers__live" aria-live="polite" aria-atomic="true"></div>
@@ -38,7 +49,7 @@
       <div class="dealbreakers__grid" role="group" aria-labelledby="dealbreakers-title">
         
         <!-- Trust card -->
-        <button class="dealbreaker-card" type="button" data-dealbreaker="trust" aria-pressed="false">
+        <button class="dealbreaker-card" type="button" data-dealbreaker="trust">
           <div class="dealbreaker-card__inner">
             <div class="dealbreaker-card__front">
               <div class="dealbreaker-card__content">
@@ -61,7 +72,7 @@
         </button>
 
         <!-- Punctuality card -->
-        <button class="dealbreaker-card" type="button" data-dealbreaker="punctuality" aria-pressed="false">
+        <button class="dealbreaker-card" type="button" data-dealbreaker="punctuality">
           <div class="dealbreaker-card__inner">
             <div class="dealbreaker-card__front">
               <div class="dealbreaker-card__content">
@@ -84,7 +95,7 @@
         </button>
 
         <!-- Friendliness card -->
-        <button class="dealbreaker-card" type="button" data-dealbreaker="friendliness" aria-pressed="false">
+        <button class="dealbreaker-card" type="button" data-dealbreaker="friendliness">
           <div class="dealbreaker-card__inner">
             <div class="dealbreaker-card__front">
               <div class="dealbreaker-card__content">
@@ -109,7 +120,7 @@
         </button>
 
         <!-- Pricing card -->
-        <button class="dealbreaker-card" type="button" data-dealbreaker="pricing" aria-pressed="false">
+        <button class="dealbreaker-card" type="button" data-dealbreaker="pricing">
           <div class="dealbreaker-card__inner">
             <div class="dealbreaker-card__front">
               <div class="dealbreaker-card__content">
@@ -137,12 +148,16 @@
       <div class="dealbreakers__hint" id="selection-hint" aria-live="polite"></div>
     </section>
 
+    <!-- Continue button -->
+    <button type="button" class="btn btn--primary" id="continue-btn" disabled>
+      <span>Continue</span>
+    </button>
+
     <!-- Bottom actions -->
-    <footer class="dealbreakers__actions">
-      <a href="sub-interests.html" class="dealbreakers__back">← Back</a>
-      <a href="complete.html" class="dealbreakers__continue" id="continue-btn">
-        Continue
-      </a>
+    <footer class="dealbreakers__footer">
+      <p class="dealbreakers__alt">
+        Need to adjust preferences? <a href="sub-interests.html">Go back</a>
+      </p>
     </footer>
 
   </main>

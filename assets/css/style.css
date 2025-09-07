@@ -3089,7 +3089,7 @@ body {
 /* Business category styling */
 .review-card .card-category {
   font-size: 14px;
-  color: var(--sage-dark);
+  color: var(--charcoal-50);
   margin: 4px 0 12px;
   font-weight: 400;
 }
