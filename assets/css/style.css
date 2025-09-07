@@ -742,7 +742,7 @@ body {
 .logo-text {
   font-size: var(--fs-3);
   font-weight: var(--fw-700);
-  color: var(--premium-text);
+  color: var(--premium-text) !important;
   text-decoration: none;
   white-space: nowrap;
   letter-spacing: -0.5px;
@@ -2861,6 +2861,18 @@ body {
 .header-action-btn:focus {
   outline: none !important;
   border: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove white focus outlines from all navigation elements */
+.navbar-link:focus,
+.mobile-navbar .navbar-link:focus,
+.nav-open-btn:focus-visible,
+.nav-close-btn:focus-visible,
+.header-action-btn:focus-visible,
+.filter-btn:focus,
+.filter-btn:focus-visible {
+  outline: none !important;
   box-shadow: none !important;
 }
 
