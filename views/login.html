@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Account - Reviews App</title>
+  <title>Sign In - Reviews App</title>
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +17,7 @@
 </head>
 <body>
 
-  <!-- Main signup container -->
+  <!-- Main login container -->
   <main class="signup">
     
     <!-- Navigation -->
@@ -31,26 +31,13 @@
 
     <!-- Header -->
     <header class="signup__header">
-      <h1 class="signup__title">Create your account</h1>
-      <p class="signup__subtitle">Join thousands of reviewers sharing authentic experiences</p>
+      <h1 class="signup__title">Welcome back</h1>
+      <p class="signup__subtitle">Sign in to continue sharing your experiences</p>
     </header>
 
-    <!-- Registration form -->
-    <form class="signup__form" id="signup-form" novalidate>
+    <!-- Login form -->
+    <form class="signup__form" id="login-form" novalidate>
       
-      <!-- Username field -->
-      <div class="field">
-        <label for="username">Username</label>
-        <input 
-          id="username" 
-          type="text" 
-          autocomplete="username" 
-          inputmode="text" 
-          required
-          aria-describedby="username-hint">
-        <div class="field__hint" id="username-hint" aria-live="polite"></div>
-      </div>
-
       <!-- Email field -->
       <div class="field">
         <label for="email">Email</label>
@@ -70,9 +57,8 @@
           <input 
             id="password" 
             type="password" 
-            autocomplete="new-password" 
-            required 
-            minlength="8"
+            autocomplete="current-password" 
+            required
             aria-describedby="password-hint">
           <button 
             type="button" 
@@ -122,14 +108,14 @@
     </form>
 
     <!-- Submit button -->
-    <button type="submit" form="signup-form" class="btn btn--primary">
-      <span>Continue</span>
+    <button type="submit" form="login-form" class="btn btn--primary">
+      <span>Sign In</span>
     </button>
 
     <!-- Bottom actions -->
     <footer class="signup__footer">
       <p class="signup__alt">
-        Already have an account? <a href="login.html">Sign in</a>
+        Don't have an account? <a href="create-account.html">Create account</a>
       </p>
     </footer>
 
@@ -179,9 +165,6 @@
         } else if (input.type === 'email' && !input.value.includes('@')) {
           isValid = false;
           message = 'Please enter a valid email address';
-        } else if (input.type === 'password' && input.value.length < 8) {
-          isValid = false;
-          message = 'Password must be at least 8 characters';
         }
 
         // Update field state
@@ -220,12 +203,11 @@
         if (isFormValid) {
           // Collect form data
           const formData = {
-            username: document.getElementById('username').value,
             email: document.getElementById('email').value,
             password: document.getElementById('password').value
           };
           
-          console.log('Form submitted:', formData);
+          console.log('Login form submitted:', formData);
           // Here you would normally send the data to your backend
         }
       });

@@ -9,6 +9,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Route for the main landing page
 app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'onboarding.html'));
+});
+
+// Route for the main landing page
+app.get('/explore', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
 
@@ -20,6 +25,11 @@ app.get('/onboarding', (req, res) => {
 // Route for account creation
 app.get('/create-account', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'create-account.html'));
+});
+
+// Route for login
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'login.html'));
 });
 
 // Route for interests selection

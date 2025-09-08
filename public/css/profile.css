@@ -162,7 +162,7 @@ body {
 .setting-item__icon {
   width: 16px;
   height: 16px;
-  color: var(--sage-dark);
+  color: var(--charcoal);
   flex-shrink: 0;
 }
 
@@ -380,7 +380,7 @@ body {
 .stat-item__label {
   font-size: 13px;
   font-weight: 500;
-  color: var(--sage-dark);
+  color: var(--charcoal);
   text-transform: capitalize;
 }
 
@@ -410,7 +410,7 @@ body {
   padding: 16px 0;
   border: none;
   background: none;
-  color: var(--sage-dark);
+  color: var(--charcoal);
   font-family: inherit;
   font-size: 14px;
   font-weight: 600;
@@ -594,7 +594,7 @@ body {
 
 .review-card__excerpt {
   font-size: 14px;
-  color: var(--sage-dark);
+  color: var(--charcoal);
   line-height: 1.4;
   margin: 0 0 12px;
   display: -webkit-box;
@@ -705,7 +705,7 @@ body {
 
 .empty-state__text {
   font-size: 16px;
-  color: var(--sage-dark);
+  color: var(--charcoal);
   margin: 0 0 32px;
   line-height: 1.5;
 }
@@ -768,7 +768,7 @@ body {
 
 .logout-dialog__message {
   font-size: 15px;
-  color: var(--sage-dark);
+  color: var(--charcoal);
   margin: 0 0 32px;
   line-height: 1.5;
 }

@@ -35,7 +35,7 @@
 
 </head>
 
-<body id="top">
+<body id="top" class="">
 
   <!-- 
     - #HEADER
@@ -69,7 +69,7 @@
 
           <input type="search" name="search" placeholder="Search reviews, places, businesses..." class="search-field">
 
-          <button class="filter-btn" aria-label="filter">
+          <button class="filter-btn" aria-label="filter" data-filter-toggle>
             <ion-icon name="options-outline" aria-hidden="true"></ion-icon>
           </button>
         </div>
@@ -121,7 +121,7 @@
             </li>
 
             <li>
-              <a href="./create-account.html" class="navbar-link has-after">Sign In</a>
+              <a href="./login.html" class="navbar-link has-after">Sign In</a>
             </li>
 
           </ul>
@@ -131,7 +131,7 @@
     </div>
 
     <!-- Category Navigation -->
-    <nav class="category-nav" aria-label="Category Navigation">
+    <!-- <nav class="category-nav" aria-label="Category Navigation">
       <div class="category-nav-container">
         <div class="category-scroll-wrapper" id="categoryScrollWrapper">
           <ul class="category-list" role="tablist">
@@ -188,7 +188,7 @@
           </ul>
         </div>
       </div>
-    </nav>
+    </nav> -->
 
   </header>
 
@@ -227,7 +227,7 @@
         </li>
 
         <li>
-          <a href="./create-account.html" class="navbar-link" data-nav-link>Sign In</a>
+          <a href="./login.html" class="navbar-link" data-nav-link>Sign In</a>
         </li>
 
       </ul>
@@ -1677,6 +1677,173 @@
 
 
 
+
+  <!-- Filters Modal -->
+  <div class="filters-modal" data-filters-modal>
+    <div class="filters-modal-overlay" data-filters-overlay></div>
+    <div class="filters-modal-content">
+      
+      <!-- Modal Header -->
+      <header class="filters-modal-header">
+        <h2 class="filters-modal-title">Filters</h2>
+        <button class="filters-modal-close" data-filters-close aria-label="Close filters">
+          <ion-icon name="close-outline"></ion-icon>
+        </button>
+      </header>
+
+      <!-- Filter Form -->
+      <form class="filters-form" id="filtersForm">
+        
+        <!-- Location Filter -->
+        <div class="filter-group">
+          <label class="filter-label">Location</label>
+          <div class="filter-input-wrapper">
+            <ion-icon name="location-outline" class="filter-icon"></ion-icon>
+            <input type="text" class="filter-input" placeholder="Enter city, neighborhood..." name="location">
+          </div>
+        </div>
+
+        <!-- Distance Filter -->
+        <div class="filter-group">
+          <label class="filter-label">Distance</label>
+          <div class="filter-range-wrapper">
+            <input type="range" class="filter-range" min="1" max="50" value="10" name="distance" id="distanceRange">
+            <div class="filter-range-labels">
+              <span>1 km</span>
+              <span class="filter-range-value" id="distanceValue">10 km</span>
+              <span>50 km</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Price Range Filter -->
+        <div class="filter-group">
+          <label class="filter-label">Average Price</label>
+          <div class="filter-price-options">
+            <label class="filter-checkbox">
+              <input type="checkbox" name="price" value="budget">
+              <span class="filter-checkbox-custom"></span>
+              <span class="filter-checkbox-text">$ Budget-friendly</span>
+            </label>
+            <label class="filter-checkbox">
+              <input type="checkbox" name="price" value="moderate">
+              <span class="filter-checkbox-custom"></span>
+              <span class="filter-checkbox-text">$$ Moderate</span>
+            </label>
+            <label class="filter-checkbox">
+              <input type="checkbox" name="price" value="upscale">
+              <span class="filter-checkbox-custom"></span>
+              <span class="filter-checkbox-text">$$$ Upscale</span>
+            </label>
+            <label class="filter-checkbox">
+              <input type="checkbox" name="price" value="luxury">
+              <span class="filter-checkbox-custom"></span>
+              <span class="filter-checkbox-text">$$$$ Luxury</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Rating Filter -->
+        <div class="filter-group">
+          <label class="filter-label">Minimum Rating</label>
+          <div class="filter-rating-wrapper">
+            <div class="filter-rating-stars">
+              <button type="button" class="filter-star" data-rating="1" aria-label="1 star">
+                <ion-icon name="star-outline"></ion-icon>
+              </button>
+              <button type="button" class="filter-star" data-rating="2" aria-label="2 stars">
+                <ion-icon name="star-outline"></ion-icon>
+              </button>
+              <button type="button" class="filter-star" data-rating="3" aria-label="3 stars">
+                <ion-icon name="star-outline"></ion-icon>
+              </button>
+              <button type="button" class="filter-star" data-rating="4" aria-label="4 stars">
+                <ion-icon name="star-outline"></ion-icon>
+              </button>
+              <button type="button" class="filter-star" data-rating="5" aria-label="5 stars">
+                <ion-icon name="star-outline"></ion-icon>
+              </button>
+            </div>
+            <span class="filter-rating-text">3.0 & up</span>
+          </div>
+        </div>
+
+        <!-- Category Filter -->
+        <div class="filter-group">
+          <label class="filter-label">Category</label>
+          <div class="filter-category-grid">
+            <label class="filter-category-item">
+              <input type="checkbox" name="category" value="restaurants">
+              <span class="filter-category-button">
+                <ion-icon name="restaurant-outline"></ion-icon>
+                <span>Restaurants</span>
+              </span>
+            </label>
+            <label class="filter-category-item">
+              <input type="checkbox" name="category" value="hotels">
+              <span class="filter-category-button">
+                <ion-icon name="bed-outline"></ion-icon>
+                <span>Hotels</span>
+              </span>
+            </label>
+            <label class="filter-category-item">
+              <input type="checkbox" name="category" value="shopping">
+              <span class="filter-category-button">
+                <ion-icon name="bag-outline"></ion-icon>
+                <span>Shopping</span>
+              </span>
+            </label>
+            <label class="filter-category-item">
+              <input type="checkbox" name="category" value="entertainment">
+              <span class="filter-category-button">
+                <ion-icon name="musical-notes-outline"></ion-icon>
+                <span>Entertainment</span>
+              </span>
+            </label>
+            <label class="filter-category-item">
+              <input type="checkbox" name="category" value="services">
+              <span class="filter-category-button">
+                <ion-icon name="construct-outline"></ion-icon>
+                <span>Services</span>
+              </span>
+            </label>
+            <label class="filter-category-item">
+              <input type="checkbox" name="category" value="health">
+              <span class="filter-category-button">
+                <ion-icon name="fitness-outline"></ion-icon>
+                <span>Health & Beauty</span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Sort By -->
+        <div class="filter-group">
+          <label class="filter-label">Sort By</label>
+          <select class="filter-select" name="sortBy">
+            <option value="relevance">Most Relevant</option>
+            <option value="rating">Highest Rated</option>
+            <option value="distance">Nearest</option>
+            <option value="newest">Newest Reviews</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+          </select>
+        </div>
+
+      </form>
+
+      <!-- Modal Footer -->
+      <footer class="filters-modal-footer">
+        <button type="button" class="filters-btn filters-btn--clear" data-filters-clear>
+          Clear All
+        </button>
+        <button type="submit" form="filtersForm" class="filters-btn filters-btn--apply">
+          Apply Filters
+        </button>
+      </footer>
+
+    </div>
+  </div>
 
   <!-- 
     - custom js link

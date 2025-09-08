@@ -83,7 +83,7 @@ body {
 
 .signup__subtitle {
   font-size: 16px;
-  color: var(--sage-dark);
+  color: var(--charcoal);
   margin: 0;
   line-height: 1.4;
 }
@@ -132,7 +132,7 @@ body {
 }
 
 .field input::placeholder {
-  color: var(--sage-dark);
+  color: var(--charcoal);
   opacity: 0.7;
 }
 
@@ -155,7 +155,7 @@ body {
   cursor: pointer;
   padding: 8px;
   border-radius: 4px;
-  color: var(--sage-dark);
+  color: var(--charcoal);
   transition: all 0.2s ease;
 }
 
@@ -185,7 +185,7 @@ body {
 .field__hint {
   font-size: 13px;
   min-height: 1rem;
-  color: var(--sage-dark);
+  color: var(--charcoal);
   margin: 0;
 }
 
@@ -217,7 +217,7 @@ body {
   background: white;
   padding: 0 16px;
   font-size: 13px;
-  color: var(--sage-dark);
+  color: var(--charcoal);
   position: relative;
 }
 
@@ -309,7 +309,7 @@ body {
 
 .signup__alt {
   font-size: 14px;
-  color: var(--sage-dark);
+  color: var(--charcoal);
   margin: 0;
 }
 

@@ -186,7 +186,7 @@ body {
   font-size: 14px;
   font-weight: 400;
   margin: 0 0 12px;
-  color: var(--sage-dark);
+  color: var(--charcoal);
 }
 
 .rating-display {
@@ -211,7 +211,7 @@ body {
 
 .rating-count {
   font-size: 13px;
-  color: var(--sage-dark);
+  color: var(--charcoal);
   font-weight: 400;
 }
 
@@ -246,7 +246,7 @@ body {
 
 .form-intro__subtitle {
   font-size: 16px;
-  color: var(--sage-dark);
+  color: var(--charcoal);
   line-height: 1.5;
   margin: 0;
   max-width: 480px;
@@ -278,7 +278,7 @@ body {
 
 .section-help {
   font-size: 14px;
-  color: var(--sage-dark);
+  color: var(--charcoal);
   margin-bottom: 20px;
   font-weight: 400;
   line-height: 1.5;
@@ -377,7 +377,7 @@ body {
 }
 
 .experience-input::placeholder {
-  color: var(--sage-dark);
+  color: var(--charcoal);
   font-weight: 400;
 }
 
@@ -389,7 +389,7 @@ body {
 
 .character-count {
   font-size: 12px;
-  color: var(--sage-dark);
+  color: var(--charcoal);
   font-weight: 400;
 }
 
@@ -489,7 +489,7 @@ body {
 .upload-button__subtitle {
   display: block;
   font-size: 14px;
-  color: var(--sage-dark);
+  color: var(--charcoal);
   font-weight: 400;
 }
 
@@ -644,7 +644,7 @@ body {
 
 .success-modal__message {
   font-size: 16px;
-  color: var(--sage-dark);
+  color: var(--charcoal);
   margin-bottom: 32px;
   line-height: 1.6;
 }

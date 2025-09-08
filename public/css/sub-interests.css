@@ -39,6 +39,9 @@ body {
 
 .sub-interests__nav {
   padding: 16px 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .nav-back {
@@ -63,6 +66,26 @@ body {
   height: 24px;
 }
 
+/* Logo styling */
+.nav-logo {
+  text-decoration: none;
+  display: none; /* Hidden on mobile by default */
+}
+
+.logo-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--charcoal);
+  letter-spacing: -0.01em;
+}
+
+/* Show logo on larger screens */
+@media (min-width: 768px) {
+  .nav-logo {
+    display: block;
+  }
+}
+
 /*-----------------------------------*\
   #HEADER
 \*-----------------------------------*/
@@ -83,7 +106,7 @@ body {
 
 .sub-interests__subtitle {
   font-size: 16px;
-  color: var(--sage-dark);
+  color: var(--charcoal);
   margin: 0 0 24px;
   line-height: 1.4;
 }
@@ -115,7 +138,7 @@ body {
 
 .progress-text {
   font-size: 12px;
-  color: var(--sage-dark);
+  color: var(--charcoal);
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -285,7 +308,7 @@ body {
 
 .sub-interests__alt {
   font-size: 14px;
-  color: var(--sage-dark);
+  color: var(--charcoal);
   margin: 0;
 }
 

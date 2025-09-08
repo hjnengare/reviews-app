@@ -665,7 +665,7 @@
     right: 16px;
     transform: translateY(-50%);
     font-size: 20px;
-    color: var(--premium-text-light);
+    color: var(--charcoal);
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     padding: 12px;
     border-radius: 12px;

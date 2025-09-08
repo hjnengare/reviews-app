@@ -1,29 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Select Your Interests - Reviews App</title>
-  
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="css/root.css">
-  <link rel="stylesheet" href="css/interests.css">
+
+
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/root.css">
+  <link rel="stylesheet" href="/css/interests.css">
+  <link rel="stylesheet" href="/css/mediaqueries.css">
 </head>
+
 <body>
 
   <!-- Main interests container -->
   <main class="interests">
-    
+
     <!-- Navigation -->
     <nav class="interests__nav">
       <a href="create-account.html" class="nav-back" aria-label="Go back">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="15,18 9,12 15,6"/>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15,18 9,12 15,6" />
         </svg>
+      </a>
+      <a href="/" class="nav-logo">
+        <span class="logo-text">Reviews App</span>
       </a>
     </nav>
 
@@ -31,7 +43,7 @@
     <header class="interests__header">
       <h1 class="interests__title">What are you into?</h1>
       <p class="interests__subtitle">Choose a few things you're passionate about</p>
-      
+
       <!-- Progress indicator -->
       <div class="progress-indicator">
         <div class="progress-bar">
@@ -39,7 +51,7 @@
         </div>
         <p class="progress-text">Step 2 of 4</p>
       </div>
-      
+
       <!-- Accessibility announcement region -->
       <div class="interests__live" aria-live="polite" aria-atomic="true"></div>
     </header>
@@ -66,6 +78,7 @@
   </main>
 
   <!-- JavaScript for interests functionality -->
-  <script src="js/interests.js"></script>
+  <script src="/js/interests.js"></script>
 </body>
+
 </html>

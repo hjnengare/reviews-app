@@ -83,7 +83,7 @@ body {
 
 .dealbreakers__subtitle {
   font-size: 16px;
-  color: var(--sage-dark);
+  color: var(--charcoal);
   margin: 0 0 24px;
   line-height: 1.4;
 }
@@ -115,7 +115,7 @@ body {
 
 .progress-text {
   font-size: 12px;
-  color: var(--sage-dark);
+  color: var(--charcoal);
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -190,7 +190,7 @@ body {
 }
 
 /* Flip the card when selected */
-.dealbreaker-card.selected .dealbreaker-card__inner {
+.dealbreaker-card[aria-pressed="true"] .dealbreaker-card__inner {
   transform: rotateY(180deg);
 }
 
@@ -243,33 +243,33 @@ body {
 }
 
 /* Selected state styling */
-.dealbreaker-card.selected .dealbreaker-card__front,
-.dealbreaker-card.selected .dealbreaker-card__back {
+.dealbreaker-card[aria-pressed="true"] .dealbreaker-card__front,
+.dealbreaker-card[aria-pressed="true"] .dealbreaker-card__back {
   border-color: var(--coral);
   background: var(--coral);
   color: white;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
-.dealbreaker-card.selected:hover .dealbreaker-card__front,
-.dealbreaker-card.selected:hover .dealbreaker-card__back {
+.dealbreaker-card[aria-pressed="true"]:hover .dealbreaker-card__front,
+.dealbreaker-card[aria-pressed="true"]:hover .dealbreaker-card__back {
   background: var(--coral-dark);
   transform: translateY(-4px);
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
 }
 
-.dealbreaker-card.selected:hover .dealbreaker-card__back {
+.dealbreaker-card[aria-pressed="true"]:hover .dealbreaker-card__back {
   transform: rotateY(180deg) translateY(-4px);
 }
 
 /* Selected state text color */
-.dealbreaker-card.selected .dealbreaker-card__title,
-.dealbreaker-card.selected .dealbreaker-card__description,
-.dealbreaker-card.selected .dealbreaker-card__label {
+.dealbreaker-card[aria-pressed="true"] .dealbreaker-card__title,
+.dealbreaker-card[aria-pressed="true"] .dealbreaker-card__description,
+.dealbreaker-card[aria-pressed="true"] .dealbreaker-card__label {
   color: white;
 }
 
-.dealbreaker-card.selected .dealbreaker-card__icon {
+.dealbreaker-card[aria-pressed="true"] .dealbreaker-card__icon {
   color: white;
 }
 
@@ -328,7 +328,7 @@ body {
 .dealbreaker-card__description {
   font-size: 14px;
   font-weight: 400;
-  color: var(--sage-dark);
+  color: var(--charcoal);
   margin: 0;
   line-height: 1.4;
   transition: color 0.2s ease;
@@ -351,7 +351,7 @@ body {
 .dealbreakers__hint {
   min-height: 1.5rem;
   font-size: 14px;
-  color: var(--sage-dark);
+  color: var(--charcoal);
   text-align: center;
   margin: 0;
   opacity: 0.8;
@@ -412,7 +412,7 @@ body {
 
 .dealbreakers__alt {
   font-size: 14px;
-  color: var(--sage-dark);
+  color: var(--charcoal);
   margin: 0;
 }
 
@@ -907,7 +907,7 @@ body {
     transform-style: flat;
   }
   
-  .dealbreaker-card.selected .dealbreaker-card__inner {
+  .dealbreaker-card[aria-pressed="true"] .dealbreaker-card__inner {
     transform: none;
   }
   
@@ -923,19 +923,19 @@ body {
     transition: opacity 0.2s ease;
   }
   
-  .dealbreaker-card.selected .dealbreaker-card__front {
+  .dealbreaker-card[aria-pressed="true"] .dealbreaker-card__front {
     opacity: 0;
   }
   
-  .dealbreaker-card.selected .dealbreaker-card__back {
+  .dealbreaker-card[aria-pressed="true"] .dealbreaker-card__back {
     opacity: 1;
   }
   
   /* Disable hover transforms */
   .dealbreaker-card:hover .dealbreaker-card__front,
   .dealbreaker-card:hover .dealbreaker-card__back,
-  .dealbreaker-card.selected:hover .dealbreaker-card__front,
-  .dealbreaker-card.selected:hover .dealbreaker-card__back {
+  .dealbreaker-card[aria-pressed="true"]:hover .dealbreaker-card__front,
+  .dealbreaker-card[aria-pressed="true"]:hover .dealbreaker-card__back {
     transform: none;
   }
   
@@ -943,7 +943,7 @@ body {
     transform: none;
   }
   
-  .dealbreaker-card.selected:hover .dealbreaker-card__back {
+  .dealbreaker-card[aria-pressed="true"]:hover .dealbreaker-card__back {
     transform: none;
   }
   

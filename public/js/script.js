@@ -355,6 +355,197 @@ if (document.readyState === 'loading') {
   initializeScrollHandling();
 }
 
+/**
+ * FILTERS MODAL FUNCTIONALITY
+ */
+
+const filtersModal = document.querySelector('[data-filters-modal]');
+const filtersToggle = document.querySelector('[data-filter-toggle]');
+const filtersClose = document.querySelector('[data-filters-close]');
+const filtersOverlay = document.querySelector('[data-filters-overlay]');
+const filtersClear = document.querySelector('[data-filters-clear]');
+const filtersForm = document.getElementById('filtersForm');
+const distanceRange = document.getElementById('distanceRange');
+const distanceValue = document.getElementById('distanceValue');
+
+// Toggle filters modal
+const toggleFiltersModal = function() {
+  filtersModal.classList.toggle('active');
+  document.body.style.overflow = filtersModal.classList.contains('active') ? 'hidden' : '';
+};
+
+// Close filters modal
+const closeFiltersModal = function() {
+  filtersModal.classList.remove('active');
+  document.body.style.overflow = '';
+};
+
+// Distance range update
+const updateDistanceValue = function() {
+  if (distanceRange && distanceValue) {
+    distanceValue.textContent = `${distanceRange.value} km`;
+    
+    // Update range background
+    const percentage = ((distanceRange.value - distanceRange.min) / (distanceRange.max - distanceRange.min)) * 100;
+    distanceRange.style.background = `linear-gradient(to right, var(--orange-crayola) 0%, var(--orange-crayola) ${percentage}%, var(--cultured) ${percentage}%, var(--cultured) 100%)`;
+  }
+};
+
+// Rating stars functionality
+const initializeRatingStars = function() {
+  const ratingStars = document.querySelectorAll('.filter-star');
+  const ratingText = document.querySelector('.filter-rating-text');
+  let selectedRating = 3; // Default rating
+  
+  // Set initial state
+  updateRatingDisplay(selectedRating);
+  
+  function updateRatingDisplay(rating) {
+    ratingStars.forEach((star, index) => {
+      if (index < rating) {
+        star.classList.add('active');
+        star.querySelector('ion-icon').name = 'star';
+      } else {
+        star.classList.remove('active');
+        star.querySelector('ion-icon').name = 'star-outline';
+      }
+    });
+    
+    if (ratingText) {
+      ratingText.textContent = `${rating}.0 & up`;
+    }
+  }
+  
+  // Add click handlers
+  ratingStars.forEach((star, index) => {
+    star.addEventListener('click', () => {
+      selectedRating = index + 1;
+      updateRatingDisplay(selectedRating);
+    });
+  });
+};
+
+// Clear all filters
+const clearAllFilters = function() {
+  if (!filtersForm) return;
+  
+  // Reset form
+  filtersForm.reset();
+  
+  // Reset distance range
+  if (distanceRange) {
+    distanceRange.value = 10;
+    updateDistanceValue();
+  }
+  
+  // Reset rating stars
+  const ratingStars = document.querySelectorAll('.filter-star');
+  ratingStars.forEach((star, index) => {
+    if (index < 3) {
+      star.classList.add('active');
+      star.querySelector('ion-icon').name = 'star';
+    } else {
+      star.classList.remove('active');
+      star.querySelector('ion-icon').name = 'star-outline';
+    }
+  });
+  
+  const ratingText = document.querySelector('.filter-rating-text');
+  if (ratingText) {
+    ratingText.textContent = '3.0 & up';
+  }
+};
+
+// Apply filters (form submission)
+const applyFilters = function(e) {
+  e.preventDefault();
+  
+  // Collect form data
+  const formData = new FormData(filtersForm);
+  const filters = {};
+  
+  // Get all form values
+  for (let [key, value] of formData.entries()) {
+    if (filters[key]) {
+      // Handle multiple values (checkboxes)
+      if (Array.isArray(filters[key])) {
+        filters[key].push(value);
+      } else {
+        filters[key] = [filters[key], value];
+      }
+    } else {
+      filters[key] = value;
+    }
+  }
+  
+  // Get rating value
+  const activeStars = document.querySelectorAll('.filter-star.active').length;
+  filters.rating = activeStars;
+  
+  console.log('Applied filters:', filters);
+  
+  // Here you would typically:
+  // 1. Send filters to your backend API
+  // 2. Update the displayed results
+  // 3. Update URL parameters
+  // 4. Close the modal
+  
+  closeFiltersModal();
+  
+  // Show a temporary notification (optional)
+  // You could implement a toast notification here
+  alert(`Filters applied! Found ${Math.floor(Math.random() * 50) + 10} results.`);
+};
+
+// Initialize filters modal functionality
+const initializeFiltersModal = function() {
+  if (!filtersModal || !filtersToggle) return;
+  
+  // Event listeners for modal toggle
+  addEventOnElem(filtersToggle, 'click', toggleFiltersModal);
+  
+  if (filtersClose) {
+    addEventOnElem(filtersClose, 'click', closeFiltersModal);
+  }
+  
+  if (filtersOverlay) {
+    addEventOnElem(filtersOverlay, 'click', closeFiltersModal);
+  }
+  
+  // Close modal with Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && filtersModal.classList.contains('active')) {
+      closeFiltersModal();
+    }
+  });
+  
+  // Distance range functionality
+  if (distanceRange) {
+    addEventOnElem(distanceRange, 'input', updateDistanceValue);
+    updateDistanceValue(); // Set initial value
+  }
+  
+  // Initialize rating stars
+  initializeRatingStars();
+  
+  // Clear filters button
+  if (filtersClear) {
+    addEventOnElem(filtersClear, 'click', clearAllFilters);
+  }
+  
+  // Form submission
+  if (filtersForm) {
+    addEventOnElem(filtersForm, 'submit', applyFilters);
+  }
+};
+
+// Initialize filters modal when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeFiltersModal);
+} else {
+  initializeFiltersModal();
+}
+
 
 
 /**
@@ -537,6 +728,74 @@ if (mobileSearchWrapper) {
   mobileSearchWrapper.addEventListener("click", (e) => {
     if (e.target === mobileSearchWrapper) {
       closeMobileSearch();
+    }
+  });
+}
+
+// Mobile search submit functionality
+const mobileSearchSubmit = document.querySelector(".mobile-search-submit");
+
+const handleMobileSearch = function (e) {
+  e.preventDefault();
+  const searchQuery = mobileSearchField.value.trim();
+  
+  if (searchQuery) {
+    // Here you would typically handle the search
+    // For now, we'll just log it and close the modal
+    console.log('Mobile search query:', searchQuery);
+    
+    // Close the mobile search modal
+    closeMobileSearch();
+    
+    // You can add actual search functionality here
+    // For example: window.location.href = `/search?q=${encodeURIComponent(searchQuery)}`;
+  }
+};
+
+// Add click event for mobile search submit button
+if (mobileSearchSubmit) {
+  mobileSearchSubmit.addEventListener("click", handleMobileSearch);
+}
+
+// Add enter key support for mobile search field
+if (mobileSearchField) {
+  mobileSearchField.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      handleMobileSearch(e);
+    }
+  });
+}
+
+/**
+ * Desktop search functionality
+ */
+const searchIconLeft = document.querySelector(".search-icon-left");
+const desktopSearchField = document.querySelector(".search-field");
+
+const handleDesktopSearch = function (e) {
+  e.preventDefault();
+  const searchQuery = desktopSearchField.value.trim();
+  
+  if (searchQuery) {
+    // Here you would typically handle the search
+    // For now, we'll just log it
+    console.log('Desktop search query:', searchQuery);
+    
+    // You can add actual search functionality here
+    // For example: window.location.href = `/search?q=${encodeURIComponent(searchQuery)}`;
+  }
+};
+
+// Add click event for desktop search icon
+if (searchIconLeft) {
+  searchIconLeft.addEventListener("click", handleDesktopSearch);
+}
+
+// Add enter key support for desktop search field
+if (desktopSearchField) {
+  desktopSearchField.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      handleDesktopSearch(e);
     }
   });
 }

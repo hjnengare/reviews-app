@@ -7,7 +7,7 @@ const CONFIG = {
   minSelection: 2,
   maxSelection: 3,
   storageKey: 'dealbreakers',
-  nextPage: 'allow-location.html' // Placeholder for next step
+  nextPage: '/complete' // Go to completion page
 };
 
 // Available dealbreakers
