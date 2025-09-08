@@ -14,7 +14,9 @@
       "Read(/C:\\Users\\HilarioNengare\\Projects\\reviews-app/**)",
       "Read(/C:\\Users\\HilarioNengare\\Projects\\reviews-app/**)",
       "Read(/C:\\Users\\HilarioNengare\\Projects\\reviews-app/**)",
-      "Bash(sed:*)"
+      "Bash(sed:*)",
+      "Bash(PORT=3002 npm start)",
+      "Bash(curl:*)"
     ],
     "deny": [],
     "ask": []
