@@ -208,16 +208,58 @@ function updateLiveRegion(customMessage = null) {
 }
 
 // Handle Next button click
-function handleNextClick() {
+async function handleNextClick() {
   if (selectedInterests.size < CONFIG.minSelection) {
     return;
   }
 
-  // Save final selection
-  saveInterests();
+  const nextBtn = document.getElementById('next-btn');
+  const originalText = nextBtn.textContent;
   
-  // Navigate to next page (adjust URL as needed)
-  window.location.href = 'index.html';
+  try {
+    // Show loading state
+    nextBtn.disabled = true;
+    nextBtn.textContent = 'Saving...';
+    
+    // Prepare data for submission
+    const interestsArray = Array.from(selectedInterests);
+    
+    // Submit to backend
+    const response = await fetch('/interests', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        interests: interestsArray
+      }),
+    });
+    
+    const result = await response.json();
+    
+    if (result.success) {
+      // Save locally as backup
+      saveInterests();
+      
+      // Navigate to next page
+      window.location.href = result.redirectTo;
+    } else {
+      throw new Error(result.error || 'Failed to save interests');
+    }
+    
+  } catch (error) {
+    console.error('Error saving interests:', error);
+    
+    // Show error feedback to user
+    const liveRegion = document.querySelector('.interests__live');
+    if (liveRegion) {
+      liveRegion.textContent = 'Error saving interests. Please try again.';
+    }
+    
+    // Reset button state
+    nextBtn.disabled = false;
+    nextBtn.textContent = originalText;
+  }
 }
 
 // Save interests to localStorage

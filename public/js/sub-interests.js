@@ -180,16 +180,66 @@ function updateLiveRegion() {
 }
 
 // Handle Continue button click
-function handleContinueClick() {
+async function handleContinueClick() {
   if (!validateSelections()) {
     return;
   }
 
-  // Save final selections
-  saveSelections();
+  const continueBtn = document.getElementById('continue-btn');
+  const originalText = continueBtn.textContent;
   
-  // Navigate to next page (adjust URL as needed)
-  window.location.href = 'index.html'; // or next step in onboarding
+  try {
+    // Show loading state
+    continueBtn.disabled = true;
+    continueBtn.textContent = 'Saving...';
+    
+    // Prepare data for submission
+    const selectionsObject = getCurrentSelections();
+    const subInterests = [];
+    
+    // Flatten all selections into a single array
+    CONFIG.categories.forEach(category => {
+      if (selectionsObject[category]) {
+        subInterests.push(...selectionsObject[category]);
+      }
+    });
+    
+    // Submit to backend
+    const response = await fetch('/sub-interests', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        subInterests: subInterests
+      }),
+    });
+    
+    const result = await response.json();
+    
+    if (result.success) {
+      // Save locally as backup
+      saveSelections();
+      
+      // Navigate to next page
+      window.location.href = result.redirectTo;
+    } else {
+      throw new Error(result.error || 'Failed to save sub-interests');
+    }
+    
+  } catch (error) {
+    console.error('Error saving sub-interests:', error);
+    
+    // Show error feedback to user
+    const liveRegion = document.querySelector('.sub-interests__live');
+    if (liveRegion) {
+      liveRegion.textContent = 'Error saving selections. Please try again.';
+    }
+    
+    // Reset button state
+    continueBtn.disabled = false;
+    continueBtn.textContent = originalText;
+  }
 }
 
 // Save selections to localStorage

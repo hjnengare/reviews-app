@@ -224,16 +224,58 @@ function updateLiveRegion(lastAction = null, dealbreakerId = null) {
 }
 
 // Handle Continue button click
-function handleContinueClick() {
+async function handleContinueClick() {
   if (!validateSelections()) {
     return;
   }
 
-  // Save final selections
-  saveSelections();
+  const continueBtn = document.getElementById('continue-btn');
+  const originalText = continueBtn.textContent;
   
-  // Navigate to next page
-  window.location.href = CONFIG.nextPage;
+  try {
+    // Show loading state
+    continueBtn.disabled = true;
+    continueBtn.textContent = 'Saving...';
+    
+    // Prepare data for submission
+    const dealbreakersArray = Array.from(selectedDealbreakers);
+    
+    // Submit to backend
+    const response = await fetch('/dealbreakers', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        dealbreakers: dealbreakersArray
+      }),
+    });
+    
+    const result = await response.json();
+    
+    if (result.success) {
+      // Save locally as backup
+      saveSelections();
+      
+      // Navigate to next page
+      window.location.href = result.redirectTo;
+    } else {
+      throw new Error(result.error || 'Failed to save dealbreakers');
+    }
+    
+  } catch (error) {
+    console.error('Error saving dealbreakers:', error);
+    
+    // Show error feedback to user
+    const liveRegion = document.querySelector('.dealbreakers__live');
+    if (liveRegion) {
+      liveRegion.textContent = 'Error saving selections. Please try again.';
+    }
+    
+    // Reset button state
+    continueBtn.disabled = false;
+    continueBtn.textContent = originalText;
+  }
 }
 
 // Save selections to localStorage

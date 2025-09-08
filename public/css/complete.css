@@ -10,7 +10,7 @@
 body {
   background: linear-gradient(135deg, 
     rgba(248, 250, 252, 1) 0%, 
-    rgba(255, 255, 255, 1) 30%,
+    var(--white) 30%,
     rgba(248, 250, 252, 1) 70%,
     rgba(241, 245, 249, 1) 100%);
   font-family: var(--ff-urbanist);
@@ -20,6 +20,81 @@ body {
   color: var(--charcoal);
   line-height: 1.6;
   overflow-x: hidden;
+}
+
+
+.interests__nav {
+  padding: 16px 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-back {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  color: var(--charcoal);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.nav-back:hover {
+  background: var(--sage-light);
+  transform: translateX(-2px);
+}
+
+.nav-back svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Logo styling */
+.nav-logo {
+  text-decoration: none;
+  display: none; /* Hidden on mobile by default */
+}
+
+.logo-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--charcoal);
+  letter-spacing: -0.01em;
+}
+
+/* Show logo on larger screens */
+@media (min-width: 768px) {
+  .nav-logo {
+    display: block;
+  }
+}
+
+/*-----------------------------------*\
+  #HEADER
+\*-----------------------------------*/
+
+.interests__header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.interests__title {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--charcoal);
+  margin: 0 0 8px;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.interests__subtitle {
+  font-size: 16px;
+  color: var(--charcoal);
+  margin: 0 0 24px;
+  line-height: 1.4;
 }
 
 /* Main layout - full height with grid */
@@ -43,9 +118,9 @@ body {
   right: 0;
   bottom: 0;
   background: linear-gradient(180deg, 
-    rgba(255, 255, 255, 0.02) 0%, 
+    var(--white_30) 0%, 
     transparent 50%, 
-    rgba(0, 0, 0, 0.01) 100%);
+    var(--black_5) 100%);
   pointer-events: none;
   z-index: 0;
 }
@@ -89,7 +164,7 @@ body {
   line-height: 1.25;
   letter-spacing: -0.02em;
   color: var(--charcoal);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  text-shadow: 0 1px 2px var(--black_5);
   font-family: var(--ff-urbanist);
 }
 

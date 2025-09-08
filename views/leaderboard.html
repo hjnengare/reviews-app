@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaderboard - Reviews App</title>
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/root.css">
+  <link rel="stylesheet" href="/css/profile.css">
+  <link rel="stylesheet" href="/css/mediaqueries.css">
+</head>
+<body>
+  <!-- Main container -->
+  <main class="profile">
+    
+    <!-- Header section -->
+    <section class="profile__header">
+      <div class="profile__header-content">
+        <h1 class="profile__title">Community Leaderboard</h1>
+        <p class="profile__subtitle">Top contributors and reviewers in our community</p>
+      </div>
+    </section>
+
+    <!-- Leaderboard content -->
+    <section class="profile__content">
+      <div class="leaderboard__list">
+        <div class="leaderboard__item">
+          <div class="leaderboard__rank">1</div>
+          <div class="leaderboard__user">
+            <img src="/images/profile-1.jpg" alt="Top reviewer" class="leaderboard__avatar">
+            <div class="leaderboard__info">
+              <h3 class="leaderboard__name">Sarah Mitchell</h3>
+              <p class="leaderboard__handle">@sarahmitchell</p>
+            </div>
+          </div>
+          <div class="leaderboard__score">1,250 points</div>
+        </div>
+
+        <div class="leaderboard__item">
+          <div class="leaderboard__rank">2</div>
+          <div class="leaderboard__user">
+            <img src="/images/profile-2.jpg" alt="Second place" class="leaderboard__avatar">
+            <div class="leaderboard__info">
+              <h3 class="leaderboard__name">Marcus Johnson</h3>
+              <p class="leaderboard__handle">@marcusjohnson</p>
+            </div>
+          </div>
+          <div class="leaderboard__score">1,180 points</div>
+        </div>
+
+        <div class="leaderboard__item">
+          <div class="leaderboard__rank">3</div>
+          <div class="leaderboard__user">
+            <img src="/images/profile-3.jpg" alt="Third place" class="leaderboard__avatar">
+            <div class="leaderboard__info">
+              <h3 class="leaderboard__name">Emma Thompson</h3>
+              <p class="leaderboard__handle">@emmathompson</p>
+            </div>
+          </div>
+          <div class="leaderboard__score">1,095 points</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="bottom-nav">
+      <a href="/explore" class="bottom-nav__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="m21 21-4.35-4.35"/>
+        </svg>
+        Explore
+      </a>
+      <a href="/write-review" class="bottom-nav__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14,2 14,8 20,8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+        </svg>
+        Write
+      </a>
+      <a href="/leaderboard" class="bottom-nav__item bottom-nav__item--active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+          <polyline points="6,9 12,9 18,9"/>
+          <path d="M18 9h1.5a2.5 2.5 0 0 1 0 5H18"/>
+          <polyline points="6,9 6,21 18,21 18,9"/>
+        </svg>
+        Leaderboard
+      </a>
+      <a href="/profile" class="bottom-nav__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        Profile
+      </a>
+    </nav>
+
+  </main>
+</body>
+</html>

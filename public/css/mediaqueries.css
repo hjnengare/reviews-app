@@ -424,11 +424,11 @@
   }
 
   .scrollbar-item {
-    min-width: calc(33.33% - 20px);
+    min-width: calc(50% - 15px);
   }
 
   .flex-item {
-    max-width: calc(33.33% - 20px);
+    max-width: calc(50% - 15px);
   }
 
   .flex-list {
@@ -689,19 +689,6 @@
 
   .header .logo:hover {
     transform: scale(1.03) translateY(-1px);
-  }
-
-  .logo-text {
-    font-size: var(--fs-2);
-    font-weight: var(--fw-800);
-    color: var(--premium-text);
-    text-decoration: none;
-    letter-spacing: -1px;
-    white-space: nowrap;
-    background: linear-gradient(135deg, var(--premium-text) 0%, var(--hoockers-green) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
   }
 
   /**

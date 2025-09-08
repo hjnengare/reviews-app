@@ -118,30 +118,66 @@ function bindEvents() {
 }
 
 // Handle "Go to Home" button click
-function handleHomeClick() {
+async function handleHomeClick() {
+  const homeBtn = document.getElementById('home-btn');
+  const originalText = homeBtn ? homeBtn.textContent : '';
+  
   try {
-    // Optional: Emit analytics event
-    console.log('Onboarding completed - navigating to home');
+    // Show loading state
+    if (homeBtn) {
+      homeBtn.disabled = true;
+      homeBtn.textContent = 'Completing...';
+    }
     
-    // Optional: Custom event for other scripts to listen to
-    const completionEvent = new CustomEvent('onboardingComplete', {
-      detail: {
-        timestamp: new Date().toISOString(),
-        profile: getStoredData(CONFIG.consolidatedStorageKey)
-      }
+    // Submit completion to backend
+    const response = await fetch('/complete', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        completedAt: new Date().toISOString()
+      }),
     });
-    document.dispatchEvent(completionEvent);
     
-    // Clear forward history and navigate
-    clearForwardHistory();
+    const result = await response.json();
     
-    // Navigate to home
-    window.location.href = CONFIG.homeUrl;
+    if (result.success) {
+      // Optional: Emit analytics event
+      console.log('Onboarding completed - navigating to home');
+      
+      // Optional: Custom event for other scripts to listen to
+      const completionEvent = new CustomEvent('onboardingComplete', {
+        detail: {
+          timestamp: new Date().toISOString(),
+          profile: getStoredData(CONFIG.consolidatedStorageKey)
+        }
+      });
+      document.dispatchEvent(completionEvent);
+      
+      // Clear forward history and navigate
+      clearForwardHistory();
+      
+      // Navigate to home/explore page
+      window.location.href = result.redirectTo;
+    } else {
+      throw new Error(result.error || 'Failed to complete onboarding');
+    }
     
   } catch (error) {
-    console.error('Error during home navigation:', error);
-    // Fallback navigation
-    window.location.href = CONFIG.homeUrl;
+    console.error('Error completing onboarding:', error);
+    
+    // Show error feedback to user
+    const liveRegion = document.querySelector('.complete__live');
+    if (liveRegion) {
+      liveRegion.textContent = 'Error completing onboarding. Please try again.';
+    }
+    
+    // Reset button state
+    if (homeBtn) {
+      homeBtn.disabled = false;
+      homeBtn.textContent = originalText;
+    }
   }
 }
 

@@ -8,7 +8,7 @@
 
 /* Premium body styling */
 body {
-  background: #fafafa;
+ background: var(--white);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
@@ -25,7 +25,7 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
-  background: #fafafa;
+ background: var(--white);
 }
 
 /* Back navigation */
@@ -49,13 +49,13 @@ body {
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
 }
 
 .back-btn:hover {
   background: rgba(255, 255, 255, 1);
   transform: scale(1.05);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-lg);
 }
 
 .back-btn svg {
@@ -85,13 +85,13 @@ body {
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
 }
 
 .settings-toggle:hover {
   background: rgba(255, 255, 255, 1);
   transform: scale(1.05);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-lg);
 }
 
 .settings-toggle svg {
@@ -106,7 +106,7 @@ body {
   right: 0;
   background: white;
   border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  box-shadow: var(--shadow-lg);
   border: 1px solid rgba(0, 0, 0, 0.06);
   min-width: 200px;
   opacity: 0;
@@ -148,7 +148,7 @@ body {
 }
 
 .setting-item:hover {
-  background: var(--off-white);
+ background: var(--white);
 }
 
 .setting-item--danger {
@@ -174,7 +174,7 @@ body {
   margin: 8px 0;
   border: none;
   height: 1px;
-  background: rgba(0, 0, 0, 0.06);
+  background: var(--black_5);
 }
 
 /* Hero section */
@@ -217,7 +217,7 @@ body {
   overflow: hidden;
   margin-bottom: 24px;
   border: 4px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  box-shadow: var(--shadow-lg);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
 }
@@ -308,12 +308,12 @@ body {
 .btn--primary {
   background: white;
   color: var(--charcoal);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
 }
 
 .btn--primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-lg);
 }
 
 .btn--secondary {
@@ -539,7 +539,7 @@ body {
 
 .review-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  box-shadow: var(--shadow-lg);
   border-color: rgba(0, 0, 0, 0.1);
 }
 
@@ -562,7 +562,7 @@ body {
   position: absolute;
   top: 12px;
   right: 12px;
-  background: rgba(0, 0, 0, 0.7);
+  background: var(--black_70);
   color: white;
   padding: 4px 8px;
   border-radius: 6px;
@@ -634,7 +634,7 @@ body {
 }
 
 .review-skeleton {
-  background: var(--off-white);
+ background: var(--white);
   border-radius: 12px;
   overflow: hidden;
   animation: shimmer 1.5s infinite;
@@ -737,7 +737,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--black_50);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -750,7 +750,7 @@ body {
   margin: 24px;
   max-width: 400px;
   width: 100%;
-  box-shadow: 0 20px 64px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-2xl);
   transform: scale(0.9);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -791,12 +791,12 @@ body {
 }
 
 .logout-dialog__cancel {
-  background: var(--off-white);
+ background: var(--white);
   color: var(--charcoal);
 }
 
 .logout-dialog__cancel:hover {
-  background: #e9ecef;
+ background: var(--white);
   transform: translateY(-1px);
 }
 
@@ -806,7 +806,7 @@ body {
 }
 
 .logout-dialog__confirm:hover {
-  background: var(--coral-dark);
+   background: linear-gradient(135deg, var(--sage-dark) 0%, var(--coral-dark) 100%);
   transform: translateY(-1px);
 }
 

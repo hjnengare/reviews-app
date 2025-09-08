@@ -247,7 +247,7 @@ body {
 }
 
 .bubble.is-selected:hover {
-  background: var(--coral-dark);
+   background: linear-gradient(135deg, var(--sage-dark) 0%, var(--coral-dark) 100%);
   transform: scale(1.07);
 }
 
@@ -280,7 +280,7 @@ body {
 }
 
 .btn--primary:hover:not(:disabled) {
-  background: var(--coral-dark);
+   background: linear-gradient(135deg, var(--sage-dark) 0%, var(--coral-dark) 100%);
   transform: translateY(-1px);
 }
 
