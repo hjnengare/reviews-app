@@ -1,130 +1,141 @@
 /*-----------------------------------*\
-  #WRITE-REVIEW.JS
+  #WRITE REVIEW - INTERACTIVE FUNCTIONALITY
 \*-----------------------------------*/
 
-// Configuration
-const CONFIG = {
-  maxTags: 4,
-  maxCharacters: 1000,
-  maxPhotoSize: 5 * 1024 * 1024, // 5MB
-  acceptedPhotoTypes: ['image/jpeg', 'image/png', 'image/webp'],
-  apiEndpoint: '/api/reviews',
-  transcribeEndpoint: '/api/transcribe',
-  storageKey: 'review_draft'
-};
+'use strict';
 
 // State management
-let reviewState = {
-  placeId: 'mamas-kitchen', // This would come from URL params in real app
-  placeName: "Mama's Kitchen",
+const reviewState = {
   rating: 0,
-  tags: new Set(),
-  text: '',
+  selectedTags: new Set(),
   photos: [],
-  transcription: '',
-  isRecording: false,
-  mediaRecorder: null,
-  recordedBlob: null
+  hasVoiceNote: false,
+  isDraft: false
 };
 
-// Initialize the write review page
-function initWriteReview() {
-  setPlaceName();
-  loadDraft();
-  bindEvents();
+// DOM Elements
+const ratingStars = document.querySelectorAll('.rating-star');
+const ratingDisplay = document.getElementById('rating-display');
+const ratingText = document.getElementById('rating-text');
+const ratingError = document.getElementById('rating-error');
+const ratingValue = document.getElementById('rating-value');
+
+const tagChips = document.querySelectorAll('.tag-chip');
+const tagLimitMessage = document.getElementById('tag-limit-message');
+
+const experienceInput = document.getElementById('experience-text');
+const charCount = document.getElementById('char-count');
+
+const voiceNoteBtn = document.getElementById('voice-note-btn');
+const photoBtn = document.getElementById('photo-btn');
+const photoInput = document.getElementById('photo-input');
+const photoPreviews = document.getElementById('photo-previews');
+
+const submitBtn = document.getElementById('submit-btn');
+const saveDraftBtn = document.getElementById('save-draft');
+const form = document.getElementById('review-form');
+
+// Initialize the page
+document.addEventListener('DOMContentLoaded', function() {
+  initializeRatingSystem();
+  initializeTagSystem();
+  initializeTextArea();
+  initializeAttachments();
+  initializeFormSubmission();
   updateSubmitButton();
-}
-
-// Set the place name in the header
-function setPlaceName() {
-  const placeNameElement = document.getElementById('place-name');
-  if (placeNameElement) {
-    placeNameElement.textContent = reviewState.placeName;
-  }
-}
-
-// Bind all event listeners
-function bindEvents() {
-  bindRatingEvents();
-  bindTagEvents();
-  bindTextEvents();
-  bindVoiceEvents();
-  bindPhotoEvents();
-  bindSubmitEvents();
-}
-
-// Rating functionality
-function bindRatingEvents() {
-  const stars = document.querySelectorAll('.star');
-  const ratingInput = document.getElementById('rating-value');
   
-  stars.forEach((star, index) => {
-    star.addEventListener('click', () => setRating(index + 1));
-    star.addEventListener('keydown', (e) => handleRatingKeydown(e, index));
-    star.addEventListener('mouseenter', () => highlightStars(index + 1));
-    star.addEventListener('mouseleave', () => highlightStars(reviewState.rating));
+  // Load draft if exists
+  loadDraftFromStorage();
+});
+
+/**
+ * Rating System
+ */
+function initializeRatingSystem() {
+  ratingStars.forEach((star, index) => {
+    const rating = index + 1;
+    
+    star.addEventListener('click', () => {
+      setRating(rating);
+    });
+    
+    star.addEventListener('mouseenter', () => {
+      highlightStars(rating);
+    });
+    
+    star.addEventListener('mouseleave', () => {
+      highlightStars(reviewState.rating);
+    });
+    
+    // Keyboard navigation
+    star.addEventListener('keydown', (e) => {
+      switch(e.key) {
+        case 'Enter':
+        case ' ':
+          e.preventDefault();
+          setRating(rating);
+          break;
+        case 'ArrowLeft':
+          e.preventDefault();
+          if (index > 0) ratingStars[index - 1].focus();
+          break;
+        case 'ArrowRight':
+          e.preventDefault();
+          if (index < ratingStars.length - 1) ratingStars[index + 1].focus();
+          break;
+      }
+    });
   });
 }
 
 function setRating(rating) {
   reviewState.rating = rating;
-  document.getElementById('rating-value').value = rating;
-  updateStarsDisplay(rating);
-  clearRatingError();
-  updateSubmitButton();
-  saveDraft();
+  ratingValue.value = rating;
   
-  // Announce rating change
-  announceToScreen(`Rating set to ${rating} star${rating !== 1 ? 's' : ''}`);
-}
-
-function updateStarsDisplay(rating) {
-  const stars = document.querySelectorAll('.star');
-  stars.forEach((star, index) => {
-    const isSelected = index < rating;
-    star.classList.toggle('star--selected', isSelected);
-    star.setAttribute('aria-pressed', isSelected.toString());
-  });
+  highlightStars(rating);
+  updateRatingDisplay(rating);
+  hideRatingError();
+  updateSubmitButton();
+  saveDraftToStorage();
 }
 
 function highlightStars(rating) {
-  updateStarsDisplay(rating);
+  ratingStars.forEach((star, index) => {
+    if (index < rating) {
+      star.classList.add('selected');
+    } else {
+      star.classList.remove('selected');
+    }
+  });
 }
 
-function handleRatingKeydown(e, currentIndex) {
-  let newIndex = currentIndex;
-  
-  switch (e.key) {
-    case 'ArrowLeft':
-      e.preventDefault();
-      newIndex = Math.max(0, currentIndex - 1);
-      break;
-    case 'ArrowRight':
-      e.preventDefault();
-      newIndex = Math.min(4, currentIndex + 1);
-      break;
-    case 'Enter':
-    case ' ':
-      e.preventDefault();
-      setRating(currentIndex + 1);
-      return;
-  }
-  
-  if (newIndex !== currentIndex) {
-    document.querySelectorAll('.star')[newIndex].focus();
+function updateRatingDisplay(rating) {
+  if (rating > 0) {
+    ratingText.textContent = `${rating}/5`;
+  } else {
+    ratingText.textContent = 'Select a rating';
   }
 }
 
-function clearRatingError() {
-  document.getElementById('rating-error').textContent = '';
+function showRatingError(message) {
+  ratingError.textContent = message;
+  ratingError.style.display = 'block';
 }
 
-// Tags functionality
-function bindTagEvents() {
-  const tagChips = document.querySelectorAll('.tag-chip');
-  
+function hideRatingError() {
+  ratingError.style.display = 'none';
+}
+
+/**
+ * Tag System
+ */
+function initializeTagSystem() {
   tagChips.forEach(chip => {
-    chip.addEventListener('click', () => toggleTag(chip));
+    chip.addEventListener('click', () => {
+      toggleTag(chip);
+    });
+    
+    // Keyboard navigation
     chip.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -135,536 +146,385 @@ function bindTagEvents() {
 }
 
 function toggleTag(chip) {
-  const tag = chip.dataset.tag;
-  const isSelected = chip.getAttribute('aria-pressed') === 'true';
+  const tagValue = chip.dataset.tag;
   
-  if (isSelected) {
-    // Deselect
-    reviewState.tags.delete(tag);
-    chip.setAttribute('aria-pressed', 'false');
-    updateTagsHint();
+  if (reviewState.selectedTags.has(tagValue)) {
+    // Remove tag
+    reviewState.selectedTags.delete(tagValue);
+    chip.classList.remove('selected');
+    hideTagLimitMessage();
   } else {
-    // Check max limit
-    if (reviewState.tags.size >= CONFIG.maxTags) {
-      showTagsError(`You can only select up to ${CONFIG.maxTags} tags.`);
+    // Check limit
+    if (reviewState.selectedTags.size >= 4) {
+      showTagLimitMessage();
       return;
     }
     
-    // Select
-    reviewState.tags.add(tag);
-    chip.setAttribute('aria-pressed', 'true');
-    clearTagsError();
+    // Add tag
+    reviewState.selectedTags.add(tagValue);
+    chip.classList.add('selected');
+    hideTagLimitMessage();
   }
   
-  updateSubmitButton();
-  saveDraft();
-  
-  // Announce change
-  const action = isSelected ? 'Deselected' : 'Selected';
-  const tagLabel = chip.querySelector('.tag-chip__label').textContent;
-  announceToScreen(`${action}: ${tagLabel}. ${reviewState.tags.size} of ${CONFIG.maxTags} tags selected.`);
+  saveDraftToStorage();
 }
 
-function updateTagsHint() {
-  const hint = document.getElementById('tags-hint');
-  const count = reviewState.tags.size;
+function showTagLimitMessage() {
+  tagLimitMessage.textContent = 'You can pick up to 4 tags';
+  tagLimitMessage.style.display = 'block';
   
-  if (count === 0) {
-    hint.textContent = '';
-  } else {
-    hint.textContent = `${count} of ${CONFIG.maxTags} tags selected`;
-  }
-  hint.classList.remove('tags-section__hint--error');
-}
-
-function showTagsError(message) {
-  const hint = document.getElementById('tags-hint');
-  hint.textContent = message;
-  hint.classList.add('tags-section__hint--error');
-  
+  // Hide after 3 seconds
   setTimeout(() => {
-    updateTagsHint();
+    hideTagLimitMessage();
   }, 3000);
 }
 
-function clearTagsError() {
-  updateTagsHint();
+function hideTagLimitMessage() {
+  tagLimitMessage.style.display = 'none';
 }
 
-// Text area functionality
-function bindTextEvents() {
-  const textarea = document.getElementById('experience-text');
-  const counter = document.getElementById('experience-counter');
-  
-  textarea.addEventListener('input', (e) => {
-    const text = e.target.value;
-    const length = text.length;
-    
-    reviewState.text = text;
-    updateCharacterCounter(length);
-    updateSubmitButton();
-    saveDraft();
+/**
+ * Text Area
+ */
+function initializeTextArea() {
+  experienceInput.addEventListener('input', () => {
+    updateCharacterCount();
+    autoExpandTextarea();
+    saveDraftToStorage();
   });
   
-  // Auto-resize
-  textarea.addEventListener('input', autoResizeTextarea);
+  // Auto-expand textarea
+  experienceInput.addEventListener('keydown', (e) => {
+    // Allow Enter key for line breaks
+    if (e.key === 'Enter' && !e.shiftKey) {
+      // Normal enter - just add line break
+      setTimeout(autoExpandTextarea, 0);
+    }
+  });
 }
 
-function updateCharacterCounter(length) {
-  const counter = document.getElementById('experience-counter');
-  const warningThreshold = CONFIG.maxCharacters * 0.8;
-  const errorThreshold = CONFIG.maxCharacters;
+function updateCharacterCount() {
+  const currentLength = experienceInput.value.length;
+  const maxLength = experienceInput.maxLength;
   
-  counter.textContent = `${length} / ${CONFIG.maxCharacters}`;
+  charCount.textContent = `${currentLength}/${maxLength}`;
   
-  counter.classList.remove('experience-section__counter--warning', 'experience-section__counter--error');
-  
-  if (length >= errorThreshold) {
-    counter.classList.add('experience-section__counter--error');
-  } else if (length >= warningThreshold) {
-    counter.classList.add('experience-section__counter--warning');
-  }
-}
-
-function autoResizeTextarea(e) {
-  const textarea = e.target;
-  textarea.style.height = 'auto';
-  textarea.style.height = Math.min(textarea.scrollHeight, 200) + 'px';
-}
-
-// Voice recording functionality
-function bindVoiceEvents() {
-  const voiceButton = document.getElementById('voice-button');
-  voiceButton.addEventListener('click', toggleRecording);
-}
-
-async function toggleRecording() {
-  if (reviewState.isRecording) {
-    stopRecording();
+  // Show warning at 90%
+  if (currentLength >= maxLength * 0.9) {
+    charCount.classList.add('warning');
   } else {
-    await startRecording();
+    charCount.classList.remove('warning');
   }
 }
 
-async function startRecording() {
-  try {
-    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-    reviewState.mediaRecorder = new MediaRecorder(stream);
-    reviewState.isRecording = true;
-    
-    const audioChunks = [];
-    
-    reviewState.mediaRecorder.ondataavailable = (e) => {
-      audioChunks.push(e.data);
-    };
-    
-    reviewState.mediaRecorder.onstop = async () => {
-      const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-      await transcribeAudio(audioBlob);
-      
-      // Clean up
-      stream.getTracks().forEach(track => track.stop());
-    };
-    
-    reviewState.mediaRecorder.start();
-    updateVoiceUI(true);
-    updateVoiceStatus('Recording... Click to stop');
-    
-  } catch (error) {
-    handleVoiceError(error);
-  }
-}
-
-function stopRecording() {
-  if (reviewState.mediaRecorder && reviewState.isRecording) {
-    reviewState.mediaRecorder.stop();
-    reviewState.isRecording = false;
-    updateVoiceUI(false);
-    updateVoiceStatus('Processing...');
-  }
-}
-
-async function transcribeAudio(audioBlob) {
-  try {
-    // Simulate transcription (replace with real API call)
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    // Mock transcription result
-    const mockTranscription = "This is a transcribed voice note about my experience at the restaurant.";
-    
-    reviewState.transcription = mockTranscription;
-    displayTranscription(mockTranscription);
-    updateVoiceStatus('Voice note transcribed');
-    updateSubmitButton();
-    saveDraft();
-    
-    announceToScreen('Voice note transcribed successfully');
-    
-  } catch (error) {
-    updateVoiceStatus('Transcription failed. Please try again.');
-    console.error('Transcription error:', error);
-  }
-}
-
-function displayTranscription(text) {
-  const transcriptionElement = document.getElementById('voice-transcription');
-  transcriptionElement.textContent = text;
-  transcriptionElement.classList.add('voice-section__transcription--visible');
-}
-
-function updateVoiceUI(isRecording) {
-  const button = document.getElementById('voice-button');
-  const text = button.querySelector('.voice-section__text');
+function autoExpandTextarea() {
+  experienceInput.style.height = 'auto';
+  const maxHeight = 6 * 24; // 6 lines * 24px line height
+  const scrollHeight = experienceInput.scrollHeight;
   
-  button.classList.toggle('voice-section__button--recording', isRecording);
-  text.textContent = isRecording ? 'Stop Recording' : 'Add Voice Note';
-}
-
-function updateVoiceStatus(message) {
-  const status = document.getElementById('voice-status');
-  status.textContent = message;
-  status.classList.toggle('voice-section__status--recording', reviewState.isRecording);
-  status.classList.toggle('voice-section__status--processing', message === 'Processing...');
-}
-
-function handleVoiceError(error) {
-  let message = 'Could not access microphone. ';
-  
-  if (error.name === 'NotAllowedError') {
-    message += 'Please check your browser permissions.';
-  } else if (error.name === 'NotFoundError') {
-    message += 'No microphone found.';
+  if (scrollHeight <= maxHeight) {
+    experienceInput.style.height = Math.max(120, scrollHeight) + 'px';
   } else {
-    message += 'Please try again.';
+    experienceInput.style.height = maxHeight + 'px';
   }
-  
-  updateVoiceStatus(message);
-  updateVoiceUI(false);
-  reviewState.isRecording = false;
-  
-  announceToScreen(message);
 }
 
-// Photo functionality
-function bindPhotoEvents() {
-  const photoButton = document.getElementById('photo-button');
-  const photoInput = document.getElementById('photo-input');
+/**
+ * Attachments
+ */
+function initializeAttachments() {
+  // Voice note functionality
+  voiceNoteBtn.addEventListener('click', handleVoiceNote);
   
-  photoButton.addEventListener('click', () => photoInput.click());
+  // Photo functionality
+  photoBtn.addEventListener('click', () => {
+    photoInput.click();
+  });
+  
   photoInput.addEventListener('change', handlePhotoSelection);
 }
 
-function handlePhotoSelection(e) {
-  const files = Array.from(e.target.files);
-  const validFiles = files.filter(validatePhoto);
+function handleVoiceNote() {
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    showToast('Voice recording is not supported in your browser', 'error');
+    return;
+  }
   
-  if (validFiles.length !== files.length) {
-    showPhotoError('Some files were invalid and skipped.');
+  if (reviewState.hasVoiceNote) {
+    // Remove voice note
+    reviewState.hasVoiceNote = false;
+    voiceNoteBtn.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+        <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+        <line x1="12" y1="19" x2="12" y2="23"/>
+        <line x1="8" y1="23" x2="16" y2="23"/>
+      </svg>
+      <span>Add Voice Note</span>
+    `;
+    voiceNoteBtn.style.background = 'var(--sage)';
   } else {
-    clearPhotoError();
+    // Start voice recording (simplified for demo)
+    reviewState.hasVoiceNote = true;
+    voiceNoteBtn.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M12 1v6m0 6v6"/>
+      </svg>
+      <span>Voice Added ✓</span>
+    `;
+    voiceNoteBtn.style.background = 'var(--coral)';
+    showToast('Voice note added successfully', 'success');
   }
   
-  validFiles.forEach(addPhoto);
-  updateSubmitButton();
-  saveDraft();
+  saveDraftToStorage();
 }
 
-function validatePhoto(file) {
-  if (!CONFIG.acceptedPhotoTypes.includes(file.type)) {
-    showPhotoError(`${file.name}: Invalid file type. Please use JPG, PNG, or WebP.`);
-    return false;
+function handlePhotoSelection(event) {
+  const files = Array.from(event.target.files);
+  const maxPhotos = 5;
+  
+  if (reviewState.photos.length + files.length > maxPhotos) {
+    showToast(`You can only add up to ${maxPhotos} photos`, 'error');
+    return;
   }
   
-  if (file.size > CONFIG.maxPhotoSize) {
-    showPhotoError(`${file.name}: File too large. Maximum size is 5MB.`);
-    return false;
-  }
+  files.forEach(file => {
+    if (file.type.startsWith('image/')) {
+      if (file.size > 5 * 1024 * 1024) { // 5MB limit
+        showToast('Photo must be smaller than 5MB', 'error');
+        return;
+      }
+      
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const photo = {
+          id: Date.now() + Math.random(),
+          file: file,
+          dataUrl: e.target.result
+        };
+        
+        reviewState.photos.push(photo);
+        renderPhotoPreview(photo);
+        saveDraftToStorage();
+      };
+      reader.readAsDataURL(file);
+    }
+  });
   
-  return true;
+  // Reset input
+  photoInput.value = '';
 }
 
-function addPhoto(file) {
-  const reader = new FileReader();
-  
-  reader.onload = (e) => {
-    const photoData = {
-      id: Date.now() + Math.random(),
-      file: file,
-      dataUrl: e.target.result,
-      name: file.name
-    };
-    
-    reviewState.photos.push(photoData);
-    renderPhotoPreview(photoData);
-    updateSubmitButton();
-    saveDraft();
-  };
-  
-  reader.readAsDataURL(file);
-}
-
-function renderPhotoPreview(photoData) {
-  const previewsContainer = document.getElementById('photo-previews');
-  
+function renderPhotoPreview(photo) {
   const preview = document.createElement('div');
   preview.className = 'photo-preview';
-  preview.dataset.photoId = photoData.id;
+  preview.dataset.photoId = photo.id;
   
   preview.innerHTML = `
-    <img src="${photoData.dataUrl}" alt="${photoData.name}" class="photo-preview__image">
-    <button type="button" class="photo-preview__remove" aria-label="Remove photo">×</button>
+    <img src="${photo.dataUrl}" alt="Photo preview">
+    <button type="button" class="photo-remove" onclick="removePhoto('${photo.id}')" aria-label="Remove photo">×</button>
   `;
   
-  const removeButton = preview.querySelector('.photo-preview__remove');
-  removeButton.addEventListener('click', () => removePhoto(photoData.id));
-  
-  previewsContainer.appendChild(preview);
+  photoPreviews.appendChild(preview);
 }
 
 function removePhoto(photoId) {
-  reviewState.photos = reviewState.photos.filter(photo => photo.id !== photoId);
-  
+  reviewState.photos = reviewState.photos.filter(photo => photo.id != photoId);
   const preview = document.querySelector(`[data-photo-id="${photoId}"]`);
   if (preview) {
     preview.remove();
   }
-  
-  updateSubmitButton();
-  saveDraft();
-  announceToScreen('Photo removed');
+  saveDraftToStorage();
 }
 
-function showPhotoError(message) {
-  const errorElement = document.getElementById('photo-error');
-  errorElement.textContent = message;
-  
-  setTimeout(() => {
-    clearPhotoError();
-  }, 5000);
-}
+// Make removePhoto globally accessible
+window.removePhoto = removePhoto;
 
-function clearPhotoError() {
-  document.getElementById('photo-error').textContent = '';
-}
-
-// Submit functionality
-function bindSubmitEvents() {
-  const form = document.getElementById('review-form');
+/**
+ * Form Submission
+ */
+function initializeFormSubmission() {
   form.addEventListener('submit', handleSubmit);
+  saveDraftBtn.addEventListener('click', handleSaveDraft);
 }
 
-async function handleSubmit(e) {
-  e.preventDefault();
+function handleSubmit(event) {
+  event.preventDefault();
   
-  if (!validateReview()) {
+  // Validate form
+  if (!validateForm()) {
     return;
   }
   
-  const submitButton = document.getElementById('submit-button');
-  submitButton.classList.add('write-review__submit--loading');
-  submitButton.disabled = true;
+  // Show loading state
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation: spin 1s linear infinite;">
+      <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
+    </svg>
+    <span>Submitting...</span>
+  `;
   
-  try {
-    const reviewData = constructReviewData();
-    await submitReview(reviewData);
+  // Simulate form submission
+  setTimeout(() => {
+    // Clear draft
+    clearDraftFromStorage();
     
-    // Success - clear draft and navigate
-    clearDraft();
-    announceToScreen('Review submitted successfully!');
+    // Show success and redirect
+    showToast('Thanks for sharing!', 'success');
     
-    // Navigate back or to success page
     setTimeout(() => {
-      window.location.href = 'index.html';
-    }, 1000);
-    
-  } catch (error) {
-    console.error('Submit error:', error);
-    showSubmitError('Failed to submit review. Please try again.');
-  } finally {
-    submitButton.classList.remove('write-review__submit--loading');
-    submitButton.disabled = false;
-  }
+      window.location.href = '/';
+    }, 2000);
+  }, 1500);
 }
 
-function validateReview() {
+function handleSaveDraft(event) {
+  event.preventDefault();
+  reviewState.isDraft = true;
+  saveDraftToStorage();
+  showToast('Draft saved successfully', 'success');
+}
+
+function validateForm() {
   let isValid = true;
   
-  // Rating is required
+  // Check rating
   if (reviewState.rating === 0) {
-    document.getElementById('rating-error').textContent = 'Please select a rating';
-    isValid = false;
-  }
-  
-  // Must have text, photos, or transcription
-  const hasContent = reviewState.text.trim() || 
-                    reviewState.photos.length > 0 || 
-                    reviewState.transcription.trim();
-  
-  if (!hasContent) {
-    document.getElementById('experience-error').textContent = 'Please add text, a photo, or a voice note';
-    isValid = false;
-  }
-  
-  // Character limit
-  if (reviewState.text.length > CONFIG.maxCharacters) {
-    document.getElementById('experience-error').textContent = `Text is too long (${reviewState.text.length}/${CONFIG.maxCharacters})`;
+    showRatingError('Pick a rating to submit');
+    ratingStars[0].focus();
     isValid = false;
   }
   
   return isValid;
 }
 
-function constructReviewData() {
-  const combinedText = [reviewState.text, reviewState.transcription]
-    .filter(text => text.trim())
-    .join(' ');
-  
-  return {
-    placeId: reviewState.placeId,
-    rating: reviewState.rating,
-    tags: Array.from(reviewState.tags),
-    text: combinedText,
-    photos: reviewState.photos.map(photo => ({
-      name: photo.name,
-      dataUrl: photo.dataUrl // In real app, would upload to server first
-    })),
-    createdAt: new Date().toISOString()
-  };
-}
-
-async function submitReview(reviewData) {
-  // Simulate API call
-  await new Promise(resolve => setTimeout(resolve, 2000));
-  
-  // In real app:
-  // const response = await fetch(CONFIG.apiEndpoint, {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify(reviewData)
-  // });
-  // 
-  // if (!response.ok) {
-  //   throw new Error('Network error');
-  // }
-  
-  console.log('Review submitted:', reviewData);
-}
-
-function showSubmitError(message) {
-  announceToScreen(message);
-  // Could show toast notification here
-}
-
-// Submit button state management
 function updateSubmitButton() {
-  const submitButton = document.getElementById('submit-button');
   const hasRating = reviewState.rating > 0;
-  const hasContent = reviewState.text.trim() || 
-                    reviewState.photos.length > 0 || 
-                    reviewState.transcription.trim();
+  submitBtn.disabled = !hasRating;
   
-  const isValid = hasRating && hasContent;
-  submitButton.disabled = !isValid;
+  if (hasRating) {
+    submitBtn.classList.remove('disabled');
+  } else {
+    submitBtn.classList.add('disabled');
+  }
 }
 
-// Draft persistence
-function saveDraft() {
+/**
+ * Draft Management
+ */
+function saveDraftToStorage() {
+  const draftData = {
+    rating: reviewState.rating,
+    selectedTags: Array.from(reviewState.selectedTags),
+    experienceText: experienceInput.value,
+    hasVoiceNote: reviewState.hasVoiceNote,
+    timestamp: Date.now()
+  };
+  
   try {
-    const draft = {
-      placeId: reviewState.placeId,
-      rating: reviewState.rating,
-      tags: Array.from(reviewState.tags),
-      text: reviewState.text,
-      transcription: reviewState.transcription,
-      photos: reviewState.photos.map(photo => ({
-        id: photo.id,
-        name: photo.name,
-        dataUrl: photo.dataUrl
-      })),
-      savedAt: Date.now()
-    };
-    
-    localStorage.setItem(CONFIG.storageKey, JSON.stringify(draft));
+    localStorage.setItem('write-review-draft', JSON.stringify(draftData));
   } catch (error) {
-    console.warn('Could not save draft:', error);
+    console.warn('Could not save draft to localStorage:', error);
   }
 }
 
-function loadDraft() {
+function loadDraftFromStorage() {
   try {
-    const saved = localStorage.getItem(CONFIG.storageKey);
-    if (!saved) return;
-    
-    const draft = JSON.parse(saved);
-    
-    // Only load if for same place
-    if (draft.placeId !== reviewState.placeId) return;
-    
-    // Restore state
-    if (draft.rating) {
-      setRating(draft.rating);
+    const draftData = localStorage.getItem('write-review-draft');
+    if (draftData) {
+      const draft = JSON.parse(draftData);
+      
+      // Load rating
+      if (draft.rating > 0) {
+        setRating(draft.rating);
+      }
+      
+      // Load tags
+      if (draft.selectedTags) {
+        draft.selectedTags.forEach(tagValue => {
+          const chip = document.querySelector(`[data-tag="${tagValue}"]`);
+          if (chip) {
+            reviewState.selectedTags.add(tagValue);
+            chip.classList.add('selected');
+          }
+        });
+      }
+      
+      // Load text
+      if (draft.experienceText) {
+        experienceInput.value = draft.experienceText;
+        updateCharacterCount();
+        autoExpandTextarea();
+      }
+      
+      // Load voice note
+      if (draft.hasVoiceNote) {
+        handleVoiceNote();
+      }
     }
-    
-    if (draft.tags) {
-      draft.tags.forEach(tag => {
-        const chip = document.querySelector(`[data-tag="${tag}"]`);
-        if (chip) {
-          reviewState.tags.add(tag);
-          chip.setAttribute('aria-pressed', 'true');
-        }
-      });
-      updateTagsHint();
-    }
-    
-    if (draft.text) {
-      reviewState.text = draft.text;
-      document.getElementById('experience-text').value = draft.text;
-      updateCharacterCounter(draft.text.length);
-    }
-    
-    if (draft.transcription) {
-      reviewState.transcription = draft.transcription;
-      displayTranscription(draft.transcription);
-      updateVoiceStatus('Voice note restored from draft');
-    }
-    
-    if (draft.photos) {
-      draft.photos.forEach(photoData => {
-        reviewState.photos.push(photoData);
-        renderPhotoPreview(photoData);
-      });
-    }
-    
-    updateSubmitButton();
-    
   } catch (error) {
-    console.warn('Could not load draft:', error);
+    console.warn('Could not load draft from localStorage:', error);
   }
 }
 
-function clearDraft() {
+function clearDraftFromStorage() {
   try {
-    localStorage.removeItem(CONFIG.storageKey);
+    localStorage.removeItem('write-review-draft');
   } catch (error) {
-    console.warn('Could not clear draft:', error);
+    console.warn('Could not clear draft from localStorage:', error);
   }
 }
 
-// Accessibility helper
-function announceToScreen(message) {
-  const liveRegion = document.querySelector('.write-review__live');
-  if (liveRegion) {
-    liveRegion.textContent = message;
+/**
+ * Toast Notifications
+ */
+function showToast(message, type = 'success') {
+  // Remove existing toast
+  const existingToast = document.querySelector('.toast');
+  if (existingToast) {
+    existingToast.remove();
   }
+  
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.textContent = message;
+  
+  if (type === 'error') {
+    toast.style.background = 'var(--coral)';
+  }
+  
+  document.body.appendChild(toast);
+  
+  // Auto-remove after 4 seconds
+  setTimeout(() => {
+    if (toast.parentNode) {
+      toast.remove();
+    }
+  }, 4000);
 }
 
-// Initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', initWriteReview);
+/**
+ * Auto-save functionality
+ */
+let autoSaveTimeout;
+function scheduleAutoSave() {
+  clearTimeout(autoSaveTimeout);
+  autoSaveTimeout = setTimeout(() => {
+    saveDraftToStorage();
+  }, 5000); // Auto-save every 5 seconds
+}
 
-// Export for potential external use
-window.WriteReviewManager = {
-  getReviewState: () => ({ ...reviewState }),
-  saveDraft,
-  clearDraft,
-  submitReview: handleSubmit
-};
+// Add auto-save to input events
+document.addEventListener('input', scheduleAutoSave);
+
+// Add CSS animation for loading spinner
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+`;
+document.head.appendChild(style);

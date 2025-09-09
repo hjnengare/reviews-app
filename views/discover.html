@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discover - Reviews App</title>
+  
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/root.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/discover.css">
+  <link rel="stylesheet" href="/css/mediaqueries.css">
+  <link rel="stylesheet" href="/css/home-overrides.css">
+</head>
+<body>
+
+  <!-- Main Container -->
+  <main class="discover-page">
+    
+    <!-- Navigation Header -->
+    <header class="discover-header" role="banner">
+      <div class="container">
+        <nav class="discover-nav">
+          <button class="back-button" id="back-btn" aria-label="Back to Home">
+            <ion-icon name="arrow-back" aria-hidden="true"></ion-icon>
+            <span>Back to Home</span>
+          </button>
+        </nav>
+        
+        <div class="discover-title-section">
+          <h1 class="discover-title" id="section-title">For You</h1>
+          <p class="discover-subtitle" id="section-subtitle">Personalized picks based on your interests</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Filter Bar -->
+    <section class="filter-bar" role="navigation" aria-label="Filters and sorting">
+      <div class="container">
+        
+        <!-- Active Filters -->
+        <div class="active-filters" id="active-filters" aria-live="polite">
+          <!-- Active filter chips will be added here -->
+        </div>
+        
+        <!-- Filter Controls -->
+        <div class="filter-controls">
+          <div class="filter-buttons">
+            <button class="filter-btn" data-filter="category" aria-expanded="false" aria-haspopup="listbox">
+              <ion-icon name="grid-outline" aria-hidden="true"></ion-icon>
+              <span>Category</span>
+              <ion-icon name="chevron-down" class="chevron" aria-hidden="true"></ion-icon>
+            </button>
+            
+            <button class="filter-btn" data-filter="price" aria-expanded="false" aria-haspopup="listbox">
+              <ion-icon name="wallet-outline" aria-hidden="true"></ion-icon>
+              <span>Price</span>
+              <ion-icon name="chevron-down" class="chevron" aria-hidden="true"></ion-icon>
+            </button>
+            
+            <button class="filter-btn" data-filter="rating" aria-expanded="false" aria-haspopup="listbox">
+              <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
+              <span>Rating</span>
+              <ion-icon name="chevron-down" class="chevron" aria-hidden="true"></ion-icon>
+            </button>
+            
+            <button class="filter-btn" data-filter="distance" aria-expanded="false" aria-haspopup="listbox">
+              <ion-icon name="location-outline" aria-hidden="true"></ion-icon>
+              <span>Distance</span>
+              <ion-icon name="chevron-down" class="chevron" aria-hidden="true"></ion-icon>
+            </button>
+            
+            <button class="filter-btn toggle-btn" data-filter="open-now" aria-pressed="false">
+              <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+              <span>Open Now</span>
+            </button>
+          </div>
+          
+          <div class="sort-clear-controls">
+            <div class="sort-control">
+              <label for="sort-select" class="sr-only">Sort results by</label>
+              <select id="sort-select" class="sort-select" aria-label="Sort results">
+                <option value="relevance">Relevance</option>
+                <option value="rating">Rating</option>
+                <option value="distance">Distance</option>
+                <option value="popularity">Popularity</option>
+                <option value="newest">New</option>
+              </select>
+            </div>
+            
+            <button class="clear-filters-btn" id="clear-filters" style="display: none;">
+              <span>Clear all</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results-section" role="main">
+      <div class="container">
+        <div class="results-header">
+          <div class="results-count" id="results-count" aria-live="polite">
+            Loading results...
+          </div>
+        </div>
+        
+        <div class="results-grid" id="results-grid">
+          <!-- Results will be loaded here -->
+        </div>
+        
+        <!-- Load More / Loading States -->
+        <div class="load-more-section" id="load-more-section">
+          <button class="load-more-btn" id="load-more-btn" style="display: none;">
+            Load More Results
+          </button>
+          
+          <div class="loading-spinner" id="loading-spinner">
+            <ion-icon name="sync" class="spinner" aria-hidden="true"></ion-icon>
+            <span>Loading...</span>
+          </div>
+          
+          <div class="no-more-results" id="no-more-results" style="display: none;">
+            <p>You've seen all results</p>
+          </div>
+        </div>
+        
+        <!-- Empty State -->
+        <div class="empty-state" id="empty-state" style="display: none;">
+          <div class="empty-illustration">
+            <ion-icon name="search" aria-hidden="true"></ion-icon>
+          </div>
+          <h2>No results found</h2>
+          <p>Try adjusting your filters to see more results</p>
+          <button class="clear-filters-btn">Clear all filters</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Filter Dropdowns -->
+  <div class="filter-dropdowns" id="filter-dropdowns">
+    <!-- Category Filter -->
+    <div class="filter-dropdown" id="category-dropdown" role="listbox" aria-label="Category filter">
+      <div class="dropdown-content">
+        <button class="filter-option" data-value="restaurants" role="option">
+          <ion-icon name="restaurant-outline" aria-hidden="true"></ion-icon>
+          <span>Restaurants</span>
+        </button>
+        <button class="filter-option" data-value="hotels" role="option">
+          <ion-icon name="bed-outline" aria-hidden="true"></ion-icon>
+          <span>Hotels</span>
+        </button>
+        <button class="filter-option" data-value="shopping" role="option">
+          <ion-icon name="bag-outline" aria-hidden="true"></ion-icon>
+          <span>Shopping</span>
+        </button>
+        <button class="filter-option" data-value="entertainment" role="option">
+          <ion-icon name="musical-notes-outline" aria-hidden="true"></ion-icon>
+          <span>Entertainment</span>
+        </button>
+        <button class="filter-option" data-value="services" role="option">
+          <ion-icon name="construct-outline" aria-hidden="true"></ion-icon>
+          <span>Services</span>
+        </button>
+        <button class="filter-option" data-value="fitness" role="option">
+          <ion-icon name="fitness-outline" aria-hidden="true"></ion-icon>
+          <span>Fitness</span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Price Filter -->
+    <div class="filter-dropdown" id="price-dropdown" role="listbox" aria-label="Price filter">
+      <div class="dropdown-content">
+        <button class="filter-option" data-value="budget" role="option">
+          <span class="price-symbols">$</span>
+          <span>Budget</span>
+        </button>
+        <button class="filter-option" data-value="moderate" role="option">
+          <span class="price-symbols">$$</span>
+          <span>Moderate</span>
+        </button>
+        <button class="filter-option" data-value="expensive" role="option">
+          <span class="price-symbols">$$$</span>
+          <span>Expensive</span>
+        </button>
+        <button class="filter-option" data-value="luxury" role="option">
+          <span class="price-symbols">$$$$</span>
+          <span>Luxury</span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Rating Filter -->
+    <div class="filter-dropdown" id="rating-dropdown" role="listbox" aria-label="Rating filter">
+      <div class="dropdown-content">
+        <button class="filter-option" data-value="4+" role="option">
+          <div class="rating-stars">
+            <ion-icon name="star" aria-hidden="true"></ion-icon>
+            <ion-icon name="star" aria-hidden="true"></ion-icon>
+            <ion-icon name="star" aria-hidden="true"></ion-icon>
+            <ion-icon name="star" aria-hidden="true"></ion-icon>
+            <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
+          </div>
+          <span>4.0 & up</span>
+        </button>
+        <button class="filter-option" data-value="3+" role="option">
+          <div class="rating-stars">
+            <ion-icon name="star" aria-hidden="true"></ion-icon>
+            <ion-icon name="star" aria-hidden="true"></ion-icon>
+            <ion-icon name="star" aria-hidden="true"></ion-icon>
+            <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
+            <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
+          </div>
+          <span>3.0 & up</span>
+        </button>
+        <button class="filter-option" data-value="2+" role="option">
+          <div class="rating-stars">
+            <ion-icon name="star" aria-hidden="true"></ion-icon>
+            <ion-icon name="star" aria-hidden="true"></ion-icon>
+            <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
+            <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
+            <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
+          </div>
+          <span>2.0 & up</span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Distance Filter -->
+    <div class="filter-dropdown" id="distance-dropdown" role="listbox" aria-label="Distance filter">
+      <div class="dropdown-content">
+        <button class="filter-option" data-value="1km" role="option">
+          <span>Within 1 km</span>
+        </button>
+        <button class="filter-option" data-value="5km" role="option">
+          <span>Within 5 km</span>
+        </button>
+        <button class="filter-option" data-value="10km" role="option">
+          <span>Within 10 km</span>
+        </button>
+        <button class="filter-option" data-value="25km" role="option">
+          <span>Within 25 km</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/js/script.js" defer></script>
+  <script src="/js/discover.js" defer></script>
+  
+  <!-- Ion Icons -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>

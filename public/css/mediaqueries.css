@@ -207,6 +207,16 @@
     box-shadow: var(--shadow-md) !important;
 
   }
+
+  .review-card__img {
+    height: 450px !important;
+    min-height: 450px !important;
+    max-height: 500px !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    box-shadow: var(--shadow-md) !important;
+
+  }
 }
 
 /* Accessibility - Reduced Motion */
@@ -320,6 +330,7 @@
     max-width: 730px;
   }
 
+  
   /* Navigation and header borders for larger screens only */
   .header,
   .nav,
@@ -355,6 +366,37 @@
   .flex-list {
     gap: var(--space-10);
   }
+
+  
+  .shop-card .card-actions {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(0, -50%);
+    display: grid;
+    gap: 10px;
+    opacity: 0;
+    transition: var(--transition-2);
+  }
+
+  .shop-card .action-btn {
+    background-color: var(--white);
+    font-size: 24px;
+    padding: 12px;
+    border-radius: 50%;
+    transition: var(--transition-1);
+  }
+
+  .shop-card .action-btn:is(:hover, :focus) {
+    background-color: var(--black);
+    color: var(--white);
+  }
+
+  .shop-card:is(:hover, :focus-within) .card-actions {
+    opacity: 1;
+    transform: translate(-20px, -50%);
+  }
+
 
   /**
    * COLLECTION
@@ -555,6 +597,28 @@
     transform: translate(-20px, -50%) !important;
   }
 
+  /* Ensure review-card actions work on large screens */
+  .review-card .card-actions {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    position: absolute !important;
+    top: 50% !important;
+    right: 0 !important;
+    transform: translate(0, -50%) !important;
+    z-index: 30 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  .review-card:hover .card-actions {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: translate(-20px, -50%) !important;
+    z-index: 30 !important;
+  }
+
   /**
    * REUSED STYLE
    */
@@ -686,7 +750,7 @@
 
   .header .filter-btn:hover {
     color: var(--premium-text);
-    transform: translateY(-1px);
+    transform: translateY(-50%) scale(1.02);
   }
 
   .header .logo {
@@ -918,7 +982,8 @@
 
     /* Mobile header spacing - ultra compact */
     .header {
-      padding: var(--space-2) 0 var(--space-2) 0 !important;
+      padding-block: var(--space-3) !important;
+      padding-inline: 0 !important;
     }
 
     .header .container {
@@ -956,7 +1021,8 @@
 
     /* Desktop header spacing - scaled up from mobile */
     .header {
-      padding: var(--space-4) 0 var(--space-3) 0 !important;
+      padding-block: var(--space-5) !important;
+      padding-inline: 0 !important;
     }
 
     .header .container {
@@ -984,7 +1050,8 @@
   @media (min-width: 1024px) {
     /* Large desktop - refined spacing */
     .header {
-      padding: var(--space-6) 0 var(--space-4) 0 !important;
+      padding-block: var(--space-6) !important;
+      padding-inline: 0 !important;
     }
 
     .header .container {

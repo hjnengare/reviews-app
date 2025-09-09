@@ -19,7 +19,10 @@
       "Bash(curl:*)",
       "Bash(npm start)",
       "Bash(npm install:*)",
-      "Bash(start views/index.html)"
+      "Bash(start views/index.html)",
+      "Bash(git commit:*)",
+      "Bash(taskkill:*)",
+      "Bash(cmd /c:*)"
     ],
     "deny": [],
     "ask": []

@@ -70,6 +70,24 @@ section+section {
   padding-top: 0 !important;
 }
 
+/* Remove any gap between header and first section/main content */
+.header + *,
+.header + main,
+.header + .main,
+.header + section,
+.header + .section {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Specifically target category navigation and any first element after header */
+.category-nav,
+main:first-of-type,
+.main:first-of-type {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
 /*-----------------------------------*\
   #HEADER LAYOUT RESTRUCTURE
 \*-----------------------------------*/
@@ -78,6 +96,7 @@ section+section {
 .header {
   margin-bottom: 0 !important;
   padding: var(--space-3) 0 var(--space-2) 0 !important;
+  background: var(--off-white) !important;
 }
 
 .header-top {
@@ -88,8 +107,8 @@ section+section {
   display: flex !important;
   flex-direction: column !important;
   gap: var(--space-2) !important;
-  padding-top: var(--space-1) !important;
-  padding-bottom: var(--space-1) !important;
+  padding: var(--space-5) !important;
+
 }
 
 /* Top Row: Logo Left, Actions Right */
@@ -108,7 +127,7 @@ section+section {
 }
 
 .logo-text {
-  font-size: var(--fs-5) !important;
+  font-size: var(--fs-3) !important;
   font-weight: var(--fw-700) !important;
   color: var(--charcoal) !important;
 }
@@ -228,12 +247,12 @@ section+section {
   border: none !important;
   border-radius: 0 9px 9px 0 !important;
   padding: 0 var(--space-3) !important;
-  color: white !important;
+  color: var(--charcoal) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   gap: var(--space-1) !important;
-  font-size: var(--fs-8) !important;
+  font-size: var(--fs-5) !important;
   font-weight: var(--fw-500) !important;
   height: 100% !important;
   min-width: 80px !important;
@@ -581,4 +600,107 @@ input:-webkit-autofill:active {
 .nav-item ion-icon {
   font-size: 24px;
   margin-bottom: 4px;
+}
+
+/*-----------------------------------*\
+  #HORIZONTAL SCROLLBAR STYLING
+\*-----------------------------------*/
+
+/* Hide horizontal scrollbars by default, show on hover */
+.has-scrollbar {
+  scrollbar-width: none;
+  scrollbar-color: transparent transparent;
+  transition: all 0.3s ease;
+}
+
+.has-scrollbar::-webkit-scrollbar {
+  height: 0px;
+  transition: height 0.3s ease;
+}
+
+.has-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 2px;
+}
+
+.has-scrollbar::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 2px;
+}
+
+/* Show scrollbar on hover */
+.has-scrollbar:hover {
+  scrollbar-width: thin;
+  scrollbar-color: var(--sage) rgba(116, 145, 118, 0.1);
+}
+
+.has-scrollbar:hover::-webkit-scrollbar {
+  height: 4px;
+}
+
+.has-scrollbar:hover::-webkit-scrollbar-track {
+  background: rgba(116, 145, 118, 0.1);
+}
+
+.has-scrollbar:hover::-webkit-scrollbar-thumb {
+  background: var(--sage);
+  transition: background 0.3s ease;
+}
+
+.has-scrollbar:hover::-webkit-scrollbar-thumb:hover {
+  background: var(--sage-dark);
+}
+
+/* Card stacking functionality for expanded view - ONLY on large screens */
+@media (min-width: 1024px) {
+  .section.expanded .has-scrollbar {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important;
+    gap: var(--space-4) !important;
+    overflow-x: visible !important;
+    justify-content: center !important;
+    padding: var(--space-4) 0 !important;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  .section.expanded .scrollbar-item {
+    width: 100% !important;
+    min-width: unset !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transform: scale(1) !important;
+  }
+
+  .section.expanded .scrollbar-item:nth-child(n+26) {
+    display: none !important;
+  }
+
+  /* Smooth animation for cards when expanding */
+  .section.expanded .review-card,
+  .section.expanded .shop-card {
+    transform: translateY(0) !important;
+    animation: cardExpand 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
+  }
+
+  @keyframes cardExpand {
+    0% {
+      opacity: 0.7;
+      transform: scale(0.95) translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+}
+
+/* On mobile and tablet, "See More" does nothing - keep horizontal scroll */
+@media (max-width: 1023px) {
+  .section.expanded .has-scrollbar {
+    display: flex !important;
+    overflow-x: auto !important;
+  }
+  
+  .section.expanded .scrollbar-item {
+    flex: 0 0 auto !important;
+  }
 }

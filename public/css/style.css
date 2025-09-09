@@ -532,8 +532,6 @@ body {
   padding-block: 20px;
   z-index: 4;
   will-change: transform;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8),
-    0 1px 3px rgba(0, 0, 0, 0.02);
 }
 
 .header-top.active {
@@ -760,7 +758,7 @@ body {
 }
 
 .mobile-navbar {
-  background-color: var(--white);
+  background-color: var(--off-white);
   position: fixed;
   top: 0;
   left: 0;
@@ -794,7 +792,7 @@ body {
 
 .nav-close-btn {
   font-size: 20px;
-  color: var(--premium-text-light);
+  color: var(--charcoal);
   width: 44px;
   height: 44px;
   display: flex;
@@ -802,7 +800,6 @@ body {
   justify-content: center;
   padding: 12px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -3357,7 +3354,7 @@ body {
   overflow: hidden;
   transform: translate(-50%, -50%) scale(.96);
   transition: transform .4s var(--cubic-out);
-  background: var(--white);
+  background: var(--off-white);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   padding: 0;

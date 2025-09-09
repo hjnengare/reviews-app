@@ -248,7 +248,9 @@ const handleScroll = function() {
   if (currentScroll > scrollThreshold) {
     if (!header.classList.contains("active")) {
       header.classList.add("active");
-      backTopBtn.classList.add("active");
+      if (backTopBtn) {
+        backTopBtn.classList.add("active");
+      }
       
       if (alert && !alert.classList.contains("hidden")) {
         alert.classList.add("hidden");
@@ -260,7 +262,9 @@ const handleScroll = function() {
   } else {
     if (header.classList.contains("active")) {
       header.classList.remove("active");
-      backTopBtn.classList.remove("active");
+      if (backTopBtn) {
+        backTopBtn.classList.remove("active");
+      }
       
       if (alert && alert.classList.contains("hidden")) {
         alert.classList.remove("hidden");
@@ -799,4 +803,48 @@ if (desktopSearchField) {
     }
   });
 }
+
+/**
+ * See More / Expand Section functionality
+ */
+const seeMoreButtons = document.querySelectorAll('.see-more-btn, [data-see-more]');
+
+const toggleSectionExpansion = function(sectionElement, button) {
+  const isExpanded = sectionElement.classList.contains('expanded');
+  
+  if (isExpanded) {
+    // Collapse section
+    sectionElement.classList.remove('expanded');
+    button.innerHTML = '<span>See More</span><ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>';
+    button.setAttribute('aria-expanded', 'false');
+    
+    // Smooth scroll back to section start
+    sectionElement.scrollIntoView({ 
+      behavior: 'smooth', 
+      block: 'start' 
+    });
+  } else {
+    // Expand section
+    sectionElement.classList.add('expanded');
+    button.innerHTML = '<span>Show Less</span><ion-icon name="arrow-up" aria-hidden="true"></ion-icon>';
+    button.setAttribute('aria-expanded', 'true');
+  }
+};
+
+// Add click handlers to see more buttons
+seeMoreButtons.forEach(button => {
+  button.addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    // Find the parent section
+    const section = this.closest('.section') || this.closest('section');
+    
+    if (section) {
+      toggleSectionExpansion(section, this);
+    }
+  });
+  
+  // Set initial ARIA attributes
+  button.setAttribute('aria-expanded', 'false');
+});
 
