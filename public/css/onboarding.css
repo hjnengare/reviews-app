@@ -8,11 +8,7 @@
 
 /* Premium body styling with masonry background */
 body {
-  background: linear-gradient(135deg,
-      rgba(248, 250, 252, 0.95) 0%,
-      rgba(255, 255, 255, 0.95) 30%,
-      rgba(248, 250, 252, 0.95) 70%,
-      rgba(241, 245, 249, 0.95) 100%);
+  background: var(--off-white);
   font-family: var(--ff-urbanist);
   font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
@@ -165,10 +161,6 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(180deg,
-      var(--white_30) 0%,
-      transparent 50%,
-      var(--black_5) 100%);
   pointer-events: none;
   z-index: 0;
 }
@@ -235,13 +227,13 @@ body {
   transition: all 0.2s ease;
   text-decoration: none;
   margin-bottom: 24px;
-  background: var(--coral);
+  background: var(--sage);
   color: white;
   width: 100%;
 }
 
 .onboarding__cta:hover {
-   background: linear-gradient(135deg, var(--sage-dark) 0%, var(--coral-dark) 100%);
+   background: var(--sage-dark);
   transform: translateY(-1px);
 }
 
@@ -252,12 +244,12 @@ body {
 
 /* Premium secondary text link */
 .onboarding__link {
-  color: var(--charcoal);
+  color: var(--coral);
   text-decoration: none;
   font-size: var(--fs-8);
   font-weight: var(--fw-500);
   font-family: var(--ff-urbanist);
-  opacity: 0.7;
+  opacity: 1;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
 }
@@ -273,7 +265,7 @@ body {
 /* Premium footer tagline */
 .onboarding__footnote {
   font-size: var(--fs-9);
-  color: var(--premium-text-light);
+  color: var(--charcoal);
   text-align: center;
   font-style: italic;
   font-family: var(--ff-urbanist);

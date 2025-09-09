@@ -500,8 +500,13 @@ app.post('/complete', requireAuth, async (req, res) => {
   }
 });
 
-// Catch-all route
-app.get('*', (req, res) => {
+// Catch-all route for HTML pages only (not static assets)
+app.get('*', (req, res, next) => {
+  // Skip static files (js, css, images, etc.)
+  if (req.path.includes('.')) {
+    return next();
+  }
+  
   // If authenticated and complete, redirect to explore
   if (req.cookies['sb-access-token']) {
     const payload = verifyJWT(req.cookies['sb-access-token']);

@@ -1,0 +1,584 @@
+/*-----------------------------------*\
+  #HOME PAGE OVERRIDES - ONBOARDING CONSISTENT STYLING
+\*-----------------------------------*/
+
+/* Import root CSS variables for consistent colors */
+@import url('./root.css');
+
+/*-----------------------------------*\
+  #GLOBAL BACKGROUND FIXES
+\*-----------------------------------*/
+
+/* Force consistent off-white background across all elements */
+body,
+html,
+main,
+.main,
+.container,
+section,
+.section {
+  background: var(--off-white) !important;
+}
+
+/* Override problematic white backgrounds from mediaqueries.css */
+.header .input-wrapper,
+.header .input-wrapper:focus-within,
+.search-field:focus,
+.category-nav.scrolled,
+.nav-open-btn,
+.nav-open-btn:hover,
+.header-action-btn,
+.header-action-btn:hover {
+  background: var(--off-white) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Shop cards - use off-white instead of white */
+.shop-card .action-btn {
+  background: var(--off-white) !important;
+}
+
+.shop-card .action-btn:is(:hover, :focus) {
+  background: var(--sage-light) !important;
+}
+
+/* Remove problematic gradients and overlays */
+.section::before {
+  display: none !important;
+}
+
+/*-----------------------------------*\
+  #SPACING FIXES - ELIMINATE WHITE GAPS
+\*-----------------------------------*/
+
+/* Remove default margins that create white gaps */
+section,
+.section,
+.container,
+.header,
+.main,
+main,
+div {
+  margin: 0 !important;
+}
+
+/* Ensure sections connect seamlessly */
+.section+.section,
+section+section {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/*-----------------------------------*\
+  #HEADER LAYOUT RESTRUCTURE
+\*-----------------------------------*/
+
+/* Mobile-first header spacing - tight and compact */
+.header {
+  margin-bottom: 0 !important;
+  padding: var(--space-3) 0 var(--space-2) 0 !important;
+}
+
+.header-top {
+  padding: 0 !important;
+}
+
+.header .container {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: var(--space-2) !important;
+  padding-top: var(--space-1) !important;
+  padding-bottom: var(--space-1) !important;
+}
+
+/* Top Row: Logo Left, Actions Right */
+.header-top-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+/* Logo positioning - mobile-first compact */
+.logo {
+  padding: var(--space-1) 0 !important;
+  margin: 0 !important;
+  flex-shrink: 0 !important;
+}
+
+.logo-text {
+  font-size: var(--fs-5) !important;
+  font-weight: var(--fw-700) !important;
+  color: var(--charcoal) !important;
+}
+
+/* Header actions container (unchanged from your version) */
+.header-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: var(--space-1) !important;
+  flex-shrink: 0 !important;
+}
+
+/* Button frame / hit area */
+.header-action-btn,
+.nav-open-btn {
+  padding: var(--space-2) !important;
+  margin: 0 !important;
+  width: 40px !important;
+  height: 40px !important;
+  display: flex !important;
+  /* KEY CHANGE → stack the bars vertically */
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  /* even vertical spacing between bars */
+  border-radius: 6px !important;
+  background: transparent !important;
+  border: 1px solid rgba(116, 145, 118, .15) !important;
+  color: var(--charcoal) !important;
+}
+
+.header-action-btn:hover,
+.nav-open-btn:hover {
+  background: var(--sage-light) !important;
+  border-color: var(--sage) !important;
+}
+
+/* Hamburger bars */
+.nav-open-btn .line {
+  display: block !important;
+  width: 20px !important;
+  height: 2px !important;
+  background: var(--charcoal) !important;
+  border-radius: 1px !important;
+  /* KEY CHANGE → remove margins; gap controls spacing */
+  margin: 0 !important;
+  transition: transform .2s ease, opacity .2s ease !important;
+}
+
+/* keep explicit sizes consistent (optional but harmless) */
+.nav-open-btn .line-1,
+.nav-open-btn .line-2,
+.nav-open-btn .line-3 {
+  width: 20px !important;
+  height: 2px !important;
+}
+
+/* Bottom Row: Search Input Full Width */
+.header-search-row {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+.header-search-row .input-wrapper {
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  background: var(--off-white) !important;
+  border: none !important;
+  border-radius: 10px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  position: relative !important;
+  height: 48px !important;
+  box-shadow: 0 1px 3px rgba(116, 145, 118, 0.1) !important;
+}
+
+.header-search-row .search-icon-left {
+  background: transparent !important;
+  border: none !important;
+  padding: var(--space-2) !important;
+  color: var(--charcoal) !important;
+  opacity: 0.6 !important;
+  flex-shrink: 0 !important;
+}
+
+.header-search-row .search-field {
+  flex: 1 !important;
+  border: none !important;
+  background: var(--off-white) !important;
+  padding: var(--space-2) var(--space-1) !important;
+  font-size: var(--fs-7) !important;
+  color: var(--charcoal) !important;
+  height: 100% !important;
+  text-align: center !important;
+  border-radius: 10px 0 0 10px !important;
+}
+
+.header-search-row .search-field:focus {
+  outline: none !important;
+  background: var(--off-white) !important;
+  text-align: left !important;
+  box-shadow: none !important;
+}
+
+.header-search-row .search-field::placeholder {
+  text-align: center !important;
+  color: var(--charcoal) !important;
+  opacity: 0.6 !important;
+}
+
+.header-search-row .filter-btn {
+  background: var(--sage) !important;
+  border: none !important;
+  border-radius: 0 9px 9px 0 !important;
+  padding: 0 var(--space-3) !important;
+  color: white !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: var(--space-1) !important;
+  font-size: var(--fs-8) !important;
+  font-weight: var(--fw-500) !important;
+  height: 100% !important;
+  min-width: 80px !important;
+  flex-shrink: 0 !important;
+  position: relative !important;
+  right: -1px !important;
+}
+
+.header-search-row .filter-btn:hover {
+  background: var(--sage-dark) !important;
+}
+
+.filter-text {
+  display: none !important;
+}
+
+/* Fix search section spacing */
+.search-section,
+.search-wrapper {
+  margin: 0 !important;
+  padding: var(--space-4) var(--space-4) var(--space-6) var(--space-4) !important;
+  background: var(--off-white) !important;
+}
+
+/* Fix carousel sections */
+.for-you-section,
+.trending-section,
+.category-section {
+  margin: 0 !important;
+  padding: var(--space-6) 0 !important;
+  background: var(--off-white) !important;
+}
+
+/* Ensure consistent container padding */
+.container {
+  padding-left: var(--space-4) !important;
+  padding-right: var(--space-4) !important;
+  background: transparent !important;
+}
+
+/* Fix any remaining white sections */
+.hero-section,
+.features-section,
+.about-section,
+.testimonial-section {
+  background: var(--off-white) !important;
+  margin: 0 !important;
+}
+
+/*-----------------------------------*\
+  #HARMONIZED BORDER SYSTEM
+\*-----------------------------------*/
+
+/* Search bar styling - force off-white background */
+.search-field,
+.mobile-search-field,
+input[type="search"],
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  background: var(--off-white) !important;
+  background-color: var(--off-white) !important;
+  border: 1px solid rgba(116, 145, 118, 0.2) !important;
+  border-radius: 8px !important;
+  color: var(--charcoal) !important;
+  box-shadow: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+
+.search-field:focus,
+.mobile-search-field:focus,
+input[type="search"]:focus,
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  background: var(--off-white) !important;
+  background-color: var(--off-white) !important;
+  border-color: rgba(116, 145, 118, 0.4) !important;
+  box-shadow: 0 0 0 2px rgba(116, 145, 118, 0.1) !important;
+  outline: none !important;
+}
+
+/* Input wrappers with harmonized borders */
+.header .input-wrapper,
+.input-wrapper,
+.search-wrapper {
+  background: var(--off-white) !important;
+  border: 1px solid rgba(116, 145, 118, 0.15) !important;
+  box-shadow: none !important;
+}
+
+.header .input-wrapper:focus-within,
+.input-wrapper:focus-within,
+.search-wrapper:focus-within {
+  background: var(--off-white) !important;
+  border-color: rgba(116, 145, 118, 0.3) !important;
+  box-shadow: none !important;
+}
+
+.search-field::placeholder,
+.mobile-search-field::placeholder {
+  color: var(--charcoal) !important;
+  opacity: 0.6;
+}
+
+/* Filter button styling */
+.filter-btn {
+  background: var(--sage) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 12px 16px !important;
+  transition: all 0.2s ease !important;
+}
+
+.filter-btn:hover {
+  background: var(--sage-dark) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Section titles */
+.section-title,
+.h2 {
+  color: var(--charcoal) !important;
+}
+
+/* Review cards with harmonized borders */
+.review-card,
+.shop-card,
+.product-card,
+.card {
+  background: var(--off-white) !important;
+  border: 1px solid rgba(33, 30, 29, 0.08) !important;
+  box-shadow: 0 1px 3px rgba(116, 145, 118, 0.2) !important;
+}
+
+.review-card:hover,
+.shop-card:hover,
+.product-card:hover,
+.card:hover {
+  border-color: rgba(116, 145, 118, 0.2) !important;
+  box-shadow: 0 2px 8px rgba(116, 145, 118, 0.1) !important;
+}
+
+/* Button borders harmonized - but preserve specific button styles */
+.filter-btn {
+  border: 1px solid transparent !important;
+}
+
+/* Preserve chatbot button styling */
+.chatbot-btn {
+  background: var(--coral) !important;
+  border: none !important;
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(214, 116, 105, 0.3) !important;
+}
+
+.chatbot-btn:hover {
+  background: var(--coral-dark) !important;
+  box-shadow: 0 6px 20px rgba(214, 116, 105, 0.4) !important;
+}
+
+/* Preserve subscribe button and other important buttons */
+.subscribe-btn,
+.btn-primary,
+.primary-btn {
+  /* Let them keep their original styling */
+  background: var(--sage);
+  border: unset !important;
+  box-shadow: unset !important;
+}
+
+.btn-outline,
+.button-outline {
+  background: var(--off-white) !important;
+  border: 1px solid rgba(116, 145, 118, 0.3) !important;
+  color: var(--sage) !important;
+}
+
+.btn-outline:hover,
+.button-outline:hover {
+  background: var(--sage-light) !important;
+  border-color: var(--sage) !important;
+}
+
+.bottom-nav {
+  border-top: 1px solid rgba(116, 145, 118, 0.08) !important;
+  background: var(--off-white) !important;
+}
+
+/* Footer harmonization */
+.footer {
+  background: var(--off-white) !important;
+  border-top: 1px solid rgba(116, 145, 118, 0.08) !important;
+}
+
+.footer-section,
+.footer-content {
+  background: var(--off-white) !important;
+}
+
+/* Section dividers */
+.section-divider,
+hr {
+  border: none !important;
+  height: 1px !important;
+  background: rgba(33, 30, 29, 0.06) !important;
+  margin: var(--space-6) 0 !important;
+}
+
+/* Form elements - complete override of default styles (excluding buttons) */
+input,
+textarea,
+select {
+  background: var(--off-white) !important;
+  background-color: var(--off-white) !important;
+  border: 1px solid rgba(116, 145, 118, 0.2) !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  background: var(--off-white) !important;
+  background-color: var(--off-white) !important;
+  border-color: rgba(116, 145, 118, 0.4) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(116, 145, 118, 0.1) !important;
+  -webkit-box-shadow: 0 0 0 2px rgba(116, 145, 118, 0.1) !important;
+}
+
+/* Remove autofill yellow background */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px var(--off-white) inset !important;
+  -webkit-text-fill-color: var(--charcoal) !important;
+  background-color: var(--off-white) !important;
+}
+
+.card-title {
+  color: var(--charcoal) !important;
+  font-weight: 700 !important;
+}
+
+.card-category {
+  color: var(--charcoal) !important;
+  opacity: 0.8;
+}
+
+/* Profile/account icon */
+.header-action-btn {
+  color: var(--charcoal) !important;
+}
+
+/* Chatbot button */
+.chatbot-btn {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: var(--coral);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 24px;
+  box-shadow: 0 4px 12px rgba(214, 116, 105, 0.3);
+  z-index: 1000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: gentle-bounce 2s ease-in-out infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chatbot-btn:hover {
+  background: var(--coral-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(214, 116, 105, 0.4);
+}
+
+@keyframes gentle-bounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Bottom navigation - show on mobile only */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--off-white);
+  border-top: 1px solid rgba(116, 145, 118, 0.2);
+  padding: 12px 0;
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  z-index: 999;
+  backdrop-filter: blur(10px);
+}
+
+/* Hide bottom navigation on larger screens */
+@media (min-width: 768px) {
+  .bottom-nav {
+    display: none !important;
+  }
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: var(--charcoal);
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  padding: 8px 12px;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  color: var(--sage);
+  transform: translateY(-2px);
+}
+
+.nav-item ion-icon {
+  font-size: 24px;
+  margin-bottom: 4px;
+}

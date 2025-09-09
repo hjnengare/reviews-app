@@ -56,6 +56,12 @@ function renderInterests() {
   INTERESTS.forEach((interest, index) => {
     const listItem = document.createElement('li');
     listItem.className = 'interests__item';
+    
+    // Add organic positioning with random offsets
+    const offsetX = (Math.random() - 0.5) * 2; // -1 to 1
+    const offsetY = (Math.random() - 0.5) * 2; // -1 to 1
+    listItem.style.setProperty('--offset-x', offsetX);
+    listItem.style.setProperty('--offset-y', offsetY);
 
     const bubble = document.createElement('button');
     bubble.className = 'bubble';

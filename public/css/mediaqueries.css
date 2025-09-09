@@ -200,7 +200,7 @@
   /* Make review card image taller on mobile for premium feel */
   .review-card__image {
     height: 450px !important;
-    min-height: 380px !important;
+    min-height: 450px !important;
     max-height: 500px !important;
     width: 100% !important;
     object-fit: cover !important;
@@ -318,6 +318,13 @@
 
   .container {
     max-width: 730px;
+  }
+
+  /* Navigation and header borders for larger screens only */
+  .header,
+  .nav,
+  .navbar {
+    border-bottom: 1px solid rgba(33, 30, 29, 0.06) !important;
   }
 
   .flex-item {
@@ -679,7 +686,7 @@
 
   .header .filter-btn:hover {
     color: var(--premium-text);
-    transform: translateY(-50%);
+    transform: translateY(-1px);
   }
 
   .header .logo {
@@ -872,10 +879,130 @@
     height: 6px;
     left: 6px;
   }
+
+  /* Footer visibility - hide on mobile, show on desktop */
+  .footer {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .footer {
+      display: block;
+    }
+  }
+
+  /* Bottom navigation visibility - show on mobile, hide on desktop */
+  .bottom-nav {
+    display: flex;
+  }
+
+  @media (min-width: 768px) {
+    .bottom-nav {
+      display: none;
+    }
+  }
+
+  /* Mobile responsiveness from home-overrides */
+  @media (max-width: 767px) {
+    .bottom-nav {
+      gap: 40px;
+    }
+
+    .chatbot-btn {
+      bottom: 80px;
+      right: 16px;
+      width: 56px;
+      height: 56px;
+      font-size: 22px;
+    }
+
+    /* Mobile header spacing - ultra compact */
+    .header {
+      padding: var(--space-2) 0 var(--space-2) 0 !important;
+    }
+
+    .header .container {
+      gap: var(--space-1) !important;
+    }
+
+    .filter-text {
+      display: none !important;
+    }
+
+    .header-search-row .filter-btn {
+      min-width: 60px !important;
+      border-radius: 0 8px 8px 0 !important;
+    }
+
+    .header-search-row .input-wrapper {
+      height: 44px !important;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .review-card__image {
+      position: relative;
+      width: 400px;
+      height: 200px;
+      overflow: hidden;
+      border-radius: var(--radius-3) 0 0;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+
+    .chatbot-btn {
+      bottom: 40px;
+      right: 24px;
+    }
+
+    /* Desktop header spacing - scaled up from mobile */
+    .header {
+      padding: var(--space-4) 0 var(--space-3) 0 !important;
+    }
+
+    .header .container {
+      gap: var(--space-3) !important;
+    }
+
+    .filter-text {
+      display: inline !important;
+    }
+
+    .header-search-row .filter-btn {
+      min-width: 100px !important;
+      padding: 0 var(--space-4) !important;
+    }
+
+    .header-search-row .input-wrapper {
+      height: 52px !important;
+    }
+
+    .logo-text {
+      font-size: var(--fs-3) !important;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    /* Large desktop - refined spacing */
+    .header {
+      padding: var(--space-6) 0 var(--space-4) 0 !important;
+    }
+
+    .header .container {
+      gap: var(--space-4) !important;
+    }
+
+    .header-search-row .input-wrapper {
+      height: 56px !important;
+    }
+
+    .logo-text {
+      font-size: var(--fs-2) !important;
+    }
+  }
 }
 
-/* Large screens */
-@media (min-width: 769px) {
+/* Desktop screens only - hide mobile search */
+@media (min-width: 992px) {
   .mobile-search-btn {
     display: none !important;
   }

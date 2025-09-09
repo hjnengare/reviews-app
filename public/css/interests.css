@@ -7,7 +7,7 @@
 
 /* Mobile-first body styling - clean and minimal */
 body {
-  background: #ffffff;
+  background: var(--off-white);
   font-family: 'Urbanist', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
@@ -177,31 +177,71 @@ body {
 .interests__grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+  gap: 16px 20px;
   width: 100%;
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 20px;
+  justify-items: center;
+  align-items: center;
 }
 
 .interests__item {
   display: flex;
   justify-content: center;
   align-items: center;
+  transform: translateX(calc(var(--offset-x, 0) * 10px)) translateY(calc(var(--offset-y, 0) * 8px));
 }
 
 /*-----------------------------------*\
   #INTEREST BUBBLES
 \*-----------------------------------*/
 
+/* Gentle floating animation for bubbles */
+@keyframes gentle-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes gentle-float-hover {
+  0%, 100% {
+    transform: translateY(0px) scale(1.02);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.02);
+  }
+}
+
+@keyframes gentle-float-selected {
+  0%, 100% {
+    transform: translateY(0px) scale(1.05);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.05);
+  }
+}
+
+@keyframes gentle-float-selected-hover {
+  0%, 100% {
+    transform: translateY(0px) scale(1.07);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.07);
+  }
+}
+
 .bubble {
   aspect-ratio: 1;
   width: 100%;
   max-width: 140px;
   min-width: 110px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 2px solid var(--sage);
   border-radius: 50%;
-  background: white;
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -214,6 +254,8 @@ body {
   color: var(--charcoal);
   padding: 12px;
   margin: 0 auto;
+  animation: gentle-float 4s ease-in-out infinite;
+  animation-delay: calc(var(--delay, 0) * 0.5s);
 }
 
 .bubble__label {
@@ -224,9 +266,9 @@ body {
 }
 
 .bubble:hover {
-  border-color: var(--sage);
-  background: var(--sage-light);
-  transform: scale(1.02);
+  border-color: var(--sage-dark);
+  background: rgba(116, 145, 118, 0.1);
+  animation: gentle-float-hover 4s ease-in-out infinite;
 }
 
 .bubble:focus-visible {
@@ -243,12 +285,12 @@ body {
   border-color: var(--coral);
   background: var(--coral);
   color: white;
-  transform: scale(1.05);
+  animation: gentle-float-selected 4s ease-in-out infinite;
 }
 
 .bubble.is-selected:hover {
-   background: linear-gradient(135deg, var(--sage-dark) 0%, var(--coral-dark) 100%);
-  transform: scale(1.07);
+   background: var(--coral-dark);
+  animation: gentle-float-selected-hover 4s ease-in-out infinite;
 }
 
 
@@ -274,13 +316,13 @@ body {
 }
 
 .btn--primary {
-  background: var(--coral);
+  background: var(--sage);
   color: white;
   width: 100%;
 }
 
 .btn--primary:hover:not(:disabled) {
-   background: linear-gradient(135deg, var(--sage-dark) 0%, var(--coral-dark) 100%);
+   background: var(--sage-dark);
   transform: translateY(-1px);
 }
 
@@ -360,7 +402,8 @@ body {
   }
 
   .interests__grid {
-    gap: 8px;
+    gap: 12px 16px;
+    padding: 16px;
   }
 
   .bubble {
@@ -420,8 +463,9 @@ body {
 
   .interests__grid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+    gap: 20px 24px;
     max-width: 500px;
+    padding: 24px;
   }
 
   .bubble {
@@ -442,11 +486,11 @@ body {
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   body {
-    background: #fafafa;
+    background: var(--off-white);
   }
 
   .interests {
-    background: white;
+   
     border-radius: 12px;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
     padding: 40px;
@@ -492,8 +536,9 @@ body {
 
   .interests__grid {
     grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
+    gap: 28px 32px;
     max-width: 600px;
+    padding: 32px;
   }
 
   .bubble {

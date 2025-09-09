@@ -17,6 +17,7 @@
   -->
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/mediaqueries.css">
+  <link rel="stylesheet" href="/css/home-overrides.css">
 
   <!-- 
     - google font link
@@ -42,36 +43,42 @@
   -->
 
   <header class="header">
-
-    <div class="alert">
-      <div class="container">
-        <div class="alert-slider">
-          <p class="alert-text active" data-alert="0">Join 50,000+ reviewers sharing authentic experiences</p>
-          <p class="alert-text" data-alert="1">Discover trusted reviews from real people in your area</p>
-          <p class="alert-text" data-alert="2">Write reviews and help others make better decisions</p>
-          <p class="alert-text" data-alert="3">Business owners: Claim your profile for free</p>
-          <p class="alert-text" data-alert="4">Save your favorite places and create wish lists</p>
-        </div>
-      </div>
-    </div>
-
     <div class="header-top" data-header>
       <div class="container">
+        
+        <!-- Top Row: Logo Left, Actions Right -->
+        <div class="header-top-row">
+          <a href="#" class="logo">
+            <span class="logo-text">Reviews App</span>
+          </a>
 
-        <a href="#" class="logo">
-          <span class="logo-text">Reviews App</span>
-        </a>
+          <div class="header-actions">
+            <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+              <span class="line line-1"></span>
+              <span class="line line-2"></span>
+              <span class="line line-3"></span>
+            </button>
 
-        <div class="input-wrapper">
-          <button class="search-icon-left" aria-label="search icon">
-            <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
-          </button>
+            <button class="header-action-btn" aria-label="user profile">
+              <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+            </button>
+          </div>
+        </div>
 
-          <input type="search" name="search" placeholder="Search reviews, places, businesses..." class="search-field">
+        <!-- Bottom Row: Search Input Full Width -->
+        <div class="header-search-row">
+          <div class="input-wrapper">
+            <button class="search-icon-left" aria-label="search icon">
+              <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+            </button>
 
-          <button class="filter-btn" aria-label="filter" data-filter-toggle>
-            <ion-icon name="options-outline" aria-hidden="true"></ion-icon>
-          </button>
+            <input type="search" name="search" placeholder="Search reviews, places, businesses..." class="search-field">
+
+            <button class="filter-btn" aria-label="filter" data-filter-toggle>
+              <ion-icon name="options-outline" aria-hidden="true"></ion-icon>
+              <span class="filter-text">Filters</span>
+            </button>
+          </div>
         </div>
 
         <!-- Mobile Search Input -->
@@ -86,24 +93,6 @@
           <button class="mobile-search-submit" aria-label="search">
             <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
           </button>
-        </div>
-
-        <div class="header-actions">
-
-          <button class="mobile-search-btn header-action-btn" aria-label="search" data-mobile-search-toggle>
-            <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
-          </button>
-
-          <button class="header-action-btn" aria-label="user profile">
-            <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
-          </button>
-
-          <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
-            <span class="line line-1"></span>
-            <span class="line line-2"></span>
-            <span class="line line-3"></span>
-          </button>
-
         </div>
 
         <nav class="navbar">
@@ -1395,10 +1384,6 @@
     </article>
   </main>
 
-
-
-
-
   <!-- 
     - #FOOTER
   -->
@@ -1548,13 +1533,22 @@
     </div>
   </footer>
 
-  <!-- 
-    - #BACK TO TOP
-  -->
+  <!-- Chatbot button -->
+  <button class="chatbot-btn" aria-label="Open chat" title="Chat with us">
+    <ion-icon name="chatbubble-outline"></ion-icon>
+  </button>
 
-  <a href="#top" class="back-top-btn" aria-label="back to top" data-back-top-btn>
-    <ion-icon name="arrow-up" aria-hidden="true"></ion-icon>
-  </a>
+  <!-- Bottom navigation -->
+  <nav class="bottom-nav">
+    <a href="/index.html" class="nav-item active">
+      <ion-icon name="home-outline"></ion-icon>
+      <span>Home</span>
+    </a>
+    <a href="/leaderboard.html" class="nav-item">
+      <ion-icon name="trophy-outline"></ion-icon>
+      <span>Leaderboard</span>
+    </a>
+  </nav>
 
 
 

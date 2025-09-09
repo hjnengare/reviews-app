@@ -7,7 +7,7 @@
 
 /* Mobile-first body styling - clean and minimal */
 body {
-  background: var(--white);
+  background: var(--off-white);
   font-family: 'Urbanist', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
@@ -38,6 +38,8 @@ body {
 \*-----------------------------------*/
 
 .dealbreakers__nav {
+  display: flex;
+  align-items: center;
   padding: 16px 0 24px;
 }
 
@@ -86,6 +88,27 @@ body {
   color: var(--charcoal);
   margin: 0 0 24px;
   line-height: 1.4;
+}
+
+/* Logo styling */
+.nav-logo {
+  text-decoration: none;
+  display: none; /* Hidden on mobile by default */
+  margin-left: auto;
+}
+
+.logo-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--charcoal);
+  letter-spacing: -0.01em;
+}
+
+/* Show logo on larger screens */
+@media (min-width: 768px) {
+  .nav-logo {
+    display: block;
+  }
 }
 
 /*-----------------------------------*\
@@ -168,7 +191,6 @@ body {
 .dealbreaker-card {
   min-height: 120px;
   border: none;
-  background: transparent;
   font-family: inherit;
   cursor: pointer;
   position: relative;
@@ -204,7 +226,7 @@ body {
   padding: 20px;
   border: 1px solid var(--black_10);
   border-radius: 12px;
-  background-color: white;
+  background-color: var(--off-white);
   box-shadow: var(--shadow-sm);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   -webkit-backface-visibility: hidden;
@@ -385,13 +407,13 @@ body {
 }
 
 .btn--primary {
-  background: var(--coral);
+  background: var(--sage);
   color: white;
   width: 100%;
 }
 
 .btn--primary:hover:not(:disabled) {
-   background: linear-gradient(135deg, var(--sage-dark) 0%, var(--coral-dark) 100%);
+   background: var(--sage-dark);
   transform: translateY(-1px);
 }
 
@@ -417,14 +439,14 @@ body {
 }
 
 .dealbreakers__alt a {
-  color: var(--charcoal);
+  color: var(--coral);
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s ease;
 }
 
 .dealbreakers__alt a:hover {
-  color: var(--coral);
+  color: var(--coral-dark);
 }
 
 /*-----------------------------------*\
@@ -610,11 +632,11 @@ body {
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   body {
-   background: var(--white);
+   background: var(--off-white);
   }
 
   .dealbreakers {
-    background: white;
+   
     border-radius: 12px;
     box-shadow: var(--shadow-md);
     padding: 40px;
